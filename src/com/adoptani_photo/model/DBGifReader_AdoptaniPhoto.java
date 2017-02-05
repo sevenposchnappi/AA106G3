@@ -20,7 +20,6 @@ public class DBGifReader_AdoptaniPhoto extends HttpServlet {
 		res.setContentType("image/jpeg");
 		ServletOutputStream out = res.getOutputStream();
 		String ado_Ani_Pic_No = req.getParameter("ado_Ani_Pic_No");
-		String ado_Ani_Pic_No2 =new String(ado_Ani_Pic_No.getBytes("ISO-8859-1"),"UTF-8");
 		String ado_Pic_type = req.getParameter("ado_Pic_type");
 		System.out.println("1");
 		
@@ -30,13 +29,16 @@ public class DBGifReader_AdoptaniPhoto extends HttpServlet {
 			ResultSet rs;
 				if(ado_Pic_type==null){
 					System.out.println("3");
+					String ado_Ani_Pic_No2 =new String(ado_Ani_Pic_No.getBytes("ISO-8859-1"),"UTF-8");
 					rs= stmt.executeQuery(
 						"SELECT ado_Ani_Pic FROM ADOPT_ANI_PHOTOS WHERE ado_Ani_Pic_No='"+ado_Ani_Pic_No2+"'");
 				}else{
+					String adopt_Ani_Id = req.getParameter("adopt_Ani_Id");
+					String adopt_Ani_Id2 =new String(adopt_Ani_Id.getBytes("ISO-8859-1"),"UTF-8");
 					String ado_Pic_type2 =new String(ado_Pic_type.getBytes("ISO-8859-1"),"UTF-8");
 					System.out.println("4");
 					rs= stmt.executeQuery(
-							"SELECT ado_Ani_Pic FROM ADOPT_ANI_PHOTOS WHERE ado_Ani_Pic_No='"+ado_Ani_Pic_No2+"'"+"AND ado_Pic_type='"+ado_Pic_type2+"'");
+							"SELECT ado_Ani_Pic FROM ADOPT_ANI_PHOTOS WHERE adopt_Ani_Id='"+adopt_Ani_Id2+"'"+"AND ado_Pic_type='"+ado_Pic_type2+"'");
 				}
 			
 			if (rs.next()) {
@@ -48,7 +50,6 @@ public class DBGifReader_AdoptaniPhoto extends HttpServlet {
 				}
 				in.close();
 			} else {
-				System.out.println(getServletContext());
 				InputStream in = getServletContext().getResourceAsStream("/images/tomcat.gif");
 				byte[] buf = new byte[in.available()]; 	//建立水桶
 				in.read(buf);							//把資料放進水桶			
