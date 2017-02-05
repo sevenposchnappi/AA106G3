@@ -91,14 +91,14 @@
 			<td><input type="TEXT" name="ado_Pic_nameEX" size="20" placeholder="貓、狗...."
 				value="<%= (adoptaniPhotoVO==null)? "" : adoptaniPhotoVO.getAdo_Pic_nameEX()%>" /></td>
 		</tr>
-		<tr>
-			<td>送養動物動物照片類型:</td>
-			<td><input type="TEXT" name="ado_Pic_type" size="20" placeholder="貓、狗...."
-				value="<%= (adoptaniPhotoVO==null)? "" : adoptaniPhotoVO.getAdo_Pic_type()%>" /></td>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<td>送養動物動物照片類型:</td> -->
+<!-- 			<td><input type="TEXT" name="ado_Pic_type" size="20" placeholder="貓、狗...." -->
+<%-- 				value="<%= (adoptaniPhotoVO==null)? "" : adoptaniPhotoVO.getAdo_Pic_type()%>" /></td> --%>
+<!-- 		</tr> -->
 		<tr>
 			<td>送養動物動物大頭貼照片:</td>
-			<td><input type="file" name="ado_Ani_Pic" size="20" id="theFile" /></td>
+			<td><input type="file" name="ado_Ani_Pic_head" size="20" id="theFile" /></td>
 		</tr>
 		<tr>
 			<td>送養動物動物相簿照片:</td>

@@ -9,7 +9,7 @@ public class AdoptaniPhotoService {
 	
 	private AdoptaniPhotoDAO_interface dao;
 	public AdoptaniPhotoService(){
-		dao = new AdoptaniPhotoJDBCDAO();
+		dao = new AdoptaniPhotoJNDIDAO();
 	}
 	
 	

@@ -9,7 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
 
-public class DBGifReader_AdoptaniPhoto extends HttpServlet {
+public class DBGifReader_AdoptaniPhoto2 extends HttpServlet {
 
 	Connection con;
 
@@ -20,25 +20,13 @@ public class DBGifReader_AdoptaniPhoto extends HttpServlet {
 		res.setContentType("image/jpeg");
 		ServletOutputStream out = res.getOutputStream();
 		String ado_Ani_Pic_No = req.getParameter("ado_Ani_Pic_No");
+		System.out.println(ado_Ani_Pic_No);
 		String ado_Ani_Pic_No2 =new String(ado_Ani_Pic_No.getBytes("ISO-8859-1"),"UTF-8");
-		String ado_Pic_type = req.getParameter("ado_Pic_type");
-		System.out.println("1");
-		
+
 		try {
-			System.out.println("2");
 			Statement stmt = con.createStatement();
-			ResultSet rs;
-				if(ado_Pic_type==null){
-					System.out.println("3");
-					rs= stmt.executeQuery(
-						"SELECT ado_Ani_Pic FROM ADOPT_ANI_PHOTOS WHERE ado_Ani_Pic_No='"+ado_Ani_Pic_No2+"'");
-				}else{
-					String ado_Pic_type2 =new String(ado_Pic_type.getBytes("ISO-8859-1"),"UTF-8");
-					System.out.println("4");
-					rs= stmt.executeQuery(
-							"SELECT ado_Ani_Pic FROM ADOPT_ANI_PHOTOS WHERE ado_Ani_Pic_No='"+ado_Ani_Pic_No2+"'"+"AND ado_Pic_type='"+ado_Pic_type2+"'");
-				}
-			
+			ResultSet rs = stmt.executeQuery(
+					"SELECT ado_Ani_Pic FROM ADOPT_ANI_PHOTOS WHERE ado_Ani_Pic_No='"+ado_Ani_Pic_No2+"'");
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("ado_Ani_Pic"));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
@@ -48,18 +36,12 @@ public class DBGifReader_AdoptaniPhoto extends HttpServlet {
 				}
 				in.close();
 			} else {
-				System.out.println(getServletContext());
-				InputStream in = getServletContext().getResourceAsStream("/images/tomcat.gif");
-				byte[] buf = new byte[in.available()]; 	//建立水桶
-				in.read(buf);							//把資料放進水桶			
-				out.write(buf);							//把水桶裡的資料倒出來
-				in.close();
+				res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			}
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
 			System.out.println(e);
-			System.out.println("?");
 		}
 	}
 

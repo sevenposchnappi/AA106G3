@@ -9,17 +9,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.adoptani.model.AdoptaniVO;
 
 
 
 
 
-public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "AA106G3";
-	String passwd = "123456";
+public class AdoptaniPhotoJNDIDAO implements AdoptaniPhotoDAO_interface{
+
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB3");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static final String INSERT_STMT = 
 			"INSERT INTO adopt_Ani_photos (ado_Ani_Pic_No,adopt_Ani_Id,mem_Id,ado_Ani_Pic,ado_Pic_name,ado_Pic_nameEX,ado_Pic_time,ado_Pic_type) VALUES (adopt_Ani_photos_Seq.NEXTVAL,?,?,?,?,?,sysdate,?)";
@@ -45,8 +57,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 		
 		
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(INSERT_STMT);
 				
 				
@@ -60,10 +71,6 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				pstmt.executeUpdate();
 				
 				// Handle any driver errors
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Couldn't load database driver. "
-						+ e.getMessage());
-				// Handle any SQL errors
 			} catch (SQLException se) {
 				throw new RuntimeException("A database error occured. "
 						+ se.getMessage());
@@ -93,8 +100,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 		
 		
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(UPDATE_STMT);
 				
 				
@@ -111,10 +117,6 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				pstmt.executeUpdate();
 				
 				// Handle any driver errors
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Couldn't load database driver. "
-						+ e.getMessage());
-				// Handle any SQL errors
 			} catch (SQLException se) {
 				throw new RuntimeException("A database error occured. "
 						+ se.getMessage());
@@ -144,8 +146,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 		
 		
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(DELETE);
 				
 				
@@ -156,10 +157,6 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				pstmt.executeUpdate();
 				
 				// Handle any driver errors
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Couldn't load database driver. "
-						+ e.getMessage());
-				// Handle any SQL errors
 			} catch (SQLException se) {
 				throw new RuntimeException("A database error occured. "
 						+ se.getMessage());
@@ -191,8 +188,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 		ResultSet rs = null;
 		
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(GET_ONE_STMT);
 				
 				
@@ -220,10 +216,6 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				
 				
 				// Handle any driver errors
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Couldn't load database driver. "
-						+ e.getMessage());
-				// Handle any SQL errors
 			} catch (SQLException se) {
 				throw new RuntimeException("A database error occured. "
 						+ se.getMessage());
@@ -259,8 +251,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 		ResultSet rs = null;
 		
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(GET_ALL_STMT);
 				rs = pstmt.executeQuery();
 				
@@ -284,10 +275,6 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				
 				
 				// Handle any driver errors
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Couldn't load database driver. "
-						+ e.getMessage());
-				// Handle any SQL errors
 			} catch (SQLException se) {
 				throw new RuntimeException("A database error occured. "
 						+ se.getMessage());
@@ -323,8 +310,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 		ResultSet rs = null;
 		
 			try {
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				con = ds.getConnection();
 				pstmt = con.prepareStatement(GET_AdoptaniPhotos_ByAdoptaniID_STMT);
 				
 				
@@ -352,10 +338,6 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				
 				
 				// Handle any driver errors
-			} catch (ClassNotFoundException e) {
-				throw new RuntimeException("Couldn't load database driver. "
-						+ e.getMessage());
-				// Handle any SQL errors
 			} catch (SQLException se) {
 				throw new RuntimeException("A database error occured. "
 						+ se.getMessage());

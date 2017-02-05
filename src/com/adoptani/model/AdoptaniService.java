@@ -9,7 +9,7 @@ public class AdoptaniService {
 	private AdoptaniDAO_interface dao;
 	
 	public AdoptaniService(){
-		dao = new AdoptaniJDBCDAO();
+		dao = new AdoptaniJNDIDAO();
 	}
 	
 	public AdoptaniVO addAdoptani(String Mem_Id, String Adopt_Ani_name, String Adopt_Ani_type, String Adopt_Ani_gender, String Adopt_Ani_heal, String Adopt_Ani_Vac, String Adopt_Ani_color, String Adopt_Ani_body, String Adopt_Ani_age, String Adopt_Ani_Neu, String Adopt_Ani_chip,  java.sql.Timestamp Adopt_Ani_date, String Adopt_Ani_status, java.sql.Timestamp Adopt_Ani_CreDate, Double Adopt_Ani_FinLat, Double Adopt_Ani_FinLon, String Adopt_Ani_city, String Adopt_Ani_town, String Adopt_Ani_road){

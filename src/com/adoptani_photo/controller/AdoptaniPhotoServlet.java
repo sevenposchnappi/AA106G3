@@ -41,7 +41,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		System.out.println(action);
-		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
+		if ("getOne_For_Display".equals(action) || "getOne_For_Display_From_listAllAdoptani.jsp".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -92,9 +92,16 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("oneAdoptAniPhotoList", oneAdoptAniPhotoList); 
-				String url = "/adoptani_photo/listOneAdoptaniPhoto.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); 
-				successView.forward(req, res);
+				if("getOne_For_Display".equals(action)){
+					String url = "/adoptani_photo/listOneAdoptaniPhoto.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); 
+					successView.forward(req, res);
+				}
+				else if("getOne_For_Display_From_listAllAdoptani.jsp".equals(action)){
+					String url = "/adoptani/listAllAdoptani.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); 
+					successView.forward(req, res);
+				}
 
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
@@ -116,7 +123,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 				
 				List<byte[]> picList = new ArrayList();	//用來裝照片
-				
+				List<String> picTypeList = new ArrayList();	//用來裝照片類型(大頭貼(0)、or相簿照片(1))
 				
 
 				
@@ -132,7 +139,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 						errorMsgs.add("請輸入送養動物名字");
 					}
 					String ado_Pic_nameEX = req.getParameter("ado_Pic_nameEX");
-					String ado_Pic_type = req.getParameter("ado_Pic_type");
+//					String ado_Pic_type = req.getParameter("ado_Pic_type");
 					
 					
 					Collection<Part> parts = req.getParts();
@@ -143,13 +150,20 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					
 					for (Part part : parts) {	//parts裡面包含非圖片資料。
 						String picType = part.getContentType();
-						
+						System.out.println("part's name : " + part.getName() );
 						if("image/jpeg".equals(picType)  || "image/png".equals(picType)){	//圖片的才用二位元資料讀進來
 							InputStream in = part.getInputStream();
 							ado_Ani_Pic = new byte[in.available()];
 							in.read(ado_Ani_Pic);
 							picList.add(ado_Ani_Pic);
 							in.close();
+							if("ado_Ani_Pic_head".equals(part.getName())){
+								String ado_Pic_type = "0"; 
+								picTypeList.add(ado_Pic_type);
+							}else{
+								String ado_Pic_type = "1";
+								picTypeList.add(ado_Pic_type);
+							}
 					
 							}
 						}
@@ -162,7 +176,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					adoptaniPhotoVO.setAdopt_Ani_Id(adopt_Ani_Id);
 					adoptaniPhotoVO.setAdo_Pic_name(ado_Pic_name);
 					adoptaniPhotoVO.setAdo_Pic_nameEX(ado_Pic_nameEX);
-					adoptaniPhotoVO.setAdo_Pic_type(ado_Pic_type);
+//					adoptaniPhotoVO.setAdo_Pic_type(ado_Pic_type);
 										
 /*圖片*/				adoptaniPhotoVO.setAdo_Ani_Pic(ado_Ani_Pic);
 
@@ -180,7 +194,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					AdoptaniPhotoService adoptaniPhotoService = new AdoptaniPhotoService();
 					for(int i=0 ; i<picList.size() ; i++){
 						String ado_Pic_name_insert = ado_Pic_name + i;
-					adoptaniPhotoVO = adoptaniPhotoService.addAdoptaniPhoto(adopt_Ani_Id, mem_Id, picList.get(i), ado_Pic_name_insert, ado_Pic_nameEX, ado_Pic_type);
+					adoptaniPhotoVO = adoptaniPhotoService.addAdoptaniPhoto(adopt_Ani_Id, mem_Id, picList.get(i), ado_Pic_name_insert, ado_Pic_nameEX, picTypeList.get(i));
 					}
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
 					String url = "/adoptani_photo/listAllAdoptaniPhoto.jsp";

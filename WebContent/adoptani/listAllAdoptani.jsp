@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.adoptani.model.*"%>
+<%@ page import="com.adoptani_photo.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
@@ -99,13 +100,14 @@
 			    <input type="hidden" name="action"value="delete"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="adoptani.do">
-			    <input type="submit" value="新增照片">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do">
+			    <input type="submit" value="顯示照片">
 			    <input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
 			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
-			    <input type="hidden" name="action"value="delete"></FORM>
+			    <input type="hidden" name="action"value="getOne_For_Display_From_listAllAdoptani.jsp"></FORM>
 			</td>
+			     
 		</tr>
 	</c:forEach>
 </table>
@@ -115,5 +117,10 @@
 <br>本網頁的路徑:<br><b>
    <font color=blue>request.getServletPath():</font> <%= request.getServletPath()%><br>
    <font color=blue>request.getRequestURI(): </font> <%= request.getRequestURI()%> </b>
+<br>
+
+
+
+
 </body>
 </html>

@@ -51,12 +51,13 @@
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="adoptaniPhotoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		<tr align='center' valign='middle'>
+		<tr align='center' valign='middle' ${(adoptaniPhotoVO.ado_Ani_Pic_No==param.ado_Ani_Pic_No) ? 'bgcolor=#CCCCFF':''}>
 			
 			<td>${adoptaniPhotoVO.ado_Ani_Pic_No}</td> 
 			<td>${adoptaniPhotoVO.adopt_Ani_Id}</td>
 			<td>${adoptaniPhotoVO.mem_Id}</td>
-			<td height=200px width=200px style="table-layout:fixed"><div><img onload="javascript:this.resized=true;this.style.width=300;" src="<%=request.getContextPath()%>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?ado_Ani_Pic_No=${adoptaniPhotoVO.ado_Ani_Pic_No}"></div></td>
+<%-- 			<td height=200px width=200px style="table-layout:fixed"><div><img onload="javascript:this.resized=true;this.style.width=300;" src="<%=request.getContextPath()%>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?ado_Ani_Pic_No=${adoptaniPhotoVO.ado_Ani_Pic_No}"></div></td> --%>
+			<td  style="table-layout:fixed; height:200px ; width:300"><div><img style="table-layout:fixed; max-height:200px; max-width:200px"  src="<%=request.getContextPath()%>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?ado_Ani_Pic_No=${adoptaniPhotoVO.ado_Ani_Pic_No}"></div></td>
 			<td>${adoptaniPhotoVO.ado_Pic_name}</td>
 			<td>${adoptaniPhotoVO.ado_Pic_nameEX}</td>
 			<td>${adoptaniPhotoVO.ado_Pic_time}</td>
@@ -66,6 +67,8 @@
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do">
 			     <input type="submit" value="修改">
+			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 			     <input type="hidden" name="ado_Ani_Pic_No" value="${adoptaniPhotoVO.ado_Ani_Pic_No}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			     
@@ -73,6 +76,8 @@
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do">
 			    <input type="submit" value="刪除">
+			    <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+			    <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 			    <input type="hidden" name="ado_Ani_Pic_No" value="${adoptaniPhotoVO.ado_Ani_Pic_No}">
 			    <input type="hidden" name="action"value="delete"></FORM>
 			</td>
