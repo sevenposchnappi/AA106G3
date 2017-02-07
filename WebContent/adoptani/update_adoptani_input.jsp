@@ -4,6 +4,16 @@
 <%
 	AdoptaniVO adoptaniVO = (AdoptaniVO) request.getAttribute("adoptaniVO"); //AdoptaniServlet.java (Concroller), 存入req的adoptaniVO物件 (包括幫忙取出的adoptaniVO, 也包括輸入資料錯誤時的adoptaniVO物件)
 %>
+
+<%/**
+	Q:update_adoptani_input.jsp  ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}
+		沒有set也可以用EL取到。
+	A:Control裡面有set。
+
+
+**/ %>
+
+
 <html>
 <head>
 <title>送養動物資料修改 - update_adoptani_input.jsp</title></head>
@@ -53,7 +63,8 @@
 	<tr>
 		<td>送養動物性別</td>
 		<td>
-			<input type="TEXT" name="Adopt_Ani_gender" size="20" value="<%=adoptaniVO.getAdopt_Ani_gender()%>">
+			<input type="radio" name="Adopt_Ani_gender" size="20" value="1" ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}>公	
+			<input type="radio" name="Adopt_Ani_gender" size="20" value="0" ${(adoptaniVO.adopt_Ani_gender==0) ? 'checked':''}>母
 		</td>
 	</tr>
 	<tr>
@@ -89,7 +100,7 @@
 	<tr>
 		<td>送養動物節育</td>
 		<td>
-			<input type="TEXT" name="Adopt_Ani_Neu" size="20" value="<%=adoptaniVO.getAdopt_Ani_Neu()%>">
+			<input type="TEXT" name="Adopt_Ani_Neu" size="20" value="<%=adoptaniVO.getAdopt_Ani_Neu()==null?"1":"2"%>">
 		</td>
 	</tr>
 	<tr>

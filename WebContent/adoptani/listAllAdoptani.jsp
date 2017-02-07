@@ -3,14 +3,17 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.adoptani.model.*"%>
 <%@ page import="com.adoptani_photo.model.*"%>
+<%@ page import="com.chung.tools.Tools"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
 	AdoptaniService adoptaniSvc = new AdoptaniService();
     List<AdoptaniVO> list = adoptaniSvc.getAll();
-    pageContext.setAttribute("list",list);
+    pageContext.setAttribute("list",list);	//要放到scope裡面才找得到。
+    
+    Tools tools = new Tools();
 %>
-
+<%-- <jsp:useBean id="tools" scope="request" class="com.chung.tools.Tools" /> --%>
 <html>
 <head>
 <title>所有送養動物資料 - listAllAdoptani.jsp</title>
@@ -67,16 +70,19 @@
 			<td>${adoptaniVO.mem_Id}</td>
 			<td>${adoptaniVO.adopt_Ani_name}</td>
 			<td>${adoptaniVO.adopt_Ani_type}</td>
-			<td>${adoptaniVO.adopt_Ani_gender}</td>
+			<c:set var="adopt_Ani_gender" value="${adoptaniVO.adopt_Ani_gender}" scope="request"></c:set>
+			<td><%=tools.genderExchange((String) request.getAttribute("adopt_Ani_gender"))%></td>
 			<td>${adoptaniVO.adopt_Ani_heal}</td>
 			<td>${adoptaniVO.adopt_Ani_Vac}</td>
 			<td>${adoptaniVO.adopt_Ani_color}</td>
+			
 			<td>${adoptaniVO.adopt_Ani_body}</td>
 			<td>${adoptaniVO.adopt_Ani_age}</td>
 			<td>${adoptaniVO.adopt_Ani_Neu}</td>
 			<td>${adoptaniVO.adopt_Ani_chip}</td>
 			<td>${adoptaniVO.adopt_Ani_date}</td>
-			<td>${adoptaniVO.adopt_Ani_status}</td>
+			<c:set var="adopt_Ani_status" value="${adoptaniVO.adopt_Ani_status}" scope="request"></c:set>
+			<td><%=tools.statusExchange((String) request.getAttribute("adopt_Ani_status"))%></td>
 			<td>${adoptaniVO.adopt_Ani_CreDate}</td>
 			<td>${adoptaniVO.adopt_Ani_FinLat}</td>
 			<td>${adoptaniVO.adopt_Ani_FinLon}</td>

@@ -8,6 +8,7 @@
 
  	List<AdoptaniPhotoVO> list = (List) request.getAttribute("oneAdoptAniPhotoList");
 	pageContext.setAttribute("list",list);	//如果沒有setAttribute，JLTS的for each就沒辦法跑。
+	
 %>
 
 <html>
@@ -15,54 +16,40 @@
 <title>所有送養動物照片 - listOneAdoptani.jsp</title>
 </head>
 <body bgcolor='white'>
-<b><font color=red>此頁練習採用 EL 的寫法取值:</font></b>
-<table border='1' cellpadding='5' cellspacing='0' width='800'>
-	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
-		<td>
-		<h3>所有送養動物照片 - listAllAdoptaniPhoto.jsp</h3>
-		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
-		</td>
-	</tr>
-</table>
 
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font color='red'>請修正以下錯誤:
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li>${message}</li>
-		</c:forEach>
-	</ul>
-	</font>
-</c:if>
 
-<table border='1' bordercolor='#CCCCFF' width='800'>
 
-	<%@ include file="page1.file" %> 
-	<c:forEach var="adoptaniPhotoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		<tr align='center' valign='middle'>
 
-			<td height=200px width=200px style="table-layout:fixed"><div><img onload="javascript:this.resized=true;this.style.width=300;" src="<%=request.getContextPath()%>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?ado_Ani_Pic_No=${adoptaniPhotoVO.ado_Ani_Pic_No}"></div></td>
+<table border='1' bordercolor='#CCCCFF' >
+
+<%-- 	<%@ include file="page1.file" %>  --%>
+<%-- 	<c:forEach var="adoptaniPhotoVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+			<c:forEach var="adoptaniPhotoVO" items="${list}" >
+				
+				
+				<tr align='center' valign='middle'>
+
+				<td height=200px width=200px style="table-layout:fixed"><div><img style="table-layout:fixed; max-height:200px; max-width:200px" src="<%=request.getContextPath()%>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?ado_Ani_Pic_No=${adoptaniPhotoVO.ado_Ani_Pic_No}"></div></td>
 
 
    
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="ado_Ani_Pic_No" value="${adoptaniPhotoVO.ado_Ani_Pic_No}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do"> --%>
+<!-- 			     <input type="submit" value="修改"> -->
+<%-- 			     <input type="hidden" name="ado_Ani_Pic_No" value="${adoptaniPhotoVO.ado_Ani_Pic_No}"> --%>
+<!-- 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
 			     
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do">
-			    <input type="submit" value="刪除">
-			    <input type="hidden" name="ado_Ani_Pic_No" value="${adoptaniPhotoVO.ado_Ani_Pic_No}">
-			    <input type="hidden" name="action"value="delete"></FORM>
-			</td>
-		</tr>
-	</c:forEach>
+<!-- 			</td> -->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do"> --%>
+<!-- 			    <input type="submit" value="刪除"> -->
+<%-- 			    <input type="hidden" name="ado_Ani_Pic_No" value="${adoptaniPhotoVO.ado_Ani_Pic_No}"> --%>
+<!-- 			    <input type="hidden" name="action"value="delete"></FORM> -->
+<!-- 			</td> -->
+				</tr>
+			</c:forEach>
 </table>
-<%@ include file="page2.file" %>
+<%-- <%@ include file="page2.file" %> --%>
 
 </body>
 </html>

@@ -19,6 +19,7 @@ import javax.servlet.http.Part;
 import javax.servlet.jsp.PageContext;
 
 import com.adoptani.model.AdoptaniService;
+import com.adoptani.model.AdoptaniVO;
 import com.adoptani_photo.model.*;
 
 
@@ -37,23 +38,26 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		
-		
+		System.out.println("into AdoptaniPhotoServlet.java");
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		System.out.println(action);
-		if ("getOne_For_Display".equals(action) || "getOne_For_Display_From_listAllAdoptani.jsp".equals(action)) { // 來自select_page.jsp的請求
+		if ("getOne_For_Display".equals(action) || "getOne_For_Display_From_listOneAdoptani.jsp".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			AdoptaniVO adoptaniVO = (AdoptaniVO) req.getAttribute("adoptaniVO"); //AdoptaniVOServlet.java(Concroller), 存入req的adoptaniVO物件
+			System.out.println("action:"+action);
+			
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String str = req.getParameter("adopt_Ani_Id");
 				if (str == null || (str.trim()).length() == 0) {
 					errorMsgs.add("請輸入送養動物編號");
 				}
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -68,6 +72,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("送養動物編號格式不正確");
 				}
+				System.out.println("adopt_Ani_Id:"+adopt_Ani_Id);
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -82,6 +87,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				if (oneAdoptAniPhotoList == null) {
 					errorMsgs.add("查無資料");
 				}
+				System.out.println("查詢資料");
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -93,12 +99,13 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("oneAdoptAniPhotoList", oneAdoptAniPhotoList); 
 				if("getOne_For_Display".equals(action)){
-					String url = "/adoptani_photo/listOneAdoptaniPhoto.jsp";
+					String url = "/adoptani/listOneAdoptani.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 				}
-				else if("getOne_For_Display_From_listAllAdoptani.jsp".equals(action)){
-					String url = "/adoptani/listAllAdoptani.jsp";
+				else if("getOne_For_Display_From_listOneAdoptani.jsp".equals(action)){
+					System.out.println("查詢資料完成");
+					String url = "/adoptani/listOneAdoptaniAllPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 				}
@@ -243,12 +250,10 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					/***************************2.開始修改資料*****************************************/
 					adoptaniPhotoSvc.upadaeAdoptaniPhoto(adoptaniPhotoVO);
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
-					System.out.println("1");
 					req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // 資料庫update成功後,正確的的empVO物件,存入req
 					String url = "/adoptani_photo/listAllAdoptaniPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
-					System.out.println("1");
 					/***************************其他可能的錯誤處理*************************************/
 				} catch (Exception e) {
 					errorMsgs.add("修改資料失敗:"+e.getMessage());

@@ -304,10 +304,11 @@ public class AdoptaniServlet extends HttpServlet {
 					}
 					
 					/***************************2.開始修改資料*****************************************/
-					System.out.println("開始修改資料");
+					System.out.println("開始修改資料"+"adopt_Ani_Id"+adopt_Ani_Id+"Mem_Id"+Mem_Id+"Adopt_Ani_name"+Adopt_Ani_name+"Adopt_Ani_type"+Adopt_Ani_type +"Adopt_Ani_gender"+Adopt_Ani_gender +"Adopt_Ani_heal"+Adopt_Ani_heal +"Adopt_Ani_Vac"+Adopt_Ani_Vac +"Adopt_Ani_color"+Adopt_Ani_color +"Adopt_Ani_body"+Adopt_Ani_body +"Adopt_Ani_age"+Adopt_Ani_age +"Adopt_Ani_Neu"+Adopt_Ani_Neu +"Adopt_Ani_chip"+Adopt_Ani_chip +"Adopt_Ani_date"+Adopt_Ani_date +"Adopt_Ani_status"+Adopt_Ani_status +"Adopt_Ani_date"+Adopt_Ani_date +"Adopt_Ani_FinLat"+Adopt_Ani_FinLat +"Adopt_Ani_FinLon"+Adopt_Ani_FinLon +"Adopt_Ani_city"+Adopt_Ani_city +"Adopt_Ani_town"+Adopt_Ani_town +"Adopt_Ani_road"+Adopt_Ani_road  );
+					req.setAttribute("adoptaniVO", adoptaniVO);
 					AdoptaniService adoptaniSvc = new AdoptaniService();
 					adoptaniVO = adoptaniSvc.updateAdoptani(adopt_Ani_Id ,Mem_Id, Adopt_Ani_name, Adopt_Ani_type, Adopt_Ani_gender, Adopt_Ani_heal, Adopt_Ani_Vac, Adopt_Ani_color, Adopt_Ani_body, Adopt_Ani_age, Adopt_Ani_Neu, Adopt_Ani_chip, Adopt_Ani_date, Adopt_Ani_status, Adopt_Ani_date,Adopt_Ani_FinLat, Adopt_Ani_FinLon, Adopt_Ani_city, Adopt_Ani_town, Adopt_Ani_road);
-									
+					
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
 					System.out.println("修改完成,準備轉交");
 					req.setAttribute("adoptaniVO", adoptaniVO); // 資料庫update成功後,正確的的empVO物件,存入req
@@ -317,6 +318,7 @@ public class AdoptaniServlet extends HttpServlet {
 
 					/***************************其他可能的錯誤處理*************************************/
 				} catch (Exception e) {
+					System.out.println("修改資料失敗");
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/update_adoptani_input.jsp");

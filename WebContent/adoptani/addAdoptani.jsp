@@ -10,6 +10,11 @@
 	AdoptaniVO adoptaniVO = (AdoptaniVO) request.getAttribute("adoptaniVO");	
 	//預防錯誤輸入，而保留user所輸入的所有內容，送出後若錯誤不用全部重打。
 %>
+<%
+/**
+	※錯誤訊息要注意經緯度的錯誤處理。
+**/
+%>
 
 
 <html>
@@ -75,10 +80,9 @@
 		</tr>
 		<tr>
 			<td>送養動物性別:</td>
-			<td><input type="radio" name="adopt_Ani_gender" 
-				value="1"/>公
-				<input type="radio" name="adopt_Ani_gender" 
-				value="0"/>母
+			<td>
+				<input type="radio" name="Adopt_Ani_gender" size="20" value="1" ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}>公	
+				<input type="radio" name="Adopt_Ani_gender" size="20" value="0" ${(adoptaniVO.adopt_Ani_gender==0) ? 'checked':''}>母
 			</td>
 		</tr>
 		<tr>
