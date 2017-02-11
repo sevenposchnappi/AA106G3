@@ -62,6 +62,7 @@
 		<th>縣/市</th>
 		<th>鄉鎮市區</th>
 		<th>道路街名村里</th>
+		<th>Like數</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="adoptaniVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -78,7 +79,8 @@
 			
 			<td>${adoptaniVO.adopt_Ani_body}</td>
 			<td>${adoptaniVO.adopt_Ani_age}</td>
-			<td>${adoptaniVO.adopt_Ani_Neu}</td>
+			<c:set var="adopt_Ani_Neu" value="${adoptaniVO.adopt_Ani_Neu}" scope="request"></c:set>
+			<td><%=tools.neuterExchange((String) request.getAttribute("adopt_Ani_Neu"))%></td>
 			<td>${adoptaniVO.adopt_Ani_chip}</td>
 			<td>${adoptaniVO.adopt_Ani_date}</td>
 			<c:set var="adopt_Ani_status" value="${adoptaniVO.adopt_Ani_status}" scope="request"></c:set>
@@ -88,7 +90,8 @@
 			<td>${adoptaniVO.adopt_Ani_FinLon}</td>
 			<td>${adoptaniVO.adopt_Ani_city}</td>
 			<td>${adoptaniVO.adopt_Ani_town}</td>
-			<td>${adoptaniVO.adopt_Ani_road}</td>      
+			<td>${adoptaniVO.adopt_Ani_road}</td>
+			<td>${adoptaniVO.adopt_Ani_like}</td>         
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani/adoptani.do">
 			     <input type="submit" value="修改">

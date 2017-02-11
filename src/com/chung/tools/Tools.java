@@ -23,5 +23,15 @@ public class Tools {
 		return statusExchange;
 	}
 	
+	public String neuterExchange(String neuter){
+		String neuterExchange = "不　明";
+//		System.out.println(neuter);
+		if(neuter != null){
+			if(neuter.equals("0")){neuterExchange= "未結紮";}
+			if(neuter.equals("1")){neuterExchange= "結　紮";}
+		}
+		return neuterExchange;
+	}
+	
 	
 }

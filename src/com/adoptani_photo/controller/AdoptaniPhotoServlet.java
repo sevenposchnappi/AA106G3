@@ -87,7 +87,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				if (oneAdoptAniPhotoList == null) {
 					errorMsgs.add("查無資料");
 				}
-				System.out.println("查詢資料");
+System.out.println("查詢資料");
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -99,7 +99,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("oneAdoptAniPhotoList", oneAdoptAniPhotoList); 
 				if("getOne_For_Display".equals(action)){
-					String url = "/adoptani/listOneAdoptani.jsp";
+					String url = "/adoptani_photo/listOneAdoptaniPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 				}

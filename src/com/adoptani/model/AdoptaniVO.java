@@ -27,10 +27,16 @@ public class AdoptaniVO implements java.io.Serializable{
     private String adopt_Ani_city;
     private String adopt_Ani_town;
     private String adopt_Ani_road;
+    private Integer adopt_Ani_like;
     
     
     
-    
+	public Integer getAdopt_Ani_like() {
+		return adopt_Ani_like;
+	}
+	public void setAdopt_Ani_like(Integer adopt_Ani_like) {
+		this.adopt_Ani_like = adopt_Ani_like;
+	}
 	public String getAdopt_Ani_Id() {
 		return adopt_Ani_Id;
 	}

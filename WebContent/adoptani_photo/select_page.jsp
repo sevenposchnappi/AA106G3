@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="BIG5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+ <jsp:useBean id="adoptaniPhotoSvc" scope="page" class="com.adoptani_photo.model.AdoptaniPhotoService" />
+ <jsp:useBean id="adoptaniSvc" scope="page" class="com.adoptani.model.AdoptaniService" />
+ 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head><title>AnimalMAP AdoptAni: Home</title></head>
@@ -36,8 +41,7 @@
     </FORM>
   </li>
 
-  <jsp:useBean id="adoptaniPhotoSvc" scope="page" class="com.adoptani_photo.model.AdoptaniPhotoService" />
-  
+
    
   <li>
      <FORM METHOD="post" ACTION="adoptani_photo.do" >

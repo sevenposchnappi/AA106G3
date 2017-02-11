@@ -5,25 +5,28 @@
 <%@ page import="com.chung.tools.Tools"%>
 
 <%
+//AdoptaniVO adoptaniVO = (AdoptaniVO) request.getAttribute("adoptaniVO"); //AdoptaniVOServlet.java(Concroller), 存入req的adoptaniVO物件
+//request.setAttribute("adoptaniVO",adoptaniVO);
+
     Tools tools = new Tools();
+
 %>
-
 <jsp:useBean id="adoptaniVO" scope="request" class="com.adoptani.model.AdoptaniVO" />
+<html>
+<head>
+<link rel="stylesheet" href="js/listOneAdoptani.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<title>送養動物資料 - listOneAdoptani.jsp</title>
+</head>
+<body bgcolor='white'>
 
-<!-- <html> -->
-<!-- <head> -->
-<!-- <link rel="stylesheet" href="js/listOneAdoptani.css"> -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
-<!-- <title>送養動物資料 - listOneAdoptani.jsp</title> -->
-<!-- </head> -->
-<!-- <body bgcolor='white'> -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-5">
 
 
-
-
-
-            <table border='1' bordercolor='#CCCCFF' >
-				<tr>
+            <table border='1' bordercolor='#CCCCFF' width=''>
+                <tr width='100'>
                     <th>送養動物編號</th> 
                     <td><%= adoptaniVO.getAdopt_Ani_Id()%></td> 
                 </tr>
@@ -34,6 +37,10 @@
                 <tr>
                     <th>送養動物名字</th> 
                     <td><%= adoptaniVO.getAdopt_Ani_name()%></td>
+                </tr>
+                <tr>
+                    <th>送養動物大頭照</th>     
+                    <td  style=" "><div><img id='headPhoto' style=""  src="<%=request.getContextPath()%>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>&ado_Pic_type=0"></div></td>
                 </tr>
                 <tr>
                     <th>送養動物動物種類</th> 
@@ -106,6 +113,10 @@
                 <tr>
 
                     <td>
+						<button type="button" onclick="loadPhoto()">查看照片</button>
+                    </td>
+                    
+                    <td>
 						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani/adoptani.do">
 						<input type="submit" value="修改">
 						<input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}">
@@ -117,8 +128,12 @@
             <%-- <%if (request.getAttribute("oneAdoptAniPhotoList")!=null){%> --%>
             <%--        <jsp:include page="listOneAdoptaniAllPhoto.jsp" /> --%>
             <%-- <%} %> --%>
-
-
+        </div>
+        <div class="col-xs-12 col-sm-7">
+            <div id="listPhoto"></div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -128,8 +143,31 @@
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<!-- </body> -->
+<script>
+function loadPhoto(){
+    
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        
+        //List<AdoptaniPhotoVO> list = request.getAttribute("oneAdoptAniPhotoList", oneAdoptAniPhotoList);
+     document.getElementById("listPhoto").innerHTML = xhttp.responseText;
+     
+    }else{
+       // alert("xhttp.status:"+ xhttp.status );
+     }
+  //  alert("xhttp.readyState:"+ xhttp.readyState );
+  };
+  var adopt_Ani_Id = "adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>";
+  var action = "action=getOne_For_Display_From_listOneAdoptani.jsp";
+  var url = "<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do";
+  xhttp.open("POST", url , true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send(action+"&"+adopt_Ani_Id);
+//  xhttp.send(adopt_Ani_Id);
+}
+</script>
+</body>
 </html>
 
 

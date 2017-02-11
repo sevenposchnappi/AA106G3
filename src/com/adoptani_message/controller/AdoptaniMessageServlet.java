@@ -1,4 +1,4 @@
-package com.adoptani.controller;
+package com.adoptani_message.controller;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -17,7 +17,7 @@ import com.adoptani.model.AdoptaniVO;
 
 
 
-public class AdoptaniServlet extends HttpServlet {
+public class AdoptaniMessageServlet extends HttpServlet {
 //	private static final long serialVersionUID = 1L;
        
 

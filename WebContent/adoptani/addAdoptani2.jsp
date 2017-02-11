@@ -69,15 +69,6 @@
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_name()%>" /></td>
 		</tr>
 		<tr>
-			<!-- 沒有選擇時間就自動填入現在時間 -->
-			<%java.sql.Timestamp date_SQL = new java.sql.Timestamp(System.currentTimeMillis());%>
-			<td>送養時間:</td>
-			<td bgcolor="#CCCCFF" >
-			    <input id="datetimepicker1" readonly name="Adopt_Ani_date" type="text" value="<%=(adoptaniVO==null)? date_SQL : adoptaniVO.getAdopt_Ani_date() %>" />
-		</td>
-		</tr>  
-		
-		<tr>
 			<td>發布者會員編號:</td>
 			<td><input type="TEXT" name="Mem_Id" size="20" placeholder="8碼"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getMem_Id()%>" /></td>
@@ -122,10 +113,8 @@
 		</tr>
 		<tr>
 			<td>送養動物節育:</td>
-			<td>
-				<input type="radio" name="Adopt_Ani_Neu" size="20" value="1" ${(adoptaniVO.adopt_Ani_Neu==1) ? 'checked':''}>已結紮	
-				<input type="radio" name="Adopt_Ani_Neu" size="20" value="0" ${(adoptaniVO.adopt_Ani_Neu==0) ? 'checked':''}>未結紮
-			</td>
+			<td><input type="TEXT" name="Adopt_Ani_Neu" size="20" placeholder=""
+				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_Neu()%>" /></td>
 		</tr>
 
 		<tr>
@@ -136,10 +125,8 @@
 		
 		<tr>
 			<td>送養動物物件狀態:</td>
-			<td>
-				<input type="radio" name="Adopt_Ani_status" size="20" value="1" ${(adoptaniVO.adopt_Ani_status==1) ? 'checked':''}>顯　示	
-				<input type="radio" name="Adopt_Ani_status" size="20" value="0" ${(adoptaniVO.adopt_Ani_status==0) ? 'checked':''}>不顯示
-			</td>
+			<td><input type="TEXT" name="Adopt_Ani_status" size="45" placeholder="0:為隱藏，1:為顯示"
+				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_status()%>" /></td>
 		</tr>		
 
 		<tr>
@@ -167,8 +154,27 @@
 			<td><input type="TEXT" name="Adopt_Ani_FinLon" size="45"
 				value="<%= (adoptaniVO==null)? "MANAGER" : adoptaniVO.getAdopt_Ani_FinLon()%>" /></td>
 		</tr>
-
-
+		<tr>
+			<%java.sql.Timestamp date_SQL = new java.sql.Timestamp(System.currentTimeMillis());%>
+			<td>送養時間:</td>
+			<td bgcolor="#CCCCFF">
+			    <input class="cal-TextBox"
+				onFocus="this.blur()" size="9" readonly type="text" name="Adopt_Ani_date2" value="<%= (adoptaniVO==null)? date_SQL : adoptaniVO.getAdopt_Ani_date()%>">
+				<a class="so-BtnLink"
+				href="javascript:calClick();return false;"
+				onmouseover="calSwapImg('BTN_date', 'img_Date_OVER',true);"
+				onmouseout="calSwapImg('BTN_date', 'img_Date_UP',true);"
+				onclick="calSwapImg('BTN_date', 'img_Date_DOWN');showCalendar('form1','Adopt_Ani_date','BTN_date');return false;">
+			    <img align="middle" border="0" name="BTN_date"	src="images/btn_date_up.gif" width="22" height="17" alt="開始日期"></a>
+			</td>
+		</tr>  
+		<tr>
+			<td><input id="datetimepicker1" name="Adopt_Ani_date" type="text" value="<%=(adoptaniVO==null)? date_SQL : adoptaniVO.getAdopt_Ani_date() %>"  />
+			</td>
+			<td>
+			
+			</td>
+		</tr>
 	</table>
 	<br>
 	<input type="hidden" name="action" value="insert">
