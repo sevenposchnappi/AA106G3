@@ -48,7 +48,9 @@ public class AdoptaniMessageJNDIDAO implements AdoptaniMessageDAO_interface{
 		private static final String UPDATE_STMT = 
 				"UPDATE adopt_Ani_message set  ado_Ani_Mes=? where ado_Ani_Mes_No = ?";
 
-
+		private static final String GET_ONE_ALL_STMT = 
+				"SELECT ado_Ani_Mes_No,adopt_Ani_Id,mem_Id,ado_Ani_Mes_time,ado_Ani_Mes FROM adopt_Ani_message where adopt_Ani_Id = ?";	
+		
 		
 		@Override
 		public void insert(AdoptaniMessageVO adoptaniMessageVO) {
@@ -106,7 +108,7 @@ public class AdoptaniMessageJNDIDAO implements AdoptaniMessageDAO_interface{
 				     
 				pstmt.setString(1, adoptaniMessageVO.getAdo_Ani_Mes());  
 				pstmt.setString(2, adoptaniMessageVO.getAdo_Ani_Mes_No());  
-				
+				System.out.println("here");
 				pstmt.executeUpdate();
 				
 				// Handle any driver errors
@@ -289,6 +291,64 @@ public class AdoptaniMessageJNDIDAO implements AdoptaniMessageDAO_interface{
 			return list;
 		}	
 		
+		@Override
+		public List<AdoptaniMessageVO> getOneAllMessage(String Adopt_Ani_Id) {
+			List<AdoptaniMessageVO> list = new ArrayList<AdoptaniMessageVO>();
+			AdoptaniMessageVO adoptaniMessageVO = null;
+
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(GET_ONE_ALL_STMT);
+				pstmt.setString(1, Adopt_Ani_Id);
+				
+				rs = pstmt.executeQuery();
+				
+				
+				while (rs.next()){
+					//adoptaniVO¤]ºÙ¬°Domain objects
+					adoptaniMessageVO = new AdoptaniMessageVO();
+					adoptaniMessageVO.setAdo_Ani_Mes_No(rs.getString("Ado_Ani_Mes_No"));
+					adoptaniMessageVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));
+					adoptaniMessageVO.setMem_Id(rs.getString("Mem_Id"));
+					adoptaniMessageVO.setAdo_Ani_Mes(rs.getString("Ado_Ani_Mes"));
+					adoptaniMessageVO.setAdo_Ani_Mes_time(rs.getString("ado_Ani_Mes_time"));
+
+					list.add(adoptaniMessageVO); // Store the row in the list
+				}
+				// Handle any driver errors
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return list;
+		}	
 
 
 

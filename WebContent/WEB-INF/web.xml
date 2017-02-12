@@ -28,13 +28,22 @@
 		<url-pattern>/adoptani_photo/adoptani_photo.do</url-pattern>
 	</servlet-mapping>
 	
-	     <servlet>
+	<servlet>
 		<servlet-name>DBGifReader_AdoptaniPhoto</servlet-name>
 		<servlet-class>com.adoptani_photo.model.DBGifReader_AdoptaniPhoto</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DBGifReader_AdoptaniPhoto</servlet-name>
 		<url-pattern>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>AdoptaniMessageServlet</servlet-name>
+		<servlet-class>com.adoptani_message.controller.AdoptaniMessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdoptaniMessageServlet</servlet-name>
+		<url-pattern>/adoptani_message/AdoptaniMessageServlet.do</url-pattern>
 	</servlet-mapping>
   
 </web-app>

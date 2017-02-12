@@ -32,7 +32,7 @@ public class AdoptaniJNDIDAO implements AdoptaniDAO_interface{
 	}
 	
 	private static final String INSERT_STMT = 
-			"INSERT INTO adopt_Ani (ADOPT_ANI_ID,MEM_ID,ADOPT_ANI_NAME,ADOPT_ANI_TYPE,ADOPT_ANI_GENDER,ADOPT_ANI_HEAL,ADOPT_ANI_VAC,ADOPT_ANI_COLOR,ADOPT_ANI_BODY,ADOPT_ANI_AGE,ADOPT_ANI_NEU,ADOPT_ANI_CHIP,ADOPT_ANI_DATE,ADOPT_ANI_STATUS,ADOPT_ANI_CREDATE,ADOPT_ANI_FINLAT,ADOPT_ANI_FINLON,ADOPT_ANI_CITY,ADOPT_ANI_TOWN,ADOPT_ANI_ROAD,ADOPT_ANI_LIKE) VALUES (adopt_Ani_Seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,?,?,?,?,?,?)";
+			"INSERT INTO adopt_Ani (ADOPT_ANI_ID,MEM_ID,ADOPT_ANI_NAME,ADOPT_ANI_TYPE,ADOPT_ANI_GENDER,ADOPT_ANI_HEAL,ADOPT_ANI_VAC,ADOPT_ANI_COLOR,ADOPT_ANI_BODY,ADOPT_ANI_AGE,ADOPT_ANI_NEU,ADOPT_ANI_CHIP,ADOPT_ANI_DATE,ADOPT_ANI_STATUS,ADOPT_ANI_CREDATE,ADOPT_ANI_FINLAT,ADOPT_ANI_FINLON,ADOPT_ANI_CITY,ADOPT_ANI_TOWN,ADOPT_ANI_ROAD) VALUES (adopt_Ani_Seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,?,?,?,?,?)";
 	
 	private static final String GET_ALL_STMT = 
 			"SELECT ADOPT_ANI_ID,MEM_ID,ADOPT_ANI_NAME,ADOPT_ANI_TYPE,ADOPT_ANI_GENDER,ADOPT_ANI_HEAL,ADOPT_ANI_VAC,ADOPT_ANI_COLOR,ADOPT_ANI_BODY,ADOPT_ANI_AGE,ADOPT_ANI_NEU,ADOPT_ANI_CHIP,ADOPT_ANI_DATE,ADOPT_ANI_STATUS,ADOPT_ANI_CREDATE,ADOPT_ANI_FINLAT,ADOPT_ANI_FINLON,ADOPT_ANI_CITY,ADOPT_ANI_TOWN,ADOPT_ANI_ROAD,ADOPT_ANI_LIKE FROM adopt_Ani ORDER BY ADOPT_ANI_ID";
@@ -43,7 +43,7 @@ public class AdoptaniJNDIDAO implements AdoptaniDAO_interface{
 	//	private static final String GET_Emps_ByDeptno_STMT = "SELECT empno,ename,job,to_char(hiredate,'yyyy-mm-dd') hiredate,sal,comm,deptno FROM adopt_Ani where adopt_Ani_Id = ? order by empno";
 	
 	private static final String DELETE = 
-			"DELETE FROM adopt_Ani where adopt_Ani_Id = ?";
+			"DELETE FROM ADOPT_ANI where ADOPT_ANI_ID = ?";
 	
 	private static final String UPDATE_STMT = 
 			"UPDATE adopt_Ani set adopt_Ani_name=?, adopt_Ani_type=?, adopt_Ani_gender=?, adopt_Ani_heal=?, adopt_Ani_Vac=?, adopt_Ani_color=?, adopt_Ani_body=?, adopt_Ani_age=?, adopt_Ani_Neu=?, adopt_Ani_chip=?, adopt_Ani_date=?, adopt_Ani_status=?, adopt_Ani_CreDate=?, adopt_Ani_FinLat=?, adopt_Ani_FinLon=?, adopt_Ani_city=?, adopt_Ani_town=?, adopt_Ani_road=?, adopt_Ani_like=? where adopt_Ani_Id = ?";
@@ -79,7 +79,7 @@ public class AdoptaniJNDIDAO implements AdoptaniDAO_interface{
 			pstmt.setString(16, adoptaniVO.getAdopt_Ani_city());  
 			pstmt.setString(17, adoptaniVO.getAdopt_Ani_town());  
 			pstmt.setString(18, adoptaniVO.getAdopt_Ani_road());
-			pstmt.setInt(19, adoptaniVO.getAdopt_Ani_like());
+//			pstmt.setInt(19, adoptaniVO.getAdopt_Ani_like());
 
 			pstmt.executeUpdate();
 			
@@ -178,7 +178,7 @@ public class AdoptaniJNDIDAO implements AdoptaniDAO_interface{
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setString(1, adopt_Ani_Id);    
-			
+			System.out.println(adopt_Ani_Id);
 			
 			pstmt.executeUpdate();
 			

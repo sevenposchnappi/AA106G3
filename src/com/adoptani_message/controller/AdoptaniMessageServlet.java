@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.adoptani.model.AdoptaniService;
-import com.adoptani.model.AdoptaniVO;
+import org.apache.catalina.Session;
+
+import com.adoptani_message.model.AdoptaniMessageService;
+import com.adoptani_message.model.AdoptaniMessageVO;
 
 
 
@@ -41,50 +43,50 @@ public class AdoptaniMessageServlet extends HttpServlet {
 
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String str = req.getParameter("adopt_Ani_Id");
+				String str = req.getParameter("ado_Ani_Mes_No");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入送養動物編號");
+					errorMsgs.add("請輸入送養動物留言編號ex.42000001");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/select_page.jsp");
+							.getRequestDispatcher("/adoptani_message/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
-				String adopt_Ani_Id = null;
+				String ado_Ani_Mes_No = null;
 				try {
-					adopt_Ani_Id = new String(str);
+					ado_Ani_Mes_No = new String(str);
 				} catch (Exception e) {
-					errorMsgs.add("送養動物編號格式不正確");
+					errorMsgs.add("送養動物留言編號格式不正確");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/select_page.jsp");
+							.getRequestDispatcher("/adoptani_message/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************2.開始查詢資料*****************************************/
-				AdoptaniService adoptaniSvc = new AdoptaniService();
-				AdoptaniVO adoptaniVO = adoptaniSvc.getOneAdoptani(adopt_Ani_Id);
-				if (adoptaniVO == null) {
+				AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
+				AdoptaniMessageVO adoptaniMessageVO = adoptaniMessageSvc.getOneAdoptaniMessage(ado_Ani_Mes_No);
+				if (adoptaniMessageVO == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/select_page.jsp");
+							.getRequestDispatcher("/adoptani_message/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("adoptaniVO", adoptaniVO); // 資料庫取出的adoptaniVO物件,存入req
+				req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // 資料庫取出的adoptaniVO物件,存入req
 				if("getOne_For_Display".equals(action)){
-					String url = "/adoptani/listOneAdoptaniView.jsp";
+					String url = "/adoptani_message/listOneAdoptaniMessage.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneAdoptani.jsp
 					successView.forward(req, res);
 				}else if("getOne_For_Display_FromView".equals(action)){
@@ -96,7 +98,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/adoptani/select_page.jsp");
+						.getRequestDispatcher("/adoptani_message/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -113,100 +115,53 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				
 				try {
 					/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-					String Mem_Id = req.getParameter("Mem_Id");
-					String Adopt_Ani_name = req.getParameter("Adopt_Ani_name");
-					String Adopt_Ani_type = req.getParameter("Adopt_Ani_type");
-					String Adopt_Ani_gender = req.getParameter("Adopt_Ani_gender");
-					String Adopt_Ani_heal = req.getParameter("Adopt_Ani_heal");
-					String Adopt_Ani_Vac = req.getParameter("Adopt_Ani_Vac");
-					String Adopt_Ani_color = req.getParameter("Adopt_Ani_color");
-					String Adopt_Ani_body = req.getParameter("Adopt_Ani_body");
-					String Adopt_Ani_age = req.getParameter("Adopt_Ani_age");
-					String Adopt_Ani_Neu = req.getParameter("Adopt_Ani_Neu");
-					String Adopt_Ani_chip = req.getParameter("Adopt_Ani_chip");
-//					String Adopt_Ani_date = req.getParameter("Adopt_Ani_date");
-					String Adopt_Ani_status = req.getParameter("Adopt_Ani_status");
-//					String Adopt_Ani_CreDate = req.getParameter("Adopt_Ani_CreDate");
-//					String Adopt_Ani_FinLat = req.getParameter("Adopt_Ani_FinLat");
-//					String Adopt_Ani_FinLon = req.getParameter("Adopt_Ani_FinLon");
-					String Adopt_Ani_city = req.getParameter("Adopt_Ani_city");
-					String Adopt_Ani_town = req.getParameter("Adopt_Ani_town");
-					String Adopt_Ani_road = req.getParameter("Adopt_Ani_road");
-					
-					Integer Adopt_Ani_like = null;
+					String mem_Id = null;
 					try {
-						Adopt_Ani_like = Integer.parseInt(req.getParameter("Adopt_Ani_like"));
+						System.out.println(req.getParameter("mem_Id"));
+						int mem_Id2 = Integer.parseInt(req.getParameter("mem_Id"));
+						mem_Id = req.getParameter("mem_Id");	
 					} catch (Exception e) {
-						errorMsgs.add("like數請輸入數字");
+						errorMsgs.add("請輸入正確會員編號");
 					}
 					
-					
-					
-					java.sql.Timestamp Adopt_Ani_date = null;
+					String adopt_Ani_Id = null;
 					try {
-						System.out.println(req.getParameter("Adopt_Ani_date").trim());
-						String Adopt_Ani_date_from_jsp = req.getParameter("Adopt_Ani_date").trim();
-						Adopt_Ani_date = java.sql.Timestamp.valueOf(Adopt_Ani_date_from_jsp);
+						System.out.println(req.getParameter("adopt_Ani_Id"));
+						int adopt_Ani_Id2 = Integer.parseInt(req.getParameter("adopt_Ani_Id"));
+						adopt_Ani_Id = req.getParameter("adopt_Ani_Id");	
 					} catch (Exception e) {
-						Adopt_Ani_date=new java.sql.Timestamp(System.currentTimeMillis());
-						errorMsgs.add("請輸入日期!");
+						errorMsgs.add("請輸入正確送養動物編號");
 					}
-					Double Adopt_Ani_FinLat = null;
-					try {
-						
-						Adopt_Ani_FinLat = new Double(req.getParameter("Adopt_Ani_FinLat").trim());
-					} catch (NumberFormatException e) {
-						Adopt_Ani_FinLat = 0.0;
-						errorMsgs.add("請填寫Google map 經度 xxx.xxxxxx");
-						System.out.println("請填寫Google map 經度 xxx.xxxxxx");
-					}
-					Double Adopt_Ani_FinLon = null;
-					try {
-						Adopt_Ani_FinLon = new Double(req.getParameter("Adopt_Ani_FinLon").trim());
-					} catch (NumberFormatException e) {
-						Adopt_Ani_FinLon = 0.0;
-						errorMsgs.add("請填寫Google map 緯度 xxx.xxxxxx");
-					}
+					
+					String ado_Ani_Mes = req.getParameter("ado_Ani_Mes");
+					
+					
+					
+					
+					
 					
 
-					AdoptaniVO adoptaniVO = new AdoptaniVO();
-						adoptaniVO.setMem_Id(Mem_Id);
-						adoptaniVO.setAdopt_Ani_name(Adopt_Ani_name);
-						adoptaniVO.setAdopt_Ani_type(Adopt_Ani_type);
-						adoptaniVO.setAdopt_Ani_gender(Adopt_Ani_gender);
-						adoptaniVO.setAdopt_Ani_heal(Adopt_Ani_heal);
-						adoptaniVO.setAdopt_Ani_Vac(Adopt_Ani_Vac);
-						adoptaniVO.setAdopt_Ani_color(Adopt_Ani_color);
-						adoptaniVO.setAdopt_Ani_body(Adopt_Ani_body);
-						adoptaniVO.setAdopt_Ani_age(Adopt_Ani_age);
-						adoptaniVO.setAdopt_Ani_Neu(Adopt_Ani_Neu);
-						adoptaniVO.setAdopt_Ani_chip(Adopt_Ani_chip);
-						adoptaniVO.setAdopt_Ani_date(Adopt_Ani_date);
-						adoptaniVO.setAdopt_Ani_status(Adopt_Ani_status);
-						adoptaniVO.setAdopt_Ani_FinLat(Adopt_Ani_FinLat);
-						adoptaniVO.setAdopt_Ani_FinLon(Adopt_Ani_FinLon);
-						adoptaniVO.setAdopt_Ani_city(Adopt_Ani_city);
-						adoptaniVO.setAdopt_Ani_town(Adopt_Ani_town);
-						adoptaniVO.setAdopt_Ani_road(Adopt_Ani_road);
-						adoptaniVO.setAdopt_Ani_like(Adopt_Ani_like);
-						System.out.println("test");
-						System.out.println(errorMsgs.isEmpty());
+					AdoptaniMessageVO adoptaniMessageVO = new AdoptaniMessageVO();
+						adoptaniMessageVO.setMem_Id(mem_Id);
+						adoptaniMessageVO.setAdopt_Ani_Id(adopt_Ani_Id);
+						adoptaniMessageVO.setAdo_Ani_Mes(ado_Ani_Mes);
+					
+					
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
-						req.setAttribute("adoptaniVO", adoptaniVO); // 含有輸入格式錯誤的empVO物件,也存入req
+						req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/adoptani/addAdoptani.jsp");
+								.getRequestDispatcher("/adoptani_message/addAdoptaniMessage.jsp");
 						failureView.forward(req, res);
 						return;
 					}
 					
 					/***************************2.開始新增資料***************************************/
-					AdoptaniService adoptaniSvc = new AdoptaniService();
-					adoptaniVO = adoptaniSvc.addAdoptani(Mem_Id, Adopt_Ani_name, Adopt_Ani_type, Adopt_Ani_gender, Adopt_Ani_heal, Adopt_Ani_Vac, Adopt_Ani_color, Adopt_Ani_body, Adopt_Ani_age, Adopt_Ani_Neu, Adopt_Ani_chip, Adopt_Ani_date, Adopt_Ani_status, Adopt_Ani_date,Adopt_Ani_FinLat, Adopt_Ani_FinLon, Adopt_Ani_city, Adopt_Ani_town, Adopt_Ani_road ,Adopt_Ani_like);
-					//物件建立時間(Adopt_Ani_Credate)的參數，暫時先用Adopt_Ani_date代替，其實用不到，因為sql是用sysdate建。
-					
+					AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
+					adoptaniMessageVO = adoptaniMessageSvc.addAdoptaniMessage(adopt_Ani_Id, mem_Id, ado_Ani_Mes);
+					//Service的add方法會回傳VO。
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/adoptani/listAllAdoptani.jsp";
+					String url = "/adoptani_message/listAllAdoptaniMessage.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllAdoptani.jsp
 					successView.forward(req, res);				
 					
@@ -215,7 +170,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 					
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/addAdoptani.jsp");
+							.getRequestDispatcher("/adoptani_message/addAdoptaniMessage.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -228,113 +183,40 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				// send the ErrorPage view.
 				req.setAttribute("errorMsgs", errorMsgs);
 				String requestURL = req.getParameter("requestURL");
+				
 				try {
 					/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-					String adopt_Ani_Id = req.getParameter("adopt_Ani_Id");
-					String Mem_Id = req.getParameter("Mem_Id");
-					String Adopt_Ani_name = req.getParameter("Adopt_Ani_name");
-					String Adopt_Ani_type = req.getParameter("Adopt_Ani_type");
-					String Adopt_Ani_gender = req.getParameter("Adopt_Ani_gender");
-					String Adopt_Ani_heal = req.getParameter("Adopt_Ani_heal");
-					String Adopt_Ani_Vac = req.getParameter("Adopt_Ani_Vac");
-					String Adopt_Ani_color = req.getParameter("Adopt_Ani_color");
-					String Adopt_Ani_body = req.getParameter("Adopt_Ani_body");
-					String Adopt_Ani_age = req.getParameter("Adopt_Ani_age");
-					String Adopt_Ani_Neu = req.getParameter("Adopt_Ani_Neu");
-					String Adopt_Ani_chip = req.getParameter("Adopt_Ani_chip");
-//					String Adopt_Ani_date = req.getParameter("Adopt_Ani_date");
-					String Adopt_Ani_status = req.getParameter("Adopt_Ani_status");
-//					String Adopt_Ani_CreDate = req.getParameter("Adopt_Ani_CreDate");
-//					String Adopt_Ani_FinLat = req.getParameter("Adopt_Ani_FinLat");
-//					String Adopt_Ani_FinLon = req.getParameter("Adopt_Ani_FinLon");
-					String Adopt_Ani_city = req.getParameter("Adopt_Ani_city");
-					String Adopt_Ani_town = req.getParameter("Adopt_Ani_town");
-					String Adopt_Ani_road = req.getParameter("Adopt_Ani_road");
-					
-					Integer Adopt_Ani_like = null;
-					try {
-						Adopt_Ani_like = Integer.parseInt(req.getParameter("Adopt_Ani_like"));
-					} catch (Exception e) {
-						errorMsgs.add("like數請輸入數字");
-					}
-					
-					System.out.println("here is \"update\" in Controller (1)");
-					
-					
-					
-					java.sql.Timestamp Adopt_Ani_date = null;
-					try {
-						
-						Adopt_Ani_date = java.sql.Timestamp.valueOf(req.getParameter("Adopt_Ani_date").trim());
-					} catch (Exception e) {
-						Adopt_Ani_date=new java.sql.Timestamp(System.currentTimeMillis());
-						errorMsgs.add("請輸入日期!");
-					}
-					System.out.println("here is \"update\" in Controller (2)");
-					Double Adopt_Ani_FinLat = null;
-					try {
-						
-						Adopt_Ani_FinLat = new Double(req.getParameter("Adopt_Ani_FinLat").trim());
-					} catch (NumberFormatException e) {
-						Adopt_Ani_FinLat = 0.0;
-						errorMsgs.add("請填寫Google map 經度 xxx.xxxxxx");
-						System.out.println("請填寫Google map 經度 xxx.xxxxxx");
-					}
-					System.out.println("here is \"update\" in Controller (3)");
-					Double Adopt_Ani_FinLon = null;
-					try {
-						Adopt_Ani_FinLon = new Double(req.getParameter("Adopt_Ani_FinLon").trim());
-					} catch (NumberFormatException e) {
-						Adopt_Ani_FinLon = 0.0;
-						errorMsgs.add("請填寫Google map 經度 xxx.xxxxxx");
-					}
-					
+					String ado_Ani_Mes_No = req.getParameter("ado_Ani_Mes_No");
+					String ado_Ani_Mes = req.getParameter("ado_Ani_Mes");
 					
 
-					AdoptaniVO adoptaniVO = new AdoptaniVO();
-						adoptaniVO.setAdopt_Ani_Id(adopt_Ani_Id);
-						adoptaniVO.setMem_Id(Mem_Id);
-						adoptaniVO.setAdopt_Ani_name(Adopt_Ani_name);
-						adoptaniVO.setAdopt_Ani_type(Adopt_Ani_type);
-						adoptaniVO.setAdopt_Ani_gender(Adopt_Ani_gender);
-						adoptaniVO.setAdopt_Ani_heal(Adopt_Ani_heal);
-						adoptaniVO.setAdopt_Ani_Vac(Adopt_Ani_Vac);
-						adoptaniVO.setAdopt_Ani_color(Adopt_Ani_color);
-						adoptaniVO.setAdopt_Ani_body(Adopt_Ani_body);
-						adoptaniVO.setAdopt_Ani_age(Adopt_Ani_age);
-						adoptaniVO.setAdopt_Ani_Neu(Adopt_Ani_Neu);
-						adoptaniVO.setAdopt_Ani_chip(Adopt_Ani_chip);
-						adoptaniVO.setAdopt_Ani_date(Adopt_Ani_date);
-						adoptaniVO.setAdopt_Ani_status(Adopt_Ani_status);
-						adoptaniVO.setAdopt_Ani_FinLat(Adopt_Ani_FinLat);
-						adoptaniVO.setAdopt_Ani_FinLon(Adopt_Ani_FinLon);
-						adoptaniVO.setAdopt_Ani_city(Adopt_Ani_city);
-						adoptaniVO.setAdopt_Ani_town(Adopt_Ani_town);
-						adoptaniVO.setAdopt_Ani_road(Adopt_Ani_road);
-						adoptaniVO.setAdopt_Ani_like(Adopt_Ani_like);
+					AdoptaniMessageVO adoptaniMessageVO = new AdoptaniMessageVO();
+						adoptaniMessageVO.setAdo_Ani_Mes_No(ado_Ani_Mes_No);
+						adoptaniMessageVO.setAdo_Ani_Mes(ado_Ani_Mes);
+
 						
-						System.out.println(errorMsgs.isEmpty());
-					// Send the use back to the form, if there were errors
+						// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						
-						req.setAttribute("adoptaniVO", adoptaniVO); // 含有輸入格式錯誤的empVO物件,也存入req
+						req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/adoptani/update_adoptani_input.jsp");
+								.getRequestDispatcher("/adoptani_message/update_adoptaniMessage_input.jsp");
 						failureView.forward(req, res);
 						return;
 					}
 					
 					/***************************2.開始修改資料*****************************************/
-					System.out.println("開始修改資料"+"adopt_Ani_Id"+adopt_Ani_Id+"Mem_Id"+Mem_Id+"Adopt_Ani_name"+Adopt_Ani_name+"Adopt_Ani_type"+Adopt_Ani_type +"Adopt_Ani_gender"+Adopt_Ani_gender +"Adopt_Ani_heal"+Adopt_Ani_heal +"Adopt_Ani_Vac"+Adopt_Ani_Vac +"Adopt_Ani_color"+Adopt_Ani_color +"Adopt_Ani_body"+Adopt_Ani_body +"Adopt_Ani_age"+Adopt_Ani_age +"Adopt_Ani_Neu"+Adopt_Ani_Neu +"Adopt_Ani_chip"+Adopt_Ani_chip +"Adopt_Ani_date"+Adopt_Ani_date +"Adopt_Ani_status"+Adopt_Ani_status +"Adopt_Ani_date"+Adopt_Ani_date +"Adopt_Ani_FinLat"+Adopt_Ani_FinLat +"Adopt_Ani_FinLon"+Adopt_Ani_FinLon +"Adopt_Ani_city"+Adopt_Ani_city +"Adopt_Ani_town"+Adopt_Ani_town +"Adopt_Ani_road"+Adopt_Ani_road  );
-					req.setAttribute("adoptaniVO", adoptaniVO);
-					AdoptaniService adoptaniSvc = new AdoptaniService();
-					adoptaniVO = adoptaniSvc.updateAdoptani(adopt_Ani_Id ,Mem_Id, Adopt_Ani_name, Adopt_Ani_type, Adopt_Ani_gender, Adopt_Ani_heal, Adopt_Ani_Vac, Adopt_Ani_color, Adopt_Ani_body, Adopt_Ani_age, Adopt_Ani_Neu, Adopt_Ani_chip, Adopt_Ani_date, Adopt_Ani_status, Adopt_Ani_date,Adopt_Ani_FinLat, Adopt_Ani_FinLon, Adopt_Ani_city, Adopt_Ani_town, Adopt_Ani_road,Adopt_Ani_like);
+					System.out.println("開始修改資料:"+ado_Ani_Mes);
+					
+					req.setAttribute("adoptaniMessageVO", adoptaniMessageVO);
+					AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
+					adoptaniMessageVO = adoptaniMessageSvc.updateAdoptaniMessage(ado_Ani_Mes_No, ado_Ani_Mes);
 					
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
 					System.out.println("修改完成,準備轉交");
-					req.setAttribute("adoptaniVO", adoptaniVO); // 資料庫update成功後,正確的的empVO物件,存入req
+					req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // 資料庫update成功後,正確的的adoptaniMessageVO物件,存入request scope中。
 					String url = requestURL;
-					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交
 					successView.forward(req, res);
 
 					/***************************其他可能的錯誤處理*************************************/
@@ -342,7 +224,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 					System.out.println("修改資料失敗");
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/update_adoptani_input.jsp");
+							.getRequestDispatcher("/adoptani_message/update_adoptaniMessage_input.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -358,16 +240,16 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				
 				try {
 					/***************************1.接收請求參數****************************************/
-					String adopt_Ani_Id = new String(req.getParameter("adopt_Ani_Id").trim());
+					String ado_Ani_Mes_No = new String(req.getParameter("ado_Ani_Mes_No").trim());
 					
 					/***************************2.開始查詢資料****************************************/
-					AdoptaniService adoptaniSvc = new AdoptaniService();
-					AdoptaniVO adoptaniVO = adoptaniSvc.getOneAdoptani(adopt_Ani_Id);
+					AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
+					AdoptaniMessageVO adoptaniMessageVO = adoptaniMessageSvc.getOneAdoptaniMessage(ado_Ani_Mes_No);
 					
 				
 					/***************************3.查詢完成,準備轉交(Send the Success view)************/
-					req.setAttribute("adoptaniVO", adoptaniVO);         // 資料庫取出的adoptaniVO物件,存入req
-					String url = "/adoptani/update_adoptani_input.jsp";
+					req.setAttribute("adoptaniMessageVO", adoptaniMessageVO);         // 資料庫取出的adoptaniVO物件,存入req
+					String url = "/adoptani_message/update_adoptaniMessage_input.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_adoptani_input.jsp
 					successView.forward(req, res);
 
@@ -375,7 +257,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/listAllAdoptani.jsp");
+							.getRequestDispatcher("/adoptani_message/listAllAdoptaniMessage.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -389,14 +271,14 @@ public class AdoptaniMessageServlet extends HttpServlet {
 		
 				try {
 					/***************************1.接收請求參數***************************************/
-					String str = req.getParameter("adopt_Ani_Id");
+					String ado_Ani_Mes_No = req.getParameter("ado_Ani_Mes_No");
 					
 					/***************************2.開始刪除資料***************************************/
-					AdoptaniService adoptaniSvc = new AdoptaniService();
-					adoptaniSvc.deleteAdoptani(str);
+					AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
+					adoptaniMessageSvc.deleteAdoptaniMessage(ado_Ani_Mes_No);
 					
 					/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-					String url = "/adoptani/listAllAdoptani.jsp";
+					String url = "/adoptani_message/listAllAdoptaniMessage.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(req, res);
 					
@@ -404,7 +286,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("刪除資料失敗:"+e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/listAllAdoptani.jsp");
+							.getRequestDispatcher("/adoptani_message/listAllAdoptaniMessage.jsp");
 					failureView.forward(req, res);
 				}
 			}		 

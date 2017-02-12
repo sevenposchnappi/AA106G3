@@ -31,6 +31,7 @@ public class AdoptaniServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		System.out.println(action);
 		
 		if ("getOne_For_Display".equals(action)	|| "getOne_For_Display_FromView".equals(action)) { // 來自select_page.jsp的請求
 
@@ -133,18 +134,17 @@ public class AdoptaniServlet extends HttpServlet {
 					String Adopt_Ani_town = req.getParameter("Adopt_Ani_town");
 					String Adopt_Ani_road = req.getParameter("Adopt_Ani_road");
 					
-					Integer Adopt_Ani_like = null;
-					try {
-						Adopt_Ani_like = Integer.parseInt(req.getParameter("Adopt_Ani_like"));
-					} catch (Exception e) {
-						errorMsgs.add("like數請輸入數字");
-					}
+//					Integer Adopt_Ani_like = null;
+//					try {
+//						Adopt_Ani_like = Integer.parseInt(req.getParameter("Adopt_Ani_like"));
+//					} catch (Exception e) {
+//						errorMsgs.add("like數請輸入數字");
+//					}
 					
 					
 					
 					java.sql.Timestamp Adopt_Ani_date = null;
 					try {
-						System.out.println(req.getParameter("Adopt_Ani_date").trim());
 						String Adopt_Ani_date_from_jsp = req.getParameter("Adopt_Ani_date").trim();
 						Adopt_Ani_date = java.sql.Timestamp.valueOf(Adopt_Ani_date_from_jsp);
 					} catch (Exception e) {
@@ -158,7 +158,6 @@ public class AdoptaniServlet extends HttpServlet {
 					} catch (NumberFormatException e) {
 						Adopt_Ani_FinLat = 0.0;
 						errorMsgs.add("請填寫Google map 經度 xxx.xxxxxx");
-						System.out.println("請填寫Google map 經度 xxx.xxxxxx");
 					}
 					Double Adopt_Ani_FinLon = null;
 					try {
@@ -188,9 +187,7 @@ public class AdoptaniServlet extends HttpServlet {
 						adoptaniVO.setAdopt_Ani_city(Adopt_Ani_city);
 						adoptaniVO.setAdopt_Ani_town(Adopt_Ani_town);
 						adoptaniVO.setAdopt_Ani_road(Adopt_Ani_road);
-						adoptaniVO.setAdopt_Ani_like(Adopt_Ani_like);
-						System.out.println("test");
-						System.out.println(errorMsgs.isEmpty());
+//						adoptaniVO.setAdopt_Ani_like(Adopt_Ani_like);
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("adoptaniVO", adoptaniVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -202,7 +199,7 @@ public class AdoptaniServlet extends HttpServlet {
 					
 					/***************************2.開始新增資料***************************************/
 					AdoptaniService adoptaniSvc = new AdoptaniService();
-					adoptaniVO = adoptaniSvc.addAdoptani(Mem_Id, Adopt_Ani_name, Adopt_Ani_type, Adopt_Ani_gender, Adopt_Ani_heal, Adopt_Ani_Vac, Adopt_Ani_color, Adopt_Ani_body, Adopt_Ani_age, Adopt_Ani_Neu, Adopt_Ani_chip, Adopt_Ani_date, Adopt_Ani_status, Adopt_Ani_date,Adopt_Ani_FinLat, Adopt_Ani_FinLon, Adopt_Ani_city, Adopt_Ani_town, Adopt_Ani_road ,Adopt_Ani_like);
+					adoptaniVO = adoptaniSvc.addAdoptani(Mem_Id, Adopt_Ani_name, Adopt_Ani_type, Adopt_Ani_gender, Adopt_Ani_heal, Adopt_Ani_Vac, Adopt_Ani_color, Adopt_Ani_body, Adopt_Ani_age, Adopt_Ani_Neu, Adopt_Ani_chip, Adopt_Ani_date, Adopt_Ani_status, Adopt_Ani_date,Adopt_Ani_FinLat, Adopt_Ani_FinLon, Adopt_Ani_city, Adopt_Ani_town, Adopt_Ani_road );
 					//物件建立時間(Adopt_Ani_Credate)的參數，暫時先用Adopt_Ani_date代替，其實用不到，因為sql是用sysdate建。
 					
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
@@ -258,7 +255,6 @@ public class AdoptaniServlet extends HttpServlet {
 						errorMsgs.add("like數請輸入數字");
 					}
 					
-					System.out.println("here is \"update\" in Controller (1)");
 					
 					
 					
@@ -270,7 +266,6 @@ public class AdoptaniServlet extends HttpServlet {
 						Adopt_Ani_date=new java.sql.Timestamp(System.currentTimeMillis());
 						errorMsgs.add("請輸入日期!");
 					}
-					System.out.println("here is \"update\" in Controller (2)");
 					Double Adopt_Ani_FinLat = null;
 					try {
 						
@@ -278,7 +273,6 @@ public class AdoptaniServlet extends HttpServlet {
 					} catch (NumberFormatException e) {
 						Adopt_Ani_FinLat = 0.0;
 						errorMsgs.add("請填寫Google map 經度 xxx.xxxxxx");
-						System.out.println("請填寫Google map 經度 xxx.xxxxxx");
 					}
 					System.out.println("here is \"update\" in Controller (3)");
 					Double Adopt_Ani_FinLon = null;
@@ -313,7 +307,6 @@ public class AdoptaniServlet extends HttpServlet {
 						adoptaniVO.setAdopt_Ani_road(Adopt_Ani_road);
 						adoptaniVO.setAdopt_Ani_like(Adopt_Ani_like);
 						
-						System.out.println(errorMsgs.isEmpty());
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						
@@ -325,13 +318,11 @@ public class AdoptaniServlet extends HttpServlet {
 					}
 					
 					/***************************2.開始修改資料*****************************************/
-					System.out.println("開始修改資料"+"adopt_Ani_Id"+adopt_Ani_Id+"Mem_Id"+Mem_Id+"Adopt_Ani_name"+Adopt_Ani_name+"Adopt_Ani_type"+Adopt_Ani_type +"Adopt_Ani_gender"+Adopt_Ani_gender +"Adopt_Ani_heal"+Adopt_Ani_heal +"Adopt_Ani_Vac"+Adopt_Ani_Vac +"Adopt_Ani_color"+Adopt_Ani_color +"Adopt_Ani_body"+Adopt_Ani_body +"Adopt_Ani_age"+Adopt_Ani_age +"Adopt_Ani_Neu"+Adopt_Ani_Neu +"Adopt_Ani_chip"+Adopt_Ani_chip +"Adopt_Ani_date"+Adopt_Ani_date +"Adopt_Ani_status"+Adopt_Ani_status +"Adopt_Ani_date"+Adopt_Ani_date +"Adopt_Ani_FinLat"+Adopt_Ani_FinLat +"Adopt_Ani_FinLon"+Adopt_Ani_FinLon +"Adopt_Ani_city"+Adopt_Ani_city +"Adopt_Ani_town"+Adopt_Ani_town +"Adopt_Ani_road"+Adopt_Ani_road  );
 					req.setAttribute("adoptaniVO", adoptaniVO);
 					AdoptaniService adoptaniSvc = new AdoptaniService();
 					adoptaniVO = adoptaniSvc.updateAdoptani(adopt_Ani_Id ,Mem_Id, Adopt_Ani_name, Adopt_Ani_type, Adopt_Ani_gender, Adopt_Ani_heal, Adopt_Ani_Vac, Adopt_Ani_color, Adopt_Ani_body, Adopt_Ani_age, Adopt_Ani_Neu, Adopt_Ani_chip, Adopt_Ani_date, Adopt_Ani_status, Adopt_Ani_date,Adopt_Ani_FinLat, Adopt_Ani_FinLon, Adopt_Ani_city, Adopt_Ani_town, Adopt_Ani_road,Adopt_Ani_like);
 					
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
-					System.out.println("修改完成,準備轉交");
 					req.setAttribute("adoptaniVO", adoptaniVO); // 資料庫update成功後,正確的的empVO物件,存入req
 					String url = requestURL;
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
@@ -339,7 +330,6 @@ public class AdoptaniServlet extends HttpServlet {
 
 					/***************************其他可能的錯誤處理*************************************/
 				} catch (Exception e) {
-					System.out.println("修改資料失敗");
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/update_adoptani_input.jsp");
@@ -381,7 +371,7 @@ public class AdoptaniServlet extends HttpServlet {
 			}
 		 
 			if ("delete".equals(action)) { // 來自listAllEmp.jsp
-
+				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
 				// send the ErrorPage view.
@@ -390,13 +380,14 @@ public class AdoptaniServlet extends HttpServlet {
 				try {
 					/***************************1.接收請求參數***************************************/
 					String str = req.getParameter("adopt_Ani_Id");
-					
+					System.out.println("adopt_Ani_Id:"+ str);
 					/***************************2.開始刪除資料***************************************/
 					AdoptaniService adoptaniSvc = new AdoptaniService();
 					adoptaniSvc.deleteAdoptani(str);
 					
 					/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 					String url = "/adoptani/listAllAdoptani.jsp";
+					System.out.println("刪除完成");
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(req, res);
 					

@@ -101,7 +101,7 @@
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="adoptani.do">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani/adoptani.do">
 			    <input type="submit" value="刪除">
 			    <input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}">
 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->

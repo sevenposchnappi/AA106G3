@@ -12,7 +12,7 @@ public class AdoptaniMessageService {
 		dao = new AdoptaniMessageJNDIDAO();
 	}
 	
-	public AdoptaniMessageVO adoptaniMessageVO(String Adopt_Ani_Id, String Mem_Id, String Ado_Ani_Mes){
+	public AdoptaniMessageVO addAdoptaniMessage(String Adopt_Ani_Id, String Mem_Id, String Ado_Ani_Mes){
 		
 		AdoptaniMessageVO adoptaniMessageVO = new AdoptaniMessageVO();
 		
@@ -34,7 +34,7 @@ public class AdoptaniMessageService {
 	 * @return adoptaniMessageVO клеє
 	 * **/
 	
-	public AdoptaniMessageVO updateAdoptani(String Ado_Ani_Mes_No, String Ado_Ani_Mes){
+	public AdoptaniMessageVO updateAdoptaniMessage(String Ado_Ani_Mes_No, String Ado_Ani_Mes){
 		
 		AdoptaniMessageVO adoptaniMessageVO = new AdoptaniMessageVO();
 		adoptaniMessageVO.setAdo_Ani_Mes(Ado_Ani_Mes);
@@ -45,15 +45,15 @@ public class AdoptaniMessageService {
 		return adoptaniMessageVO;
 	}
 	
-	public void deleteAdoptani(String Ado_Ani_Mes_No){
+	public void deleteAdoptaniMessage(String Ado_Ani_Mes_No){
 		dao.delete(Ado_Ani_Mes_No);
 		
 	}
-	public AdoptaniMessageVO getOneAdoptani(String Ado_Ani_Mes_No){
+	public AdoptaniMessageVO getOneAdoptaniMessage(String Ado_Ani_Mes_No){
 		return dao.findByPrimaryKey(Ado_Ani_Mes_No);
 	}
 	
-	public List<AdoptaniMessageVO> getAll() {
+	public List<AdoptaniMessageVO> getAllMessage() {
 		return dao.getAll();
 	}
 	
