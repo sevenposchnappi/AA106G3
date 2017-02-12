@@ -53,6 +53,10 @@ public class AdoptaniMessageService {
 		return dao.findByPrimaryKey(Ado_Ani_Mes_No);
 	}
 	
+	public List<AdoptaniMessageVO> getOneAdoptaniAllMessage(String Adopt_Ani_Id){
+		return dao.getOneAllMessage(Adopt_Ani_Id);
+	}
+	
 	public List<AdoptaniMessageVO> getAllMessage() {
 		return dao.getAll();
 	}

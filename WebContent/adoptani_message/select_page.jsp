@@ -45,7 +45,7 @@
    
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" >
-       <b>選擇送養動物編號:</b>
+       <b>選擇送養動物留言編號:</b>
        <select size="1" name="ado_Ani_Mes_No">
          <c:forEach var="adoptaniMessageVO" items="${AdoptaniMessageSvc.allMessage}" > 
           <option value="${adoptaniMessageVO.ado_Ani_Mes_No}">${adoptaniMessageVO.ado_Ani_Mes_No}
@@ -53,6 +53,19 @@
        </select>
        <input type="submit" value="送出">
        <input type="hidden" name="action" value="getOne_For_Display">
+    </FORM>
+  </li>
+  
+    <li>
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" >
+       <b>選擇送養動物編號:</b>
+       <select size="1" name="adopt_Ani_Id">
+         <c:forEach var="adoptaniMessageVO" items="${AdoptaniMessageSvc.allMessage}" > 
+          <option value="${adoptaniMessageVO.adopt_Ani_Id}">${adoptaniMessageVO.adopt_Ani_Id}
+         </c:forEach>   
+       </select>
+       <input type="submit" value="送出">
+       <input type="hidden" name="action" value="getOneAni_For_DisplayAll">
     </FORM>
   </li>
   

@@ -42,7 +42,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		System.out.println(action);
-		if ("getOne_For_Display".equals(action) || "getOne_For_Display_From_listOneAdoptani.jsp".equals(action)) { // 來自select_page.jsp的請求
+		if ("getOne_For_Display".equals(action)  || "getOne_For_Display_From_listOneAdoptani.jsp".equals(action) || "getOne_For_Display_From_listAllAdoptani.jsp".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -87,7 +87,6 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				if (oneAdoptAniPhotoList == null) {
 					errorMsgs.add("查無資料");
 				}
-System.out.println("查詢資料");
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -104,6 +103,12 @@ System.out.println("查詢資料");
 					successView.forward(req, res);
 				}
 				else if("getOne_For_Display_From_listOneAdoptani.jsp".equals(action)){
+					System.out.println("查詢資料完成");
+					String url = "/adoptani/listOneAdoptaniAllPhoto.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); 
+					successView.forward(req, res);
+				}
+				else if("getOne_For_Display_From_listAllAdoptani.jsp".equals(action)){
 					System.out.println("查詢資料完成");
 					String url = "/adoptani/listOneAdoptaniAllPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 

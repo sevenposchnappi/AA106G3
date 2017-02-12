@@ -33,8 +33,8 @@ public class AdoptaniMessageServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		
-		if ("getOne_For_Display".equals(action)	|| "getOne_For_Display_FromView".equals(action)) { // ¨Ó¦Ûselect_page.jspªº½Ğ¨D
+		System.out.println(action);
+		if ("getOne_For_Display".equals(action)) { // ä¾†è‡ªselect_page.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -42,61 +42,122 @@ public class AdoptaniMessageServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 				String str = req.getParameter("ado_Ani_Mes_No");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J°e¾i°Êª«¯d¨¥½s¸¹ex.42000001");
+					errorMsgs.add("è«‹è¼¸å…¥é€é¤Šå‹•ç‰©ç•™è¨€ç·¨è™Ÿex.42000001");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_message/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
 				String ado_Ani_Mes_No = null;
 				try {
 					ado_Ani_Mes_No = new String(str);
 				} catch (Exception e) {
-					errorMsgs.add("°e¾i°Êª«¯d¨¥½s¸¹®æ¦¡¤£¥¿½T");
+					errorMsgs.add("é€é¤Šå‹•ç‰©ç•™è¨€ç·¨è™Ÿæ ¼å¼ä¸æ­£ç¢º");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_message/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
-				/***************************2.¶}©l¬d¸ß¸ê®Æ*****************************************/
+				/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™*****************************************/
 				AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
 				AdoptaniMessageVO adoptaniMessageVO = adoptaniMessageSvc.getOneAdoptaniMessage(ado_Ani_Mes_No);
 				if (adoptaniMessageVO == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_message/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-				req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // ¸ê®Æ®w¨ú¥XªºadoptaniVOª«¥ó,¦s¤Jreq
-				if("getOne_For_Display".equals(action)){
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // è³‡æ–™åº«å–å‡ºçš„adoptaniVOç‰©ä»¶,å­˜å…¥req
+				
 					String url = "/adoptani_message/listOneAdoptaniMessage.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneAdoptani.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneAdoptani.jsp
+					successView.forward(req, res);
+			
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
+			} catch (Exception e) {
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/adoptani_message/select_page.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		if ("getOneAni_For_DisplayAll".equals(action)	|| "getOne_For_Display_AllMessage_FromView".equals(action)) { // ä¾†è‡ªselect_page.jspçš„è«‹æ±‚
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
+				String adopt_Ani_Id = req.getParameter("adopt_Ani_Id");
+				if (adopt_Ani_Id == null || (adopt_Ani_Id.trim()).length() == 0) {
+					errorMsgs.add("è«‹è¼¸å…¥é€é¤Šå‹•ç‰©ç·¨è™Ÿex.40000001");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/adoptani_message/select_page.jsp");
+					failureView.forward(req, res);
+					return;//ç¨‹å¼ä¸­æ–·
+				}
+				
+
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/adoptani_message/select_page.jsp");
+					failureView.forward(req, res);
+					return;//ç¨‹å¼ä¸­æ–·
+				}
+				
+				/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™*****************************************/
+				AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
+				List<AdoptaniMessageVO> adoptaniMessagelist = adoptaniMessageSvc.getOneAdoptaniAllMessage(adopt_Ani_Id);
+				if (adoptaniMessagelist == null) {
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
+				}
+				
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/adoptani_message/select_page.jsp");
+					failureView.forward(req, res);
+					return;//ç¨‹å¼ä¸­æ–·
+				}
+				
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("adoptaniMessagelist", adoptaniMessagelist); // è³‡æ–™åº«å–å‡ºçš„adoptaniVOç‰©ä»¶,å­˜å…¥req
+				if("getOneAni_For_DisplayAll".equals(action)){
+					String url = "/adoptani_message/listOneAdoptaniAllMessage.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneAdoptani.jsp
 					successView.forward(req, res);
 				}else if("getOne_For_Display_FromView".equals(action)){
 					String url = "/adoptani/listOneAdoptani.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneAdoptani.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneAdoptani.jsp
 					successView.forward(req, res);
 				}
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/adoptani_message/select_page.jsp");
 				failureView.forward(req, res);
@@ -106,7 +167,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 		
 		
 		
-		 if ("insert".equals(action)) { // ¨Ó¦ÛaddAdoptani.jspªº½Ğ¨D¡C insert¼g¦b«e­±¤ñ¸û¦n¬İ¡C
+		 if ("insert".equals(action)) { // ä¾†è‡ªaddAdoptani.jspçš„è«‹æ±‚ã€‚ insertå¯«åœ¨å‰é¢æ¯”è¼ƒå¥½çœ‹ã€‚
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to send the ErrorPage view.
@@ -114,14 +175,14 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 				
 				try {
-					/***********************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z*************************/
+					/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
 					String mem_Id = null;
 					try {
 						System.out.println(req.getParameter("mem_Id"));
 						int mem_Id2 = Integer.parseInt(req.getParameter("mem_Id"));
 						mem_Id = req.getParameter("mem_Id");	
 					} catch (Exception e) {
-						errorMsgs.add("½Ğ¿é¤J¥¿½T·|­û½s¸¹");
+						errorMsgs.add("è«‹è¼¸å…¥æ­£ç¢ºæœƒå“¡ç·¨è™Ÿ");
 					}
 					
 					String adopt_Ani_Id = null;
@@ -130,7 +191,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 						int adopt_Ani_Id2 = Integer.parseInt(req.getParameter("adopt_Ani_Id"));
 						adopt_Ani_Id = req.getParameter("adopt_Ani_Id");	
 					} catch (Exception e) {
-						errorMsgs.add("½Ğ¿é¤J¥¿½T°e¾i°Êª«½s¸¹");
+						errorMsgs.add("è«‹è¼¸å…¥æ­£ç¢ºé€é¤Šå‹•ç‰©ç·¨è™Ÿ");
 					}
 					
 					String ado_Ani_Mes = req.getParameter("ado_Ani_Mes");
@@ -149,23 +210,23 @@ public class AdoptaniMessageServlet extends HttpServlet {
 					
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
-						req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºempVOª«¥ó,¤]¦s¤Jreq
+						req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„empVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/adoptani_message/addAdoptaniMessage.jsp");
 						failureView.forward(req, res);
 						return;
 					}
 					
-					/***************************2.¶}©l·s¼W¸ê®Æ***************************************/
+					/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
 					AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
 					adoptaniMessageVO = adoptaniMessageSvc.addAdoptaniMessage(adopt_Ani_Id, mem_Id, ado_Ani_Mes);
-					//Serviceªºadd¤èªk·|¦^¶ÇVO¡C
-					/***************************3.·s¼W§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/
+					//Serviceçš„addæ–¹æ³•æœƒå›å‚³VOã€‚
+					/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
 					String url = "/adoptani_message/listAllAdoptaniMessage.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllAdoptani.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllAdoptani.jsp
 					successView.forward(req, res);				
 					
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
 					
 					errorMsgs.add(e.getMessage());
@@ -176,7 +237,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 			}
 
 			
-			if ("update".equals(action) ) { // ¨Ó¦Ûupdate_adoptani_input.jspªº½Ğ¨D
+			if ("update".equals(action) ) { // ä¾†è‡ªupdate_adoptani_input.jspçš„è«‹æ±‚
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -185,7 +246,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				String requestURL = req.getParameter("requestURL");
 				
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 					String ado_Ani_Mes_No = req.getParameter("ado_Ani_Mes_No");
 					String ado_Ani_Mes = req.getParameter("ado_Ani_Mes");
 					
@@ -198,38 +259,38 @@ public class AdoptaniMessageServlet extends HttpServlet {
 						// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						
-						req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºempVOª«¥ó,¤]¦s¤Jreq
+						req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„empVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/adoptani_message/update_adoptaniMessage_input.jsp");
 						failureView.forward(req, res);
 						return;
 					}
 					
-					/***************************2.¶}©l­×§ï¸ê®Æ*****************************************/
-					System.out.println("¶}©l­×§ï¸ê®Æ:"+ado_Ani_Mes);
+					/***************************2.é–‹å§‹ä¿®æ”¹è³‡æ–™*****************************************/
+					System.out.println("é–‹å§‹ä¿®æ”¹è³‡æ–™:"+ado_Ani_Mes);
 					
 					req.setAttribute("adoptaniMessageVO", adoptaniMessageVO);
 					AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
 					adoptaniMessageVO = adoptaniMessageSvc.updateAdoptaniMessage(ado_Ani_Mes_No, ado_Ani_Mes);
 					
-					/***************************3.­×§ï§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-					System.out.println("­×§ï§¹¦¨,·Ç³ÆÂà¥æ");
-					req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // ¸ê®Æ®wupdate¦¨¥\«á,¥¿½TªºªºadoptaniMessageVOª«¥ó,¦s¤Jrequest scope¤¤¡C
+					/***************************3.ä¿®æ”¹å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+					System.out.println("ä¿®æ”¹å®Œæˆ,æº–å‚™è½‰äº¤");
+					req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // è³‡æ–™åº«updateæˆåŠŸå¾Œ,æ­£ç¢ºçš„çš„adoptaniMessageVOç‰©ä»¶,å­˜å…¥request scopeä¸­ã€‚
 					String url = requestURL;
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ­×§ï¦¨¥\«á,Âà¥æ
+					RequestDispatcher successView = req.getRequestDispatcher(url); // ä¿®æ”¹æˆåŠŸå¾Œ,è½‰äº¤
 					successView.forward(req, res);
 
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 				} catch (Exception e) {
-					System.out.println("­×§ï¸ê®Æ¥¢±Ñ");
-					errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:"+e.getMessage());
+					System.out.println("ä¿®æ”¹è³‡æ–™å¤±æ•—");
+					errorMsgs.add("ä¿®æ”¹è³‡æ–™å¤±æ•—:"+e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_message/update_adoptaniMessage_input.jsp");
 					failureView.forward(req, res);
 				}
 			}
 
-			if ("getOne_For_Update".equals(action) ) { // ¨Ó¦ÛlistAllAdoptani.jspªº½Ğ¨D
+			if ("getOne_For_Update".equals(action) ) { // ä¾†è‡ªlistAllAdoptani.jspçš„è«‹æ±‚
 
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -239,30 +300,30 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				String requestURL = req.getParameter("requestURL");
 				
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ****************************************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸****************************************/
 					String ado_Ani_Mes_No = new String(req.getParameter("ado_Ani_Mes_No").trim());
 					
-					/***************************2.¶}©l¬d¸ß¸ê®Æ****************************************/
+					/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™****************************************/
 					AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
 					AdoptaniMessageVO adoptaniMessageVO = adoptaniMessageSvc.getOneAdoptaniMessage(ado_Ani_Mes_No);
 					
 				
-					/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)************/
-					req.setAttribute("adoptaniMessageVO", adoptaniMessageVO);         // ¸ê®Æ®w¨ú¥XªºadoptaniVOª«¥ó,¦s¤Jreq
+					/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)************/
+					req.setAttribute("adoptaniMessageVO", adoptaniMessageVO);         // è³‡æ–™åº«å–å‡ºçš„adoptaniVOç‰©ä»¶,å­˜å…¥req
 					String url = "/adoptani_message/update_adoptaniMessage_input.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url);// ¦¨¥\Âà¥æ update_adoptani_input.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url);// æˆåŠŸè½‰äº¤ update_adoptani_input.jsp
 					successView.forward(req, res);
 
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
-					errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ:" + e.getMessage());
+					errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™:" + e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_message/listAllAdoptaniMessage.jsp");
 					failureView.forward(req, res);
 				}
 			}
 		 
-			if ("delete".equals(action)) { // ¨Ó¦ÛlistAllEmp.jsp
+			if ("delete".equals(action)) { // ä¾†è‡ªlistAllEmp.jsp
 
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -270,21 +331,21 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 		
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ***************************************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸***************************************/
 					String ado_Ani_Mes_No = req.getParameter("ado_Ani_Mes_No");
 					
-					/***************************2.¶}©l§R°£¸ê®Æ***************************************/
+					/***************************2.é–‹å§‹åˆªé™¤è³‡æ–™***************************************/
 					AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
 					adoptaniMessageSvc.deleteAdoptaniMessage(ado_Ani_Mes_No);
 					
-					/***************************3.§R°£§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/								
+					/***************************3.åˆªé™¤å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/								
 					String url = "/adoptani_message/listAllAdoptaniMessage.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url);// §R°£¦¨¥\«á,Âà¥æ¦^°e¥X§R°£ªº¨Ó·½ºô­¶
+					RequestDispatcher successView = req.getRequestDispatcher(url);// åˆªé™¤æˆåŠŸå¾Œ,è½‰äº¤å›é€å‡ºåˆªé™¤çš„ä¾†æºç¶²é 
 					successView.forward(req, res);
 					
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
-					errorMsgs.add("§R°£¸ê®Æ¥¢±Ñ:"+e.getMessage());
+					errorMsgs.add("åˆªé™¤è³‡æ–™å¤±æ•—:"+e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_message/listAllAdoptaniMessage.jsp");
 					failureView.forward(req, res);
