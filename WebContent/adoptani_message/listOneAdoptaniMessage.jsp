@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.adoptani_message.model.*"%>
@@ -24,15 +24,15 @@
 <head>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<title>°e¾i°Êª«¯d¨¥ - listOneAdoptaniMessage.jsp</title>
+<title>é€é¤Šå‹•ç‰©ç•™è¨€ - listOneAdoptaniMessage.jsp</title>
 </head>
 <body bgcolor='white'>
 	<table border='1' cellpadding='5' cellspacing='0' width='800'>
 		<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 			<td>
-				<h3>³æµ§°e¾i°Êª«¯d¨¥ - listOneAdoptaniMessage.jsp</h3> <a
+				<h3>å–®ç­†é€é¤Šå‹•ç‰©ç•™è¨€ - listOneAdoptaniMessage.jsp</h3> <a
 				href="select_page.jsp"><img src="images/back1.gif" width="100"
-					height="32" border="0">¦^­º­¶</a>
+					height="32" border="0">å›é¦–é </a>
 			</td>
 		</tr>
 	</table>
@@ -43,11 +43,11 @@
 
 	<table border='1' bordercolor='#CCCCFF' width='800'>
 		<tr>
-			<th>°e¾i°Êª«¯d¨¥½s¸¹</th>
-			<th>°e¾i°Êª«½s¸¹</th>
-			<th>µo¥¬ªÌ·|­û½s¸¹</th>
-			<th>°e¾i°Êª«°Êª«¯d¨¥®É¶¡</th>
-			<th>°e¾i°Êª«¯d¨¥¤º®e</th>
+			<th>é€é¤Šå‹•ç‰©ç•™è¨€ç·¨è™Ÿ</th>
+			<th>é€é¤Šå‹•ç‰©ç·¨è™Ÿ</th>
+			<th>ç™¼å¸ƒè€…æœƒå“¡ç·¨è™Ÿ</th>
+			<th>é€é¤Šå‹•ç‰©å‹•ç‰©ç•™è¨€æ™‚é–“</th>
+			<th>é€é¤Šå‹•ç‰©ç•™è¨€å…§å®¹</th>
 
 		</tr>
 		<tr align='center' valign='middle'>
@@ -58,7 +58,7 @@
 			<td>${adoptaniMessageVO.ado_Ani_Mes}</td>
 			<td>
 				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do">
-					<input type="submit" value="­×§ï"> 
+					<input type="submit" value="ä¿®æ”¹"> 
 					<input type="hidden" name="ado_Ani_Mes_No" value="<%=adoptaniMessageVO.getAdo_Ani_Mes_No()%>"> 
 						<input type="hidden" name="adopt_Ani_Id" value="<%=adoptaniMessageVO.getAdopt_Ani_Id()%>"> 
 						<input type="hidden" name="mem_Id" value="<%=adoptaniMessageVO.getMem_Id()%>"> 
@@ -69,7 +69,7 @@
 			<td>
 				<FORM METHOD="post"
 					ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do">
-					<input type="submit" value="§R°£"> 
+					<input type="submit" value="åˆªé™¤"> 
 					<input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}"> 
 					<input type="hidden" name="action" value="delete">
 				</FORM>

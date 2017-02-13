@@ -1,27 +1,27 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.adoptani_photo.model.*"%>
 <%
-	AdoptaniPhotoVO adoptaniPhotoVO = (AdoptaniPhotoVO) request.getAttribute("adoptaniPhotoVO"); //AdoptaniServlet.java (Concroller), ¦s¤JreqªºadoptaniVOª«¥ó (¥]¬AÀ°¦£¨ú¥XªºadoptaniVO, ¤]¥]¬A¿é¤J¸ê®Æ¿ù»~®ÉªºadoptaniVOª«¥ó)
+	AdoptaniPhotoVO adoptaniPhotoVO = (AdoptaniPhotoVO) request.getAttribute("adoptaniPhotoVO"); //AdoptaniServlet.java (Concroller), å­˜å…¥reqçš„adoptaniVOç‰©ä»¶ (åŒ…æ‹¬å¹«å¿™å–å‡ºçš„adoptaniVO, ä¹ŸåŒ…æ‹¬è¼¸å…¥è³‡æ–™éŒ¯èª¤æ™‚çš„adoptaniVOç‰©ä»¶)
 %>
 <html>
 <head>
-<title>°e¾i°Êª«¬Û¤ù¸ê®Æ­×§ï - update_adoptaniPhoto_input.jsp</title></head>
+<title>é€é¤Šå‹•ç‰©ç›¸ç‰‡è³‡æ–™ä¿®æ”¹ - update_adoptaniPhoto_input.jsp</title></head>
 
 <body bgcolor='white'>
 
 <table border='1' cellpadding='5' cellspacing='0' width='400'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>­û¤u¸ê®Æ­×§ï - update_adoptani_input.jsp</h3>
-		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></td>
+		<h3>å“¡å·¥è³‡æ–™ä¿®æ”¹ - update_adoptani_input.jsp</h3>
+		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></td>
 	</tr>
 </table>
 
-<h3>¸ê®Æ­×§ï:</h3>
-<%-- ¿ù»~ªí¦C --%>
+<h3>è³‡æ–™ä¿®æ”¹:</h3>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -35,7 +35,7 @@
 
 
 	<tr>
-		<td>°e¾i°Êª«¬Û¤ùÃş«¬</td>
+		<td>é€é¤Šå‹•ç‰©ç›¸ç‰‡é¡å‹</td>
 		<td>
 			<input type="TEXT" name="ado_Pic_type" size="20" value="<%=adoptaniPhotoVO.getAdo_Pic_type()%>">
 		</td>
@@ -52,7 +52,7 @@
 
 
 <input type="hidden" name="ado_Ani_Pic_No" value="<%=adoptaniPhotoVO.getAdo_Ani_Pic_No()%>">
-<input type="submit" value="°e¥X­×§ï"></FORM>
+<input type="submit" value="é€å‡ºä¿®æ”¹"></FORM>
 
 </body>
 </html>

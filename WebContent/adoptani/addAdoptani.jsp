@@ -1,25 +1,25 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.adoptani.model.*"%>
 
 <%=
 	(AdoptaniVO) request.getAttribute("adoptaniVO")	
-	//²Ä¤@¦¸¶i¨ì¦¹­¶­±¬Onull¡A¦]¬°¨S¦³³oªF¦è¡C
+	//ç¬¬ä¸€æ¬¡é€²åˆ°æ­¤é é¢æ˜¯nullï¼Œå› ç‚ºæ²’æœ‰é€™æ±è¥¿ã€‚
 %>
 <%
 	AdoptaniVO adoptaniVO = (AdoptaniVO) request.getAttribute("adoptaniVO");	
-	//¹w¨¾¿ù»~¿é¤J¡A¦Ó«O¯duser©Ò¿é¤Jªº©Ò¦³¤º®e¡A°e¥X«á­Y¿ù»~¤£¥Î¥þ³¡­«¥´¡C
+	//é é˜²éŒ¯èª¤è¼¸å…¥ï¼Œè€Œä¿ç•™useræ‰€è¼¸å…¥çš„æ‰€æœ‰å…§å®¹ï¼Œé€å‡ºå¾Œè‹¥éŒ¯èª¤ä¸ç”¨å…¨éƒ¨é‡æ‰“ã€‚
 %>
 <%
 /**
-	¡°¿ù»~°T®§­nª`·N¸g½n«×ªº¿ù»~³B²z¡C
+	â€»éŒ¯èª¤è¨Šæ¯è¦æ³¨æ„ç¶“ç·¯åº¦çš„éŒ¯èª¤è™•ç†ã€‚
 **/
 %>
 
 
 <html>
 <head>
-<title>°e¾i°Êª«¸ê®Æ·s¼W - addAdoptani.jsp</title></head>
+<title>é€é¤Šå‹•ç‰©è³‡æ–™æ–°å¢ž - addAdoptani.jsp</title></head>
 <link rel="stylesheet" type="text/css" href="js/calendar.css">
 <script language="JavaScript" src="js/calendarcode.js"></script>
 
@@ -40,18 +40,18 @@
 	<table border='1' cellpadding='5' cellspacing='0' width='400'>
 		<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 			<td>
-			<h3>°e¾i°Êª«¸ê®Æ·s¼W - addAdoptani.jsp</h3>
+			<h3>é€é¤Šå‹•ç‰©è³‡æ–™æ–°å¢ž - addAdoptani.jsp</h3>
 			</td>
 			<td>
-			   <a href="select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">¦^­º­¶</a>
+			   <a href="select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">å›žé¦–é </a>
 		    </td>
 		</tr>
 	</table>
 	
-	<h3>°e¾i°Êª«¸ê®Æ:</h3>
-	<%-- ¿ù»~ªí¦C --%>
+	<h3>é€é¤Šå‹•ç‰©è³‡æ–™:</h3>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font color='red'>½Ð­×¥¿¥H¤U¿ù»~:
+		<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li>${message}</li>
@@ -64,106 +64,106 @@
 	<table border="0">
 	
 		<tr>
-			<td>°e¾i°Êª«¦W¦r:</td>
-			<td><input type="TEXT" name="Adopt_Ani_name" size="20" 	placeholder="½Ð¿é¤J16¦r¤¸¤º¤§¦W¦r"
+			<td>é€é¤Šå‹•ç‰©åå­—:</td>
+			<td><input type="TEXT" name="Adopt_Ani_name" size="20" 	placeholder="è«‹è¼¸å…¥16å­—å…ƒå…§ä¹‹åå­—"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_name()%>" /></td>
 		</tr>
 		<tr>
-			<!-- ¨S¦³¿ï¾Ü®É¶¡´N¦Û°Ê¶ñ¤J²{¦b®É¶¡ -->
+			<!-- æ²’æœ‰é¸æ“‡æ™‚é–“å°±è‡ªå‹•å¡«å…¥ç¾åœ¨æ™‚é–“ -->
 			<%java.sql.Timestamp date_SQL = new java.sql.Timestamp(System.currentTimeMillis());%>
-			<td>°e¾i®É¶¡:</td>
+			<td>é€é¤Šæ™‚é–“:</td>
 			<td bgcolor="#CCCCFF" >
 			    <input id="datetimepicker1" readonly name="Adopt_Ani_date" type="text" value="<%=(adoptaniVO==null)? date_SQL : adoptaniVO.getAdopt_Ani_date() %>" />
 		</td>
 		</tr>  
 		
 		<tr>
-			<td>µo¥¬ªÌ·|­û½s¸¹:</td>
-			<td><input type="TEXT" name="Mem_Id" size="20" placeholder="8½X"
+			<td>ç™¼å¸ƒè€…æœƒå“¡ç·¨è™Ÿ:</td>
+			<td><input type="TEXT" name="Mem_Id" size="20" placeholder="8ç¢¼"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getMem_Id()%>" /></td>
 		</tr>
 		<tr>
-			<td>°e¾i°Êª«°Êª«ºØÃþ:</td>
-			<td><input type="TEXT" name="Adopt_Ani_type" size="20" placeholder="¿ß¡Bª¯...."
+			<td>é€é¤Šå‹•ç‰©å‹•ç‰©ç¨®é¡ž:</td>
+			<td><input type="TEXT" name="Adopt_Ani_type" size="20" placeholder="è²“ã€ç‹—...."
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_type()%>" /></td>
 		</tr>
 		<tr>
-			<td>°e¾i°Êª«©Ê§O:</td>
+			<td>é€é¤Šå‹•ç‰©æ€§åˆ¥:</td>
 			<td>
-				<input type="radio" name="Adopt_Ani_gender" size="20" value="1" ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}>¤½	
-				<input type="radio" name="Adopt_Ani_gender" size="20" value="0" ${(adoptaniVO.adopt_Ani_gender==0) ? 'checked':''}>¥À
+				<input type="radio" name="Adopt_Ani_gender" size="20" value="1" ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}>å…¬	
+				<input type="radio" name="Adopt_Ani_gender" size="20" value="0" ${(adoptaniVO.adopt_Ani_gender==0) ? 'checked':''}>æ¯
 			</td>
 		</tr>
 		<tr>
-			<td>°e¾i°Êª«°·±dª¬ªp:</td>
-			<td><input type="TEXT" name="Adopt_Ani_heal" size="20" placeholder="20¦r¤º´y­z"
+			<td>é€é¤Šå‹•ç‰©å¥åº·ç‹€æ³:</td>
+			<td><input type="TEXT" name="Adopt_Ani_heal" size="20" placeholder="20å­—å…§æè¿°"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_heal()%>" /></td>
 		</tr>
 		<tr>
-			<td>°e¾i°Êª«¬Ì­]±µ¿æ:</td>
-			<td><input type="TEXT" name="Adopt_Ani_Vac" size="20" placeholder="20¦r¤º´y­z"
+			<td>é€é¤Šå‹•ç‰©ç–«è‹—æŽ¥è¸µ:</td>
+			<td><input type="TEXT" name="Adopt_Ani_Vac" size="20" placeholder="20å­—å…§æè¿°"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_Vac()%>" /></td>
 		</tr>
 		<tr>
-			<td>°e¾i°Êª«¤ò¦â:</td>
-			<td><input type="TEXT" name="Adopt_Ani_color" size="20" placeholder="20¦r¤¸¤º´y­z"
+			<td>é€é¤Šå‹•ç‰©æ¯›è‰²:</td>
+			<td><input type="TEXT" name="Adopt_Ani_color" size="20" placeholder="20å­—å…ƒå…§æè¿°"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_color()%>" /></td>
 		</tr>
 		<tr>
-			<td>°e¾i°Êª«Åé«¬:</td>
-			<td><input type="TEXT" name="Adopt_Ani_body" size="20" placeholder="20¦r¤¸¤º´y­z"
+			<td>é€é¤Šå‹•ç‰©é«”åž‹:</td>
+			<td><input type="TEXT" name="Adopt_Ani_body" size="20" placeholder="20å­—å…ƒå…§æè¿°"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_body()%>" /></td>
 		</tr>
 
 		<tr>
-			<td>°e¾i°Êª«¦~ÄÖ:</td>
-			<td><input type="TEXT" name="Adopt_Ani_age" size="20" placeholder="5¦r¤º´y­z"
+			<td>é€é¤Šå‹•ç‰©å¹´é½¡:</td>
+			<td><input type="TEXT" name="Adopt_Ani_age" size="20" placeholder="5å­—å…§æè¿°"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_age()%>" /></td>
 		</tr>
 		<tr>
-			<td>°e¾i°Êª«¸`¨|:</td>
+			<td>é€é¤Šå‹•ç‰©ç¯€è‚²:</td>
 			<td>
-				<input type="radio" name="Adopt_Ani_Neu" size="20" value="1" ${(adoptaniVO.adopt_Ani_Neu==1) ? 'checked':''}>¤wµ²²Ï	
-				<input type="radio" name="Adopt_Ani_Neu" size="20" value="0" ${(adoptaniVO.adopt_Ani_Neu==0) ? 'checked':''}>¥¼µ²²Ï
+				<input type="radio" name="Adopt_Ani_Neu" size="20" value="1" ${(adoptaniVO.adopt_Ani_Neu==1) ? 'checked':''}>å·²çµç´®	
+				<input type="radio" name="Adopt_Ani_Neu" size="20" value="0" ${(adoptaniVO.adopt_Ani_Neu==0) ? 'checked':''}>æœªçµç´®
 			</td>
 		</tr>
 
 		<tr>
-			<td>°e¾i°Êª«´¹¤ù½s¸¹:</td>
-			<td><input type="TEXT" name="Adopt_Ani_chip" size="20" placeholder="½Ð¿é¤J15½X´¹¤ù½s¸¹"
+			<td>é€é¤Šå‹•ç‰©æ™¶ç‰‡ç·¨è™Ÿ:</td>
+			<td><input type="TEXT" name="Adopt_Ani_chip" size="20" placeholder="è«‹è¼¸å…¥15ç¢¼æ™¶ç‰‡ç·¨è™Ÿ"
 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getAdopt_Ani_chip()%>" /></td>
 		</tr>
 		
 		<tr>
-			<td>°e¾i°Êª«ª«¥óª¬ºA:</td>
+			<td>é€é¤Šå‹•ç‰©ç‰©ä»¶ç‹€æ…‹:</td>
 			<td>
-				<input type="radio" name="Adopt_Ani_status" size="20" value="1" ${(adoptaniVO.adopt_Ani_status==1) ? 'checked':''}>Åã¡@¥Ü	
-				<input type="radio" name="Adopt_Ani_status" size="20" value="0" ${(adoptaniVO.adopt_Ani_status==0) ? 'checked':''}>¤£Åã¥Ü
+				<input type="radio" name="Adopt_Ani_status" size="20" value="1" ${(adoptaniVO.adopt_Ani_status==1) ? 'checked':''}>é¡¯ã€€ç¤º	
+				<input type="radio" name="Adopt_Ani_status" size="20" value="0" ${(adoptaniVO.adopt_Ani_status==0) ? 'checked':''}>ä¸é¡¯ç¤º
 			</td>
 		</tr>		
 
 		<tr>
-			<td>¿¤/¥«:</td>
+			<td>ç¸£/å¸‚:</td>
 			<td><input type="TEXT" name="Adopt_Ani_city" size="45"
 				value="<%= (adoptaniVO==null)? "MANAGER" : adoptaniVO.getAdopt_Ani_city()%>" /></td>
 		</tr>
 		<tr>
-			<td>¶mÂí¥«°Ï:</td>
+			<td>é„‰éŽ®å¸‚å€:</td>
 			<td><input type="TEXT" name="Adopt_Ani_town" size="45"
 				value="<%= (adoptaniVO==null)? "MANAGER" : adoptaniVO.getAdopt_Ani_town()%>" /></td>
 		</tr>
 		<tr>
-			<td>¹D¸ôµó¦W§ø¨½:</td>
+			<td>é“è·¯è¡—åæ‘é‡Œ:</td>
 			<td><input type="TEXT" name="Adopt_Ani_road" size="45"
 				value="<%= (adoptaniVO==null)? "MANAGER" : adoptaniVO.getAdopt_Ani_road()%>" /></td>
 		</tr>
 		<tr>
-			<td>°e¾i¦aÂI¸g«×:</td>
+			<td>é€é¤Šåœ°é»žç¶“åº¦:</td>
 			<td><input type="TEXT" name="Adopt_Ani_FinLat" size="45"
 				value="<%= (adoptaniVO==null)? "MANAGER" : adoptaniVO.getAdopt_Ani_FinLat()%>" /></td>
 		</tr>
 		<tr>
-			<td>°e¾i¦aÂI½n«×:</td>
+			<td>é€é¤Šåœ°é»žç·¯åº¦:</td>
 			<td><input type="TEXT" name="Adopt_Ani_FinLon" size="45"
 				value="<%= (adoptaniVO==null)? "MANAGER" : adoptaniVO.getAdopt_Ani_FinLon()%>" /></td>
 		</tr>
@@ -172,7 +172,7 @@
 	</table>
 	<br>
 	<input type="hidden" name="action" value="insert">
-	<input type="submit" value="°e¥X·s¼W">
+	<input type="submit" value="é€å‡ºæ–°å¢ž">
 	</FORM>
 </body>
 

@@ -33,7 +33,7 @@ public class AdoptaniServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		System.out.println(action);
 		
-		if ("getOne_For_Display".equals(action)	|| "getOne_For_Display_FromView".equals(action)) { // ¨Ó¦Ûselect_page.jspªº½Ğ¨D
+		if ("getOne_For_Display".equals(action)	|| "getOne_For_Display_FromView".equals(action)) { // ä¾†è‡ªselect_page.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -41,61 +41,61 @@ public class AdoptaniServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 				String str = req.getParameter("adopt_Ani_Id");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J°e¾i°Êª«½s¸¹");
+					errorMsgs.add("è«‹è¼¸å…¥é€é¤Šå‹•ç‰©ç·¨è™Ÿ");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
 				String adopt_Ani_Id = null;
 				try {
 					adopt_Ani_Id = new String(str);
 				} catch (Exception e) {
-					errorMsgs.add("°e¾i°Êª«½s¸¹®æ¦¡¤£¥¿½T");
+					errorMsgs.add("é€é¤Šå‹•ç‰©ç·¨è™Ÿæ ¼å¼ä¸æ­£ç¢º");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
-				/***************************2.¶}©l¬d¸ß¸ê®Æ*****************************************/
+				/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™*****************************************/
 				AdoptaniService adoptaniSvc = new AdoptaniService();
 				AdoptaniVO adoptaniVO = adoptaniSvc.getOneAdoptani(adopt_Ani_Id);
 				if (adoptaniVO == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-				req.setAttribute("adoptaniVO", adoptaniVO); // ¸ê®Æ®w¨ú¥XªºadoptaniVOª«¥ó,¦s¤Jreq
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+				req.setAttribute("adoptaniVO", adoptaniVO); // è³‡æ–™åº«å–å‡ºçš„adoptaniVOç‰©ä»¶,å­˜å…¥req
 				if("getOne_For_Display".equals(action)){
 					String url = "/adoptani/listOneAdoptaniView.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneAdoptani.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneAdoptani.jsp
 					successView.forward(req, res);
 				}else if("getOne_For_Display_FromView".equals(action)){
 					String url = "/adoptani/listOneAdoptani.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ¦¨¥\Âà¥æ listOneAdoptani.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æˆåŠŸè½‰äº¤ listOneAdoptani.jsp
 					successView.forward(req, res);
 				}
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/adoptani/select_page.jsp");
 				failureView.forward(req, res);
@@ -105,7 +105,7 @@ public class AdoptaniServlet extends HttpServlet {
 		
 		
 		
-		 if ("insert".equals(action)) { // ¨Ó¦ÛaddAdoptani.jspªº½Ğ¨D¡C insert¼g¦b«e­±¤ñ¸û¦n¬İ¡C
+		 if ("insert".equals(action)) { // ä¾†è‡ªaddAdoptani.jspçš„è«‹æ±‚ã€‚ insertå¯«åœ¨å‰é¢æ¯”è¼ƒå¥½çœ‹ã€‚
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to send the ErrorPage view.
@@ -113,7 +113,7 @@ public class AdoptaniServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 				
 				try {
-					/***********************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z*************************/
+					/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
 					String Mem_Id = req.getParameter("Mem_Id");
 					String Adopt_Ani_name = req.getParameter("Adopt_Ani_name");
 					String Adopt_Ani_type = req.getParameter("Adopt_Ani_type");
@@ -138,7 +138,7 @@ public class AdoptaniServlet extends HttpServlet {
 //					try {
 //						Adopt_Ani_like = Integer.parseInt(req.getParameter("Adopt_Ani_like"));
 //					} catch (Exception e) {
-//						errorMsgs.add("like¼Æ½Ğ¿é¤J¼Æ¦r");
+//						errorMsgs.add("likeæ•¸è«‹è¼¸å…¥æ•¸å­—");
 //					}
 					
 					
@@ -149,7 +149,7 @@ public class AdoptaniServlet extends HttpServlet {
 						Adopt_Ani_date = java.sql.Timestamp.valueOf(Adopt_Ani_date_from_jsp);
 					} catch (Exception e) {
 						Adopt_Ani_date=new java.sql.Timestamp(System.currentTimeMillis());
-						errorMsgs.add("½Ğ¿é¤J¤é´Á!");
+						errorMsgs.add("è«‹è¼¸å…¥æ—¥æœŸ!");
 					}
 					Double Adopt_Ani_FinLat = null;
 					try {
@@ -157,14 +157,14 @@ public class AdoptaniServlet extends HttpServlet {
 						Adopt_Ani_FinLat = new Double(req.getParameter("Adopt_Ani_FinLat").trim());
 					} catch (NumberFormatException e) {
 						Adopt_Ani_FinLat = 0.0;
-						errorMsgs.add("½Ğ¶ñ¼gGoogle map ¸g«× xxx.xxxxxx");
+						errorMsgs.add("è«‹å¡«å¯«Google map ç¶“åº¦ xxx.xxxxxx");
 					}
 					Double Adopt_Ani_FinLon = null;
 					try {
 						Adopt_Ani_FinLon = new Double(req.getParameter("Adopt_Ani_FinLon").trim());
 					} catch (NumberFormatException e) {
 						Adopt_Ani_FinLon = 0.0;
-						errorMsgs.add("½Ğ¶ñ¼gGoogle map ½n«× xxx.xxxxxx");
+						errorMsgs.add("è«‹å¡«å¯«Google map ç·¯åº¦ xxx.xxxxxx");
 					}
 					
 
@@ -190,24 +190,24 @@ public class AdoptaniServlet extends HttpServlet {
 //						adoptaniVO.setAdopt_Ani_like(Adopt_Ani_like);
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
-						req.setAttribute("adoptaniVO", adoptaniVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºempVOª«¥ó,¤]¦s¤Jreq
+						req.setAttribute("adoptaniVO", adoptaniVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„empVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/adoptani/addAdoptani.jsp");
 						failureView.forward(req, res);
 						return;
 					}
 					
-					/***************************2.¶}©l·s¼W¸ê®Æ***************************************/
+					/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
 					AdoptaniService adoptaniSvc = new AdoptaniService();
 					adoptaniVO = adoptaniSvc.addAdoptani(Mem_Id, Adopt_Ani_name, Adopt_Ani_type, Adopt_Ani_gender, Adopt_Ani_heal, Adopt_Ani_Vac, Adopt_Ani_color, Adopt_Ani_body, Adopt_Ani_age, Adopt_Ani_Neu, Adopt_Ani_chip, Adopt_Ani_date, Adopt_Ani_status, Adopt_Ani_date,Adopt_Ani_FinLat, Adopt_Ani_FinLon, Adopt_Ani_city, Adopt_Ani_town, Adopt_Ani_road );
-					//ª«¥ó«Ø¥ß®É¶¡(Adopt_Ani_Credate)ªº°Ñ¼Æ¡A¼È®É¥ı¥ÎAdopt_Ani_date¥N´À¡A¨ä¹ê¥Î¤£¨ì¡A¦]¬°sql¬O¥Îsysdate«Ø¡C
+					//ç‰©ä»¶å»ºç«‹æ™‚é–“(Adopt_Ani_Credate)çš„åƒæ•¸ï¼Œæš«æ™‚å…ˆç”¨Adopt_Ani_dateä»£æ›¿ï¼Œå…¶å¯¦ç”¨ä¸åˆ°ï¼Œå› ç‚ºsqlæ˜¯ç”¨sysdateå»ºã€‚
 					
-					/***************************3.·s¼W§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/
+					/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
 					String url = "/adoptani/listAllAdoptani.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllAdoptani.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllAdoptani.jsp
 					successView.forward(req, res);				
 					
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
 					
 					errorMsgs.add(e.getMessage());
@@ -218,7 +218,7 @@ public class AdoptaniServlet extends HttpServlet {
 			}
 
 			
-			if ("update".equals(action) ) { // ¨Ó¦Ûupdate_adoptani_input.jspªº½Ğ¨D
+			if ("update".equals(action) ) { // ä¾†è‡ªupdate_adoptani_input.jspçš„è«‹æ±‚
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -226,7 +226,7 @@ public class AdoptaniServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 				String requestURL = req.getParameter("requestURL");
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 					String adopt_Ani_Id = req.getParameter("adopt_Ani_Id");
 					String Mem_Id = req.getParameter("Mem_Id");
 					String Adopt_Ani_name = req.getParameter("Adopt_Ani_name");
@@ -252,7 +252,7 @@ public class AdoptaniServlet extends HttpServlet {
 					try {
 						Adopt_Ani_like = Integer.parseInt(req.getParameter("Adopt_Ani_like"));
 					} catch (Exception e) {
-						errorMsgs.add("like¼Æ½Ğ¿é¤J¼Æ¦r");
+						errorMsgs.add("likeæ•¸è«‹è¼¸å…¥æ•¸å­—");
 					}
 					
 					
@@ -264,7 +264,7 @@ public class AdoptaniServlet extends HttpServlet {
 						Adopt_Ani_date = java.sql.Timestamp.valueOf(req.getParameter("Adopt_Ani_date").trim());
 					} catch (Exception e) {
 						Adopt_Ani_date=new java.sql.Timestamp(System.currentTimeMillis());
-						errorMsgs.add("½Ğ¿é¤J¤é´Á!");
+						errorMsgs.add("è«‹è¼¸å…¥æ—¥æœŸ!");
 					}
 					Double Adopt_Ani_FinLat = null;
 					try {
@@ -272,7 +272,7 @@ public class AdoptaniServlet extends HttpServlet {
 						Adopt_Ani_FinLat = new Double(req.getParameter("Adopt_Ani_FinLat").trim());
 					} catch (NumberFormatException e) {
 						Adopt_Ani_FinLat = 0.0;
-						errorMsgs.add("½Ğ¶ñ¼gGoogle map ¸g«× xxx.xxxxxx");
+						errorMsgs.add("è«‹å¡«å¯«Google map ç¶“åº¦ xxx.xxxxxx");
 					}
 					System.out.println("here is \"update\" in Controller (3)");
 					Double Adopt_Ani_FinLon = null;
@@ -280,7 +280,7 @@ public class AdoptaniServlet extends HttpServlet {
 						Adopt_Ani_FinLon = new Double(req.getParameter("Adopt_Ani_FinLon").trim());
 					} catch (NumberFormatException e) {
 						Adopt_Ani_FinLon = 0.0;
-						errorMsgs.add("½Ğ¶ñ¼gGoogle map ¸g«× xxx.xxxxxx");
+						errorMsgs.add("è«‹å¡«å¯«Google map ç¶“åº¦ xxx.xxxxxx");
 					}
 					
 					
@@ -310,34 +310,34 @@ public class AdoptaniServlet extends HttpServlet {
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						
-						req.setAttribute("adoptaniVO", adoptaniVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºempVOª«¥ó,¤]¦s¤Jreq
+						req.setAttribute("adoptaniVO", adoptaniVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„empVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/adoptani/update_adoptani_input.jsp");
 						failureView.forward(req, res);
 						return;
 					}
 					
-					/***************************2.¶}©l­×§ï¸ê®Æ*****************************************/
+					/***************************2.é–‹å§‹ä¿®æ”¹è³‡æ–™*****************************************/
 					req.setAttribute("adoptaniVO", adoptaniVO);
 					AdoptaniService adoptaniSvc = new AdoptaniService();
 					adoptaniVO = adoptaniSvc.updateAdoptani(adopt_Ani_Id ,Mem_Id, Adopt_Ani_name, Adopt_Ani_type, Adopt_Ani_gender, Adopt_Ani_heal, Adopt_Ani_Vac, Adopt_Ani_color, Adopt_Ani_body, Adopt_Ani_age, Adopt_Ani_Neu, Adopt_Ani_chip, Adopt_Ani_date, Adopt_Ani_status, Adopt_Ani_date,Adopt_Ani_FinLat, Adopt_Ani_FinLon, Adopt_Ani_city, Adopt_Ani_town, Adopt_Ani_road,Adopt_Ani_like);
 					
-					/***************************3.­×§ï§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-					req.setAttribute("adoptaniVO", adoptaniVO); // ¸ê®Æ®wupdate¦¨¥\«á,¥¿½TªºªºempVOª«¥ó,¦s¤Jreq
+					/***************************3.ä¿®æ”¹å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+					req.setAttribute("adoptaniVO", adoptaniVO); // è³‡æ–™åº«updateæˆåŠŸå¾Œ,æ­£ç¢ºçš„çš„empVOç‰©ä»¶,å­˜å…¥req
 					String url = requestURL;
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ­×§ï¦¨¥\«á,Âà¥ælistOneEmp.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // ä¿®æ”¹æˆåŠŸå¾Œ,è½‰äº¤listOneEmp.jsp
 					successView.forward(req, res);
 
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 				} catch (Exception e) {
-					errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:"+e.getMessage());
+					errorMsgs.add("ä¿®æ”¹è³‡æ–™å¤±æ•—:"+e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/update_adoptani_input.jsp");
 					failureView.forward(req, res);
 				}
 			}
 
-			if ("getOne_For_Update".equals(action) ) { // ¨Ó¦ÛlistAllAdoptani.jspªº½Ğ¨D
+			if ("getOne_For_Update".equals(action) ) { // ä¾†è‡ªlistAllAdoptani.jspçš„è«‹æ±‚
 
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -347,30 +347,30 @@ public class AdoptaniServlet extends HttpServlet {
 				String requestURL = req.getParameter("requestURL");
 				
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ****************************************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸****************************************/
 					String adopt_Ani_Id = new String(req.getParameter("adopt_Ani_Id").trim());
 					
-					/***************************2.¶}©l¬d¸ß¸ê®Æ****************************************/
+					/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™****************************************/
 					AdoptaniService adoptaniSvc = new AdoptaniService();
 					AdoptaniVO adoptaniVO = adoptaniSvc.getOneAdoptani(adopt_Ani_Id);
 					
 				
-					/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)************/
-					req.setAttribute("adoptaniVO", adoptaniVO);         // ¸ê®Æ®w¨ú¥XªºadoptaniVOª«¥ó,¦s¤Jreq
+					/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)************/
+					req.setAttribute("adoptaniVO", adoptaniVO);         // è³‡æ–™åº«å–å‡ºçš„adoptaniVOç‰©ä»¶,å­˜å…¥req
 					String url = "/adoptani/update_adoptani_input.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url);// ¦¨¥\Âà¥æ update_adoptani_input.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url);// æˆåŠŸè½‰äº¤ update_adoptani_input.jsp
 					successView.forward(req, res);
 
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
-					errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ:" + e.getMessage());
+					errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™:" + e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/listAllAdoptani.jsp");
 					failureView.forward(req, res);
 				}
 			}
 		 
-			if ("delete".equals(action)) { // ¨Ó¦ÛlistAllEmp.jsp
+			if ("delete".equals(action)) { // ä¾†è‡ªlistAllEmp.jsp
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -378,22 +378,22 @@ public class AdoptaniServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 		
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ***************************************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸***************************************/
 					String str = req.getParameter("adopt_Ani_Id");
 					System.out.println("adopt_Ani_Id:"+ str);
-					/***************************2.¶}©l§R°£¸ê®Æ***************************************/
+					/***************************2.é–‹å§‹åˆªé™¤è³‡æ–™***************************************/
 					AdoptaniService adoptaniSvc = new AdoptaniService();
 					adoptaniSvc.deleteAdoptani(str);
 					
-					/***************************3.§R°£§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/								
+					/***************************3.åˆªé™¤å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/								
 					String url = "/adoptani/listAllAdoptani.jsp";
-					System.out.println("§R°£§¹¦¨");
-					RequestDispatcher successView = req.getRequestDispatcher(url);// §R°£¦¨¥\«á,Âà¥æ¦^°e¥X§R°£ªº¨Ó·½ºô­¶
+					System.out.println("åˆªé™¤å®Œæˆ");
+					RequestDispatcher successView = req.getRequestDispatcher(url);// åˆªé™¤æˆåŠŸå¾Œ,è½‰äº¤å›é€å‡ºåˆªé™¤çš„ä¾†æºç¶²é 
 					successView.forward(req, res);
 					
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
-					errorMsgs.add("§R°£¸ê®Æ¥¢±Ñ:"+e.getMessage());
+					errorMsgs.add("åˆªé™¤è³‡æ–™å¤±æ•—:"+e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/listAllAdoptani.jsp");
 					failureView.forward(req, res);

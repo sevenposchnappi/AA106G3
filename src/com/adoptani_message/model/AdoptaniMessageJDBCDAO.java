@@ -194,7 +194,7 @@ public class AdoptaniMessageJDBCDAO implements AdoptaniMessageDAO_interface{
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()){
-				//adoptaniVO¤]ºÙ¬°Domain objects
+				//adoptaniVOä¹Ÿç¨±ç‚ºDomain objects
 				adoptaniMessageVO = new AdoptaniMessageVO();
 				adoptaniMessageVO.setAdo_Ani_Mes_No(rs.getString("Ado_Ani_Mes_No"));
 				adoptaniMessageVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));
@@ -258,7 +258,7 @@ public class AdoptaniMessageJDBCDAO implements AdoptaniMessageDAO_interface{
 			
 			
 			while (rs.next()){
-				//adoptaniVO¤]ºÙ¬°Domain objects
+				//adoptaniVOä¹Ÿç¨±ç‚ºDomain objects
 				adoptaniMessageVO = new AdoptaniMessageVO();
 				adoptaniMessageVO.setAdo_Ani_Mes_No(rs.getString("Ado_Ani_Mes_No"));
 				adoptaniMessageVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));
@@ -322,7 +322,7 @@ public class AdoptaniMessageJDBCDAO implements AdoptaniMessageDAO_interface{
 			
 			
 			while (rs.next()){
-				//adoptaniVO¤]ºÙ¬°Domain objects
+				//adoptaniVOä¹Ÿç¨±ç‚ºDomain objects
 				adoptaniMessageVO = new AdoptaniMessageVO();
 				adoptaniMessageVO.setAdo_Ani_Mes_No(rs.getString("Ado_Ani_Mes_No"));
 				adoptaniMessageVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));
@@ -373,36 +373,36 @@ public static void main(String[] args) {
 
 	AdoptaniMessageJDBCDAO dao = new AdoptaniMessageJDBCDAO();
 
-	// ·s¼W
+	// æ–°å¢
 	AdoptaniMessageVO adoptaniMessageVO1 = new AdoptaniMessageVO();
 	AdoptaniMessageVO adoptaniMessageVO2 = new AdoptaniMessageVO();
 	
 	adoptaniMessageVO1.setAdopt_Ani_Id("40000001");
 	adoptaniMessageVO1.setMem_Id("10000001");
-	adoptaniMessageVO1.setAdo_Ani_Mes("¦n¥i·R­ò!!");
+	adoptaniMessageVO1.setAdo_Ani_Mes("å¥½å¯æ„›å”·!!");
 	
 	
 	dao.insert(adoptaniMessageVO1);
-	System.out.println("¦¨¥\´¡¤J");
+	System.out.println("æˆåŠŸæ’å…¥");
 	
 	adoptaniMessageVO2.setAdopt_Ani_Id("40000001");
 	adoptaniMessageVO2.setMem_Id("10000001");
-	adoptaniMessageVO2.setAdo_Ani_Mes("´Î´Î!!");
+	adoptaniMessageVO2.setAdo_Ani_Mes("æ£’æ£’!!");
 	
 	dao.insert(adoptaniMessageVO2);
-	System.out.println("¦¨¥\´¡¤J");
-	// ­×§ï
+	System.out.println("æˆåŠŸæ’å…¥");
+	// ä¿®æ”¹
 	
 	AdoptaniMessageVO adoptaniMessageVO3 = new AdoptaniMessageVO();
 	adoptaniMessageVO3.setAdo_Ani_Mes_No("42000001");
 	adoptaniMessageVO3.setAdo_Ani_Mes("YEEEEEEE!!33");
 	
 	dao.update(adoptaniMessageVO3);
-	System.out.println("¦¨¥\­×§ï");
-	// §R°£
+	System.out.println("æˆåŠŸä¿®æ”¹");
+	// åˆªé™¤
 	dao.delete("40000004");
-	System.out.println("¦¨¥\§R°£");
-	// ¬d¸ß
+	System.out.println("æˆåŠŸåˆªé™¤");
+	// æŸ¥è©¢
 	AdoptaniMessageVO adoptaniVO4 = dao.findByPrimaryKey("42000001");
 	System.out.print(adoptaniVO4.getAdo_Ani_Mes_No() + ",");
 	System.out.print(adoptaniVO4.getMem_Id() + ",");
@@ -412,7 +412,7 @@ public static void main(String[] args) {
 
 	System.out.println("------------------------------------------------");
 	
-	//¬d¸ß
+	//æŸ¥è©¢
 	List<AdoptaniMessageVO> list = dao.getAll();
 	for (AdoptaniMessageVO aAdoptaniMessageVO : list) {
 		System.out.print(aAdoptaniMessageVO.getAdo_Ani_Mes_No() + ",");

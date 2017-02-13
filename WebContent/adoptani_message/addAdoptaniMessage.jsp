@@ -1,25 +1,25 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.adoptani_message.model.*"%>
 
 <%=
 	(AdoptaniMessageVO) request.getAttribute("adoptaniMessageVO")	
-	//²Ä¤@¦¸¶i¨ì¦¹­¶­±¬Onull¡A¦]¬°¨S¦³³oªF¦è¡C
+	//ç¬¬ä¸€æ¬¡é€²åˆ°æ­¤é é¢æ˜¯nullï¼Œå› ç‚ºæ²’æœ‰é€™æ±è¥¿ã€‚
 %>
 <%
 	AdoptaniMessageVO adoptaniMessageVO = (AdoptaniMessageVO) request.getAttribute("adoptaniMessageVO");	
-	//¹w¨¾¿ù»~¿é¤J¡A¦Ó«O¯duser©Ò¿é¤Jªº©Ò¦³¤º®e¡A°e¥X«á­Y¿ù»~¤£¥Î¥þ³¡­«¥´¡C
+	//é é˜²éŒ¯èª¤è¼¸å…¥ï¼Œè€Œä¿ç•™useræ‰€è¼¸å…¥çš„æ‰€æœ‰å…§å®¹ï¼Œé€å‡ºå¾Œè‹¥éŒ¯èª¤ä¸ç”¨å…¨éƒ¨é‡æ‰“ã€‚
 %>
 <%
 /**
-	¡°¿ù»~°T®§­nª`·N¸g½n«×ªº¿ù»~³B²z¡C
+	â€»éŒ¯èª¤è¨Šæ¯è¦æ³¨æ„ç¶“ç·¯åº¦çš„éŒ¯èª¤è™•ç†ã€‚
 **/
 %>
 
 
 <html>
 <head>
-<title>°e¾i°Êª«¸ê®Æ·s¼W - addAdoptani.jsp</title></head>
+<title>é€é¤Šå‹•ç‰©è³‡æ–™æ–°å¢ž - addAdoptani.jsp</title></head>
 <link rel="stylesheet" type="text/css" href="js/calendar.css">
 <script language="JavaScript" src="js/calendarcode.js"></script>
 
@@ -36,18 +36,18 @@
 	<table border='1' cellpadding='5' cellspacing='0' width='400'>
 		<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 			<td>
-			<h3>°e¾i°Êª«¯d¨¥·s¼W - addAdoptani.jsp</h3>
+			<h3>é€é¤Šå‹•ç‰©ç•™è¨€æ–°å¢ž - addAdoptani.jsp</h3>
 			</td>
 			<td>
-			   <a href="select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">¦^­º­¶</a>
+			   <a href="select_page.jsp"><img src="images/tomcat.gif" width="100" height="100" border="1">å›žé¦–é </a>
 		    </td>
 		</tr>
 	</table>
 	
-	<h3>°e¾i°Êª«¸ê®Æ:</h3>
-	<%-- ¿ù»~ªí¦C --%>
+	<h3>é€é¤Šå‹•ç‰©è³‡æ–™:</h3>
+	<%-- éŒ¯èª¤è¡¨åˆ— --%>
 	<c:if test="${not empty errorMsgs}">
-		<font color='red'>½Ð­×¥¿¥H¤U¿ù»~:
+		<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 		<ul>
 			<c:forEach var="message" items="${errorMsgs}">
 				<li>${message}</li>
@@ -60,23 +60,23 @@
 	<table border="0">
 	
 		<tr>
-			<td>°e¾i°Êª«½s¸¹:</td>
-			<td><input type="TEXT" name="adopt_Ani_Id" size="30" 	placeholder="½Ð¿é¤J°e¾i°Êª«½s¸¹ex.40000001"
+			<td>é€é¤Šå‹•ç‰©ç·¨è™Ÿ:</td>
+			<td><input type="TEXT" name="adopt_Ani_Id" size="30" 	placeholder="è«‹è¼¸å…¥é€é¤Šå‹•ç‰©ç·¨è™Ÿex.40000001"
 				value="<%= (adoptaniMessageVO==null)? "" : adoptaniMessageVO.getAdopt_Ani_Id()%>" /></td>
 		</tr>
 		<tr>
-			<td>µo¥¬ªÌ·|­û½s¸¹:</td>
-			<td><input type="TEXT" name="mem_Id" size="30" 	placeholder="½Ð¿é¤J·|­û½s¸¹ex.10000001"
+			<td>ç™¼å¸ƒè€…æœƒå“¡ç·¨è™Ÿ:</td>
+			<td><input type="TEXT" name="mem_Id" size="30" 	placeholder="è«‹è¼¸å…¥æœƒå“¡ç·¨è™Ÿex.10000001"
 				value="<%= (adoptaniMessageVO==null)? "" : adoptaniMessageVO.getMem_Id() %>" /></td>
 		</td>
 		</tr>  
 		
 		<tr>
-			<td>¯d¨¥¤º®e:</td>
+			<td>ç•™è¨€å…§å®¹:</td>
 			<td>
 				<textarea cols="50" rows="5" name="ado_Ani_Mes" ><%=(adoptaniMessageVO==null)?"":adoptaniMessageVO.getAdo_Ani_Mes()%></textarea>
 			
-<!-- 			<input type="TEXT" name="Mem_Id" size="20" placeholder="8½X" -->
+<!-- 			<input type="TEXT" name="Mem_Id" size="20" placeholder="8ç¢¼" -->
 <%-- 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getMem_Id()%>" /></td> --%>
 		</tr>
 		
@@ -85,7 +85,7 @@
 	</table>
 	<br>
 	<input type="hidden" name="action" value="insert">
-	<input type="submit" value="°e¥X·s¼W">
+	<input type="submit" value="é€å‡ºæ–°å¢ž">
 	</FORM>
 </body>
 

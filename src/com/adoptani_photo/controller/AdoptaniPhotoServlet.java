@@ -42,20 +42,20 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		System.out.println(action);
-		if ("getOne_For_Display".equals(action)  || "getOne_For_Display_From_listOneAdoptani.jsp".equals(action) || "getOne_For_Display_From_listAllAdoptani.jsp".equals(action)) { // ¨Ó¦Ûselect_page.jspªº½Ğ¨D
+		if ("getOne_For_Display".equals(action)  || "getOne_For_Display_From_listOneAdoptani.jsp".equals(action) || "getOne_For_Display_From_listAllAdoptani.jsp".equals(action)) { // ä¾†è‡ªselect_page.jspçš„è«‹æ±‚
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-			AdoptaniVO adoptaniVO = (AdoptaniVO) req.getAttribute("adoptaniVO"); //AdoptaniVOServlet.java(Concroller), ¦s¤JreqªºadoptaniVOª«¥ó
+			AdoptaniVO adoptaniVO = (AdoptaniVO) req.getAttribute("adoptaniVO"); //AdoptaniVOServlet.java(Concroller), å­˜å…¥reqçš„adoptaniVOç‰©ä»¶
 			System.out.println("action:"+action);
 			
 			try {
-				/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+				/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 				String str = req.getParameter("adopt_Ani_Id");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("½Ğ¿é¤J°e¾i°Êª«½s¸¹");
+					errorMsgs.add("è«‹è¼¸å…¥é€é¤Šå‹•ç‰©ç·¨è™Ÿ");
 				}
 				
 				// Send the use back to the form, if there were errors
@@ -63,14 +63,14 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_photo/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
 				Integer adopt_Ani_Id = null;
 				try {
 					adopt_Ani_Id = new Integer(str);
 				} catch (Exception e) {
-					errorMsgs.add("°e¾i°Êª«½s¸¹®æ¦¡¤£¥¿½T");
+					errorMsgs.add("é€é¤Šå‹•ç‰©ç·¨è™Ÿæ ¼å¼ä¸æ­£ç¢º");
 				}
 				System.out.println("adopt_Ani_Id:"+adopt_Ani_Id);
 				// Send the use back to the form, if there were errors
@@ -78,24 +78,24 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_photo/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
-				/***************************2.¶}©l¬d¸ß¸ê®Æ*****************************************/
+				/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™*****************************************/
 				AdoptaniPhotoService adoptaniPhotoSvc = new AdoptaniPhotoService();
 				List<AdoptaniPhotoVO> oneAdoptAniPhotoList = adoptaniPhotoSvc.getOneAdoptaniPhoto(str);
 				if (oneAdoptAniPhotoList == null) {
-					errorMsgs.add("¬dµL¸ê®Æ");
+					errorMsgs.add("æŸ¥ç„¡è³‡æ–™");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_photo/select_page.jsp");
 					failureView.forward(req, res);
-					return;//µ{¦¡¤¤Â_
+					return;//ç¨‹å¼ä¸­æ–·
 				}
 				
-				/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
+				/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
 				req.setAttribute("oneAdoptAniPhotoList", oneAdoptAniPhotoList); 
 				if("getOne_For_Display".equals(action)){
 					String url = "/adoptani_photo/listOneAdoptaniPhoto.jsp";
@@ -103,21 +103,21 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					successView.forward(req, res);
 				}
 				else if("getOne_For_Display_From_listOneAdoptani.jsp".equals(action)){
-					System.out.println("¬d¸ß¸ê®Æ§¹¦¨");
+					System.out.println("æŸ¥è©¢è³‡æ–™å®Œæˆ");
 					String url = "/adoptani/listOneAdoptaniAllPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 				}
 				else if("getOne_For_Display_From_listAllAdoptani.jsp".equals(action)){
-					System.out.println("¬d¸ß¸ê®Æ§¹¦¨");
+					System.out.println("æŸ¥è©¢è³‡æ–™å®Œæˆ");
 					String url = "/adoptani/listOneAdoptaniAllPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 				}
 
-				/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+				/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 			} catch (Exception e) {
-				errorMsgs.add("µLªk¨ú±o¸ê®Æ:" + e.getMessage());
+				errorMsgs.add("ç„¡æ³•å–å¾—è³‡æ–™:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/adoptani_photo/select_page.jsp");
 				failureView.forward(req, res);
@@ -127,28 +127,28 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 		
 		
 		
-		 if ("insert".equals(action)) { // ¨Ó¦ÛaddAdoptani.jspªº½Ğ¨D¡C insert¼g¦b«e­±¤ñ¸û¦n¬İ¡C
+		 if ("insert".equals(action)) { // ä¾†è‡ªaddAdoptani.jspçš„è«‹æ±‚ã€‚ insertå¯«åœ¨å‰é¢æ¯”è¼ƒå¥½çœ‹ã€‚
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to send the ErrorPage view.
 				System.out.println("here is \"insert\" in Controller (1)");
 				req.setAttribute("errorMsgs", errorMsgs);
 				
-				List<byte[]> picList = new ArrayList();	//¥Î¨Ó¸Ë·Ó¤ù
-				List<String> picTypeList = new ArrayList();	//¥Î¨Ó¸Ë·Ó¤ùÃş«¬(¤jÀY¶K(0)¡Bor¬ÛÃ¯·Ó¤ù(1))
+				List<byte[]> picList = new ArrayList();	//ç”¨ä¾†è£ç…§ç‰‡
+				List<String> picTypeList = new ArrayList();	//ç”¨ä¾†è£ç…§ç‰‡é¡å‹(å¤§é ­è²¼(0)ã€orç›¸ç°¿ç…§ç‰‡(1))
 				
 
 				
 				
 				
 				try {
-					/***********************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z*************************/
+					/***********************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†*************************/
 					System.out.println("here is \"insert\" in Controller (2)");
 					String mem_Id = req.getParameter("mem_Id");
 					String adopt_Ani_Id = req.getParameter("adopt_Ani_Id");
 					String ado_Pic_name = req.getParameter("ado_Pic_name");
 					if (ado_Pic_name == null || (ado_Pic_name.trim()).length() == 0) {
-						errorMsgs.add("½Ğ¿é¤J°e¾i°Êª«¦W¦r");
+						errorMsgs.add("è«‹è¼¸å…¥é€é¤Šå‹•ç‰©åå­—");
 					}
 					String ado_Pic_nameEX = req.getParameter("ado_Pic_nameEX");
 //					String ado_Pic_type = req.getParameter("ado_Pic_type");
@@ -158,12 +158,12 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					
 					System.out.println("Total parts : " + parts.size() );
 
-/*¹Ï¤ù*/				byte[] ado_Ani_Pic = null;
+/*åœ–ç‰‡*/				byte[] ado_Ani_Pic = null;
 					
-					for (Part part : parts) {	//parts¸Ì­±¥]§t«D¹Ï¤ù¸ê®Æ¡C
+					for (Part part : parts) {	//partsè£¡é¢åŒ…å«éåœ–ç‰‡è³‡æ–™ã€‚
 						String picType = part.getContentType();
 						System.out.println("part's name : " + part.getName() );
-						if("image/jpeg".equals(picType)  || "image/png".equals(picType)){	//¹Ï¤ùªº¤~¥Î¤G¦ì¤¸¸ê®ÆÅª¶i¨Ó
+						if("image/jpeg".equals(picType)  || "image/png".equals(picType)){	//åœ–ç‰‡çš„æ‰ç”¨äºŒä½å…ƒè³‡æ–™è®€é€²ä¾†
 							InputStream in = part.getInputStream();
 							ado_Ani_Pic = new byte[in.available()];
 							in.read(ado_Ani_Pic);
@@ -190,30 +190,30 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					adoptaniPhotoVO.setAdo_Pic_nameEX(ado_Pic_nameEX);
 //					adoptaniPhotoVO.setAdo_Pic_type(ado_Pic_type);
 										
-/*¹Ï¤ù*/				adoptaniPhotoVO.setAdo_Ani_Pic(ado_Ani_Pic);
+/*åœ–ç‰‡*/				adoptaniPhotoVO.setAdo_Ani_Pic(ado_Ani_Pic);
 
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						
-						req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºadoptaniPhotoVOª«¥ó,¤]¦s¤Jreq
+						req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„adoptaniPhotoVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/adoptani_photo/addAdoptaniPhoto.jsp");
 						failureView.forward(req, res);
 						return;
 					}
 					
-					/***************************2.¶}©l·s¼W¸ê®Æ***************************************/
+					/***************************2.é–‹å§‹æ–°å¢è³‡æ–™***************************************/
 					AdoptaniPhotoService adoptaniPhotoService = new AdoptaniPhotoService();
 					for(int i=0 ; i<picList.size() ; i++){
 						String ado_Pic_name_insert = ado_Pic_name + i;
 					adoptaniPhotoVO = adoptaniPhotoService.addAdoptaniPhoto(adopt_Ani_Id, mem_Id, picList.get(i), ado_Pic_name_insert, ado_Pic_nameEX, picTypeList.get(i));
 					}
-					/***************************3.·s¼W§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/
+					/***************************3.æ–°å¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/
 					String url = "/adoptani_photo/listAllAdoptaniPhoto.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ·s¼W¦¨¥\«áÂà¥ælistAllAdoptani.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // æ–°å¢æˆåŠŸå¾Œè½‰äº¤listAllAdoptani.jsp
 					successView.forward(req, res);				
 					
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
@@ -223,7 +223,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 			}
 
 			
-			if ("update".equals(action)) { // ¨Ó¦Ûupdate_adoptani_input.jspªº½Ğ¨D
+			if ("update".equals(action)) { // ä¾†è‡ªupdate_adoptani_input.jspçš„è«‹æ±‚
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -233,7 +233,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				
 				
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ - ¿é¤J®æ¦¡ªº¿ù»~³B²z**********************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸ - è¼¸å…¥æ ¼å¼çš„éŒ¯èª¤è™•ç†**********************/
 					String ado_Ani_Pic_No = req.getParameter("ado_Ani_Pic_No");
 					AdoptaniPhotoService adoptaniPhotoSvc = new AdoptaniPhotoService();
 					AdoptaniPhotoVO adoptaniPhotoVO = adoptaniPhotoSvc.findByPrimaryKey(ado_Ani_Pic_No);
@@ -245,30 +245,30 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
 						
-						req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // §t¦³¿é¤J®æ¦¡¿ù»~ªºempVOª«¥ó,¤]¦s¤Jreq
+						req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // å«æœ‰è¼¸å…¥æ ¼å¼éŒ¯èª¤çš„empVOç‰©ä»¶,ä¹Ÿå­˜å…¥req
 						RequestDispatcher failureView = req
 								.getRequestDispatcher("/adoptani_photo/update_adoptaniPhoto_input.jsp");
 						failureView.forward(req, res);
 						return;
 					}
 					
-					/***************************2.¶}©l­×§ï¸ê®Æ*****************************************/
+					/***************************2.é–‹å§‹ä¿®æ”¹è³‡æ–™*****************************************/
 					adoptaniPhotoSvc.upadaeAdoptaniPhoto(adoptaniPhotoVO);
-					/***************************3.­×§ï§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)*************/
-					req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // ¸ê®Æ®wupdate¦¨¥\«á,¥¿½TªºªºempVOª«¥ó,¦s¤Jreq
+					/***************************3.ä¿®æ”¹å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)*************/
+					req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // è³‡æ–™åº«updateæˆåŠŸå¾Œ,æ­£ç¢ºçš„çš„empVOç‰©ä»¶,å­˜å…¥req
 					String url = "/adoptani_photo/listAllAdoptaniPhoto.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url); // ­×§ï¦¨¥\«á,Âà¥ælistOneEmp.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url); // ä¿®æ”¹æˆåŠŸå¾Œ,è½‰äº¤listOneEmp.jsp
 					successView.forward(req, res);
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z*************************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†*************************************/
 				} catch (Exception e) {
-					errorMsgs.add("­×§ï¸ê®Æ¥¢±Ñ:"+e.getMessage());
+					errorMsgs.add("ä¿®æ”¹è³‡æ–™å¤±æ•—:"+e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_photo/update_adoptaniPhoto_input.jsp");
 					failureView.forward(req, res);
 				}
 			}
 
-			if ("getOne_For_Update".equals(action)) { // ¨Ó¦ÛlistAllAdoptani.jspªº½Ğ¨D
+			if ("getOne_For_Update".equals(action)) { // ä¾†è‡ªlistAllAdoptani.jspçš„è«‹æ±‚
 
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -276,30 +276,30 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 				
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ****************************************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸****************************************/
 					String ado_Ani_Pic_No = new String(req.getParameter("ado_Ani_Pic_No").trim());
 					
-					/***************************2.¶}©l¬d¸ß¸ê®Æ****************************************/
+					/***************************2.é–‹å§‹æŸ¥è©¢è³‡æ–™****************************************/
 					AdoptaniPhotoService adoptaniPhotoSvc = new AdoptaniPhotoService();
 					AdoptaniPhotoVO adoptaniPhotoVO = adoptaniPhotoSvc.findByPrimaryKey(ado_Ani_Pic_No);
 					
 				
-					/***************************3.¬d¸ß§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)************/
-					req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO);         // ¸ê®Æ®w¨ú¥XªºadoptaniVOª«¥ó,¦s¤Jreq
+					/***************************3.æŸ¥è©¢å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)************/
+					req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO);         // è³‡æ–™åº«å–å‡ºçš„adoptaniVOç‰©ä»¶,å­˜å…¥req
 					String url = "/adoptani_photo/update_adoptaniPhoto_input.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url);// ¦¨¥\Âà¥æ update_adoptani_input.jsp
+					RequestDispatcher successView = req.getRequestDispatcher(url);// æˆåŠŸè½‰äº¤ update_adoptani_input.jsp
 					successView.forward(req, res);
 
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
-					errorMsgs.add("µLªk¨ú±o­n­×§ïªº¸ê®Æ:" + e.getMessage());
+					errorMsgs.add("ç„¡æ³•å–å¾—è¦ä¿®æ”¹çš„è³‡æ–™:" + e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani/listAllAdoptani.jsp");
 					failureView.forward(req, res);
 				}
 			}
 		 
-			if ("delete".equals(action)) { // ¨Ó¦ÛlistAllEmp.jsp
+			if ("delete".equals(action)) { // ä¾†è‡ªlistAllEmp.jsp
 
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -307,21 +307,21 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs);
 		
 				try {
-					/***************************1.±µ¦¬½Ğ¨D°Ñ¼Æ***************************************/
+					/***************************1.æ¥æ”¶è«‹æ±‚åƒæ•¸***************************************/
 					String str = req.getParameter("ado_Ani_Pic_No");
 					
-					/***************************2.¶}©l§R°£¸ê®Æ***************************************/
+					/***************************2.é–‹å§‹åˆªé™¤è³‡æ–™***************************************/
 					AdoptaniPhotoService adoptaniPhoto = new AdoptaniPhotoService();
 					adoptaniPhoto.deleteAdoptaniPhoto(str);
 					
-					/***************************3.§R°£§¹¦¨,·Ç³ÆÂà¥æ(Send the Success view)***********/								
+					/***************************3.åˆªé™¤å®Œæˆ,æº–å‚™è½‰äº¤(Send the Success view)***********/								
 					String url = "/adoptani_photo/listAllAdoptaniPhoto.jsp";
-					RequestDispatcher successView = req.getRequestDispatcher(url);// §R°£¦¨¥\«á,Âà¥æ¦^°e¥X§R°£ªº¨Ó·½ºô­¶
+					RequestDispatcher successView = req.getRequestDispatcher(url);// åˆªé™¤æˆåŠŸå¾Œ,è½‰äº¤å›é€å‡ºåˆªé™¤çš„ä¾†æºç¶²é 
 					successView.forward(req, res);
 					
-					/***************************¨ä¥L¥i¯àªº¿ù»~³B²z**********************************/
+					/***************************å…¶ä»–å¯èƒ½çš„éŒ¯èª¤è™•ç†**********************************/
 				} catch (Exception e) {
-					errorMsgs.add("§R°£¸ê®Æ¥¢±Ñ:"+e.getMessage());
+					errorMsgs.add("åˆªé™¤è³‡æ–™å¤±æ•—:"+e.getMessage());
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/adoptani_photo/listAllAdoptaniPhoto.jsp");
 					failureView.forward(req, res);

@@ -4,11 +4,11 @@ public class Tools {
 	
 	
 	public String genderExchange(String gender){
-		String genderExchange = "¥¼³]©w";
+		String genderExchange = "æœªè¨­å®š";
 //		System.out.println(gender);
 		if(gender != null){
-			if(gender.equals("0")){genderExchange= "¥À";}
-			if(gender.equals("1")){genderExchange= "¤½";}
+			if(gender.equals("0")){genderExchange= "æ¯";}
+			if(gender.equals("1")){genderExchange= "å…¬";}
 		}
 		return genderExchange;
 	}
@@ -17,18 +17,18 @@ public class Tools {
 		String statusExchange = "";
 //		System.out.println(status);
 		if(status != null){
-			if(status.equals("0")){statusExchange= "¤£Åã¥Ü";}
-			if(status.equals("1")){statusExchange= "Åã¡@¥Ü";}
+			if(status.equals("0")){statusExchange= "ä¸é¡¯ç¤º";}
+			if(status.equals("1")){statusExchange= "é¡¯ã€€ç¤º";}
 		}
 		return statusExchange;
 	}
 	
 	public String neuterExchange(String neuter){
-		String neuterExchange = "¤£¡@©ú";
+		String neuterExchange = "ä¸ã€€æ˜";
 //		System.out.println(neuter);
 		if(neuter != null){
-			if(neuter.equals("0")){neuterExchange= "¥¼µ²²Ï";}
-			if(neuter.equals("1")){neuterExchange= "µ²¡@²Ï";}
+			if(neuter.equals("0")){neuterExchange= "æœªçµç´®";}
+			if(neuter.equals("1")){neuterExchange= "çµã€€ç´®";}
 		}
 		return neuterExchange;
 	}

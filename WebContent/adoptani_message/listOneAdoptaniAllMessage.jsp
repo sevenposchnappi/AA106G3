@@ -1,35 +1,35 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.adoptani_message.model.*"%>
 <%@ page import="com.chung.tools.Tools"%>
 
 
-<%-- ¨ú±oServiceª«¥ó¡A½Õ¥ÎDAO¸Ì­±ªºgetAll()¡A¨ú¸ê®Æ®w¦¹Tableªº¨Cµ§¸ê®Æ¡C --%>
+<%-- å–å¾—Serviceç‰©ä»¶ï¼Œèª¿ç”¨DAOè£¡é¢çš„getAll()ï¼Œå–è³‡æ–™åº«æ­¤Tableçš„æ¯ç­†è³‡æ–™ã€‚ --%>
 <%
 	AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
     List<AdoptaniMessageVO> list = adoptaniMessageSvc.getAllMessage();
-    pageContext.setAttribute("list",list);	//­n©ñ¨ìscope¸Ì­±¤~§ä±o¨ì¡C
+    pageContext.setAttribute("list",list);	//è¦æ”¾åˆ°scopeè£¡é¢æ‰æ‰¾å¾—åˆ°ã€‚
 %>
 
 <html>
 <head>
-<title>©Ò¦³°e¾i°Êª«¯d¨¥¸ê®Æ - listAllAdoptaniMessage.jsp</title>
+<title>æ‰€æœ‰é€é¤Šå‹•ç‰©ç•™è¨€è³‡æ–™ - listAllAdoptaniMessage.jsp</title>
 </head>
 <body bgcolor='white'>
-<b><font color=red>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</font></b>
+<b><font color=red>æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</font></b>
 <table border='1' cellpadding='5' cellspacing='0' width='800'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>©Ò¦³°e¾i°Êª«¸ê®Æ - listAllAdoptaniMessage.jsp</h3>
-		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a>
+		<h3>æ‰€æœ‰é€é¤Šå‹•ç‰©è³‡æ–™ - listAllAdoptaniMessage.jsp</h3>
+		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a>
 		</td>
 	</tr>
 </table>
 
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -40,11 +40,11 @@
 
 <table border='1' bordercolor='#CCCCFF' width='800'>
 	<tr>
-		<th>°e¾i°Êª«¯d¨¥½s¸¹</th>
-		<th>°e¾i°Êª«½s¸¹</th>
-		<th>µo¥¬ªÌ·|­û½s¸¹</th>
-		<th>°e¾i°Êª«°Êª«¯d¨¥®É¶¡</th>
-		<th>°e¾i°Êª«¯d¨¥¤º®e</th>
+		<th>é€é¤Šå‹•ç‰©ç•™è¨€ç·¨è™Ÿ</th>
+		<th>é€é¤Šå‹•ç‰©ç·¨è™Ÿ</th>
+		<th>ç™¼å¸ƒè€…æœƒå“¡ç·¨è™Ÿ</th>
+		<th>é€é¤Šå‹•ç‰©å‹•ç‰©ç•™è¨€æ™‚é–“</th>
+		<th>é€é¤Šå‹•ç‰©ç•™è¨€å…§å®¹</th>
 
 	</tr>
 	<%@ include file="page1.file" %> 
@@ -57,18 +57,18 @@
 			<td>${adoptaniMessageVO.ado_Ani_Mes}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do">
-			     <input type="submit" value="­×§ï">
+			     <input type="submit" value="ä¿®æ”¹">
 			     <input type="hidden" name="ado_Ani_Mes_No" value="${adoptaniMessageVO.ado_Ani_Mes_No}">
-			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--°e¥X¥»ºô­¶ªº¸ô®|µ¹Controller-->
-			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--°e¥X·í«e¬O²Ä´X­¶µ¹Controller-->
+			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
+			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--é€å‡ºç•¶å‰æ˜¯ç¬¬å¹¾é çµ¦Controller-->
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do">
-			    <input type="submit" value="§R°£">
+			    <input type="submit" value="åˆªé™¤">
 			    <input type="hidden" name="ado_Ani_Mes_No" value="${adoptaniMessageVO.ado_Ani_Mes_No}">
-			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--°e¥X¥»ºô­¶ªº¸ô®|µ¹Controller-->
-			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--°e¥X·í«e¬O²Ä´X­¶µ¹Controller-->
+			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
+			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--é€å‡ºç•¶å‰æ˜¯ç¬¬å¹¾é çµ¦Controller-->
 			    <input type="hidden" name="action"value="delete"></FORM>
 			</td>
 			     
@@ -78,7 +78,7 @@
 <%@ include file="page2.file" %>
 
 
-<br>¥»ºô­¶ªº¸ô®|:<br><b>
+<br>æœ¬ç¶²é çš„è·¯å¾‘:<br><b>
    <font color=blue>request.getServletPath():</font> <%= request.getServletPath()%><br>
    <font color=blue>request.getRequestURI(): </font> <%= request.getRequestURI()%> </b>
 <br>

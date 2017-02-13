@@ -227,7 +227,7 @@ public class AdoptaniJDBCDAO implements AdoptaniDAO_interface{
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()){
-				//adoptaniVO¤]ºÙ¬°Domain objects
+				//adoptaniVOä¹Ÿç¨±ç‚ºDomain objects
 				adoptaniVO = new AdoptaniVO();
 				
 				adoptaniVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));
@@ -307,7 +307,7 @@ public class AdoptaniJDBCDAO implements AdoptaniDAO_interface{
 			
 			
 			while (rs.next()){
-				//adoptaniVO¤]ºÙ¬°Domain objects
+				//adoptaniVOä¹Ÿç¨±ç‚ºDomain objects
 				adoptaniVO = new AdoptaniVO();
 				
 				adoptaniVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));
@@ -377,7 +377,7 @@ public static void main(String[] args) {
 
 	AdoptaniJDBCDAO dao = new AdoptaniJDBCDAO();
 
-	// ·s¼W
+	// æ–°å¢
 	AdoptaniVO adoptaniVO1 = new AdoptaniVO();
 	AdoptaniVO adoptaniVO2 = new AdoptaniVO();
 	
@@ -402,7 +402,7 @@ public static void main(String[] args) {
 	adoptaniVO1.setAdopt_Ani_road("");
 	adoptaniVO1.setAdopt_Ani_like(3);
 	dao.insert(adoptaniVO1);
-	System.out.println("¦¨¥\´¡¤J");
+	System.out.println("æˆåŠŸæ’å…¥");
 	
 	adoptaniVO2.setMem_Id("10000001");
 	adoptaniVO2.setAdopt_Ani_name("Snoopy33");
@@ -425,8 +425,8 @@ public static void main(String[] args) {
 	adoptaniVO2.setAdopt_Ani_road("");
 	adoptaniVO2.setAdopt_Ani_like(4);
 	dao.insert(adoptaniVO2);
-	System.out.println("¦¨¥\´¡¤J");
-	// ­×§ï
+	System.out.println("æˆåŠŸæ’å…¥");
+	// ä¿®æ”¹
 	AdoptaniVO adoptaniVO3 = new AdoptaniVO();
 	adoptaniVO3.setAdopt_Ani_Id("40000021");
 	adoptaniVO3.setMem_Id("10000001");
@@ -450,11 +450,11 @@ public static void main(String[] args) {
 	adoptaniVO3.setAdopt_Ani_road("");
 	adoptaniVO3.setAdopt_Ani_like(15);
 	dao.update(adoptaniVO3);
-	System.out.println("¦¨¥\­×§ï");
-	// §R°£
+	System.out.println("æˆåŠŸä¿®æ”¹");
+	// åˆªé™¤
 	dao.delete("40000004");
-	System.out.println("¦¨¥\§R°£");
-	// ¬d¸ß
+	System.out.println("æˆåŠŸåˆªé™¤");
+	// æŸ¥è©¢
 	AdoptaniVO adoptaniVO4 = dao.findByPrimaryKey("40000001");
 	System.out.print(adoptaniVO4.getAdopt_Ani_Id() + ",");
 	System.out.print(adoptaniVO4.getMem_Id() + ",");
@@ -479,7 +479,7 @@ public static void main(String[] args) {
 	System.out.println(adoptaniVO4.getAdopt_Ani_like() + ",");
 	System.out.println("------------------------------------------------");
 	
-	//¬d¸ß
+	//æŸ¥è©¢
 	List<AdoptaniVO> list = dao.getAll();
 	for (AdoptaniVO aAdoptaniVO : list) {
 		System.out.print(aAdoptaniVO.getAdopt_Ani_Id() + ",");

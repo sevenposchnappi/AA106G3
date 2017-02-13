@@ -1,16 +1,16 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.adoptani_message.model.*"%>
 <%
-	AdoptaniMessageVO adoptaniMessageVO = (AdoptaniMessageVO) request.getAttribute("adoptaniMessageVO"); //AdoptaniServlet.java (Concroller), ¦s¤JreqªºadoptaniVOª«¥ó (¥]¬AÀ°¦£¨ú¥XªºadoptaniVO, ¤]¥]¬A¿é¤J¸ê®Æ¿ù»~®ÉªºadoptaniVOª«¥ó)
+	AdoptaniMessageVO adoptaniMessageVO = (AdoptaniMessageVO) request.getAttribute("adoptaniMessageVO"); //AdoptaniServlet.java (Concroller), å­˜å…¥reqçš„adoptaniVOç‰©ä»¶ (åŒ…æ‹¬å¹«å¿™å–å‡ºçš„adoptaniVO, ä¹ŸåŒ…æ‹¬è¼¸å…¥è³‡æ–™éŒ¯èª¤æ™‚çš„adoptaniVOç‰©ä»¶)
 	//session.setAttribute("adoptaniMessageVO", adoptaniMessageVO);
 
 %>
 
 <%/**
 	Q:update_adoptani_input.jsp  ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}
-		¨S¦³set¤]¥i¥H¥ÎEL¨ú¨ì¡C
-	A:Control¸Ì­±¦³set¡C
+		æ²’æœ‰setä¹Ÿå¯ä»¥ç”¨ELå–åˆ°ã€‚
+	A:Controlè£¡é¢æœ‰setã€‚
 
 
 **/ %>
@@ -18,22 +18,22 @@
 
 <html>
 <head>
-<title>°e¾i°Êª«¯d¨¥­×§ï - update_adoptaniMessage_input.jsp</title></head>
+<title>é€é¤Šå‹•ç‰©ç•™è¨€ä¿®æ”¹ - update_adoptaniMessage_input.jsp</title></head>
 
 <body bgcolor='white'>
 
 <table border='1' cellpadding='5' cellspacing='0' width='400'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>°e¾i°Êª«¯d¨¥­×§ï - update_adoptaniMessage_input.jsp</h3>
-		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></td>
+		<h3>é€é¤Šå‹•ç‰©ç•™è¨€ä¿®æ”¹ - update_adoptaniMessage_input.jsp</h3>
+		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></td>
 	</tr>
 </table>
 
-<h3>¸ê®Æ­×§ï:</h3>
-<%-- ¿ù»~ªí¦C --%>
+<h3>è³‡æ–™ä¿®æ”¹:</h3>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -48,7 +48,7 @@
 
 
 		<tr>
-			<td>­×§ï¯d¨¥¤º®e:</td>
+			<td>ä¿®æ”¹ç•™è¨€å…§å®¹:</td>
 			<td>
 				<textarea cols="50" rows="5" name="ado_Ani_Mes" ><%= (adoptaniMessageVO==null)? "" : adoptaniMessageVO.getAdo_Ani_Mes()%></textarea>
 			
@@ -63,14 +63,14 @@
 <input type="hidden" name="ado_Ani_Mes_No" value="<%=adoptaniMessageVO.getAdo_Ani_Mes_No()%>">
 <input type="hidden" name="adopt_Ani_Id" value="<%=adoptaniMessageVO.getAdopt_Ani_Id()%>">
 <input type="hidden" name="mem_Id" value="<%=adoptaniMessageVO.getMem_Id()%>">
-<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--±µ¦¬­ì°e¥X­×§ïªº¨Ó·½ºô­¶¸ô®|«á,¦A°eµ¹Controller·Ç³ÆÂà¥æ¤§¥Î-->
-<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">  <!--¥Î©ó:istAllEmp.jsp »P ½Æ¦X¬d¸ß listEmps_ByCompositeQuery.jsp-->
-<input type="submit" value="°e¥X­×§ï"></FORM>
+<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--æ¥æ”¶åŸé€å‡ºä¿®æ”¹çš„ä¾†æºç¶²é è·¯å¾‘å¾Œ,å†é€çµ¦Controlleræº–å‚™è½‰äº¤ä¹‹ç”¨-->
+<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">  <!--ç”¨æ–¼:istAllEmp.jsp èˆ‡ è¤‡åˆæŸ¥è©¢ listEmps_ByCompositeQuery.jsp-->
+<input type="submit" value="é€å‡ºä¿®æ”¹"></FORM>
 
 
-<br>°e¥X­×§ïªº¨Ó·½ºô­¶¸ô®|:<br><b>
+<br>é€å‡ºä¿®æ”¹çš„ä¾†æºç¶²é è·¯å¾‘:<br><b>
    <font color=blue>request.getParameter("requestURL"):</font> <%= request.getParameter("requestURL")%><br>
-   <font color=blue>request.getParameter("whichPage"):</font> <%= request.getParameter("whichPage")%> (¦¹½d¨Ò¥Ø«e¥Î©ó:istAllEmp.jsp »P ½Æ¦X¬d¸ß listEmps_ByCompositeQuery.jsp)</b>
+   <font color=blue>request.getParameter("whichPage"):</font> <%= request.getParameter("whichPage")%> (æ­¤ç¯„ä¾‹ç›®å‰ç”¨æ–¼:istAllEmp.jsp èˆ‡ è¤‡åˆæŸ¥è©¢ listEmps_ByCompositeQuery.jsp)</b>
 </body>
 </body>
 </html>

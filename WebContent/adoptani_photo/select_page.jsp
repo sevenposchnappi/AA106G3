@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
  <jsp:useBean id="adoptaniPhotoSvc" scope="page" class="com.adoptani_photo.model.AdoptaniPhotoService" />
@@ -17,10 +17,10 @@
 
 <p>This is the Home page for AnimalMAP AdoptAni Photo: Home</p>
 
-<h3>��Ƭd��:</h3>
-<%-- ���~���C --%>
+<h3>資料查詢:</h3>
+<%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>�Эץ��H�U���~:
+	<font color='red'>請修正以下錯誤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -34,9 +34,9 @@
   
   <li>
     <FORM METHOD="post" ACTION="adoptani_photo.do" >
-        <b>��ܰe�i�ʪ��s�� :</b>
+        <b>選擇送養動物編號 :</b>
         <input type="text" name="adopt_Ani_Id">
-        <input type="submit" value="�e�X">
+        <input type="submit" value="送出">
         <input type="hidden" name="action" value="getOne_For_Display">
     </FORM>
   </li>
@@ -45,7 +45,7 @@
    
   <li>
      <FORM METHOD="post" ACTION="adoptani_photo.do" >
-       <b>��ܰe�i�ʪ��s��:</b>
+       <b>選擇送養動物編號:</b>
        <select size="1" name="adopt_Ani_Id">
        
          <c:forEach var="adoptaniPhotoVO" items="${adoptaniPhotoSvc.all}" > 
@@ -53,27 +53,27 @@
           <option value="${adoptaniPhotoVO.adopt_Ani_Id}">${adoptaniPhotoVO.adopt_Ani_Id}
          </c:forEach>   
        </select>
-       <input type="submit" value="�e�X">
+       <input type="submit" value="送出">
        <input type="hidden" name="action" value="getOne_For_Display">
     </FORM>
   </li>
   
   <li>
      <FORM METHOD="post" ACTION="adoptani_photo.do" >
-       <b>��ܰe�i�ʪ��W�r:</b>
+       <b>選擇送養動物名字:</b>
        <select size="1" name="adopt_Ani_Id">
          <c:forEach var="adoptaniVO" items="${adoptaniSvc.all}" > 
           <option value="${adoptaniVO.adopt_Ani_Id}">${adoptaniVO.adopt_Ani_name}
          </c:forEach>   
        </select>
-       <input type="submit" value="�e�X">
+       <input type="submit" value="送出">
        <input type="hidden" name="action" value="getOne_For_Display">
      </FORM>
   </li>
 </ul>
 
 
-<h3>���u�޲z</h3>
+<h3>員工管理</h3>
 
 <ul>
   <li><a href='addAdoptaniPhoto.jsp'>Add</a> a new Adoptani.</li>

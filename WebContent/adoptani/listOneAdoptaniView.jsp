@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.adoptani.model.*"%>
@@ -16,7 +16,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>∞eæi∞ ™´∏ÍÆ∆ - listOneAdoptani.jsp</title>
+        <title>ÈÄÅÈ§äÂãïÁâ©Ë≥áÊñô - listOneAdoptani.jsp</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
         <!--[if lt IE 9]>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -68,10 +68,10 @@
         }
 
         #headPhoto{
-            width: 450px;
-            max-width: 100%;
-            height: 450px;
-            max-height: 100%;
+            width: 250px;
+            max-width: 250px;
+            height: 250px;
+            max-height: 250px;
             border:solid 10px #A1DCFF;
             /*object-fit: cover;*/
             -webkit-border-radius: 100%;
@@ -136,22 +136,24 @@
                     </h1>
                     </div>
                     <div class="row functionButton" align="center">
-                        <div class="col-xs-12 col-sm-3 "><img src="icon/heartblue.png" ALT="≥ﬂ≈w" title="≥ﬂ≈w"></div>
-                        <div class="col-xs-12 col-sm-3"><img src="icon/followers.png"  ALT="¶¨¬√" title="¶¨¬√"></div>
-                        <div class="col-xs-12 col-sm-3"><img src="icon/donation2.png" ALT="√ŸßU" title="√ŸßU"></div>
-                        <div class="col-xs-12 col-sm-3"><img src="icon/whistleBlue.png" ALT="¿À¡|" title="¿À¡|"></div>
+                        <div class="col-xs-12 col-sm-3 "><img src="icon/heartblue.png" ALT="ÂñúÊ≠°" title="ÂñúÊ≠°"></div>
+                        <div class="col-xs-12 col-sm-3"><img src="icon/followers.png"  ALT="Êî∂Ëóè" title="Êî∂Ëóè"></div>
+                        <div class="col-xs-12 col-sm-3"><img src="icon/donation2.png" ALT="Ë¥äÂä©" title="Ë¥äÂä©"></div>
+                        <div class="col-xs-12 col-sm-3"><img src="icon/whistleBlue.png" ALT="Ê™¢Ëàâ" title="Ê™¢Ëàâ"></div>
                       
                     </div>
                     <div class="row functionButton2" align="center" padding-top="10px">
-                        <div class="col-xs-12 col-sm-3 "><img src="icon/clipboard.png" ALT="∏‘≤”∏ÍÆ∆" title="∏‘≤”∏ÍÆ∆" onclick="loadDetails()"></div>
-                        <div class="col-xs-12 col-sm-3"><img src="icon/album.png" ALT="¨€√Ø" title="¨€√Ø" onclick="loadPhoto()"></div>
-                        <div class="col-xs-12 col-sm-3"><img src="icon/chatblue.png" ALT="Ød®•" title="Ød®•"></div>
+                        <div class="col-xs-12 col-sm-3 "><img src="icon/clipboard.png" ALT="Ë©≥Á¥∞Ë≥áÊñô" title="Ë©≥Á¥∞Ë≥áÊñô" onclick="loadDetails()"></div>
+                        <div class="col-xs-12 col-sm-3"><img src="icon/album.png" ALT="Áõ∏Á∞ø" title="Áõ∏Á∞ø" onclick="loadPhoto()"></div>
+                        <div class="col-xs-12 col-sm-3"><img src="icon/chatblue.png" ALT="ÁïôË®Ä" title="ÁïôË®Ä" onclick="loadMessage()"></div>
                         <div class="col-xs-12 col-sm-3">1</div>
                       
                     </div>
 
 
                 </div>
+<!--                 <iframe>   ÂæÖÊ∏¨Ë©¶ -->
+<%--                 <iframe src="<%=request.getContextPath()%>/adoptani_message/listOneAdoptaniAllMessageForView.jsp"></iframe> --%>
                 <div class="col-xs-12 col-sm-7 bio" id="listInformation" style=" overflow:auto; padding-top: 3px"></div>
             </div>
         </div>
@@ -215,6 +217,32 @@
 				  var adopt_Ani_Id = "adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>";
 				  var action = "action=getOne_For_Display_From_listOneAdoptani.jsp";
 				  var url = "<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do";
+				  xhttp.open("POST", url , true);
+				  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				  xhttp.send(action+"&"+adopt_Ani_Id);
+				//  xhttp.send(adopt_Ani_Id);
+				}
+			
+			function loadMessage(){
+			    
+				  var xhttp = new XMLHttpRequest();
+				  xhttp.onreadystatechange = function() {
+				    if (this.readyState == 4 && this.status == 200) {
+				        
+				        //List<AdoptaniPhotoVO> list = request.getAttribute("oneAdoptAniPhotoList", oneAdoptAniPhotoList);
+				     document.getElementById("listInformation").innerHTML =xhttp.responseText ;
+				     console.log(xhttp.responseText);
+				     //do
+				    	 
+				    	 cument.getElementById("listInformation").innerHTML ="<iframe src='"+ xhttp.responseText +"'></iframe>";
+				    }else{
+				       // alert("xhttp.status:"+ xhttp.status );
+				     }
+				  //  alert("xhttp.readyState:"+ xhttp.readyState );
+				  };
+				  var adopt_Ani_Id = "adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>";
+				  var action = "action=getOne_For_Display_AllMessage_FromlistOneAdoptaniView.jsp";
+				  var url = "<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do";
 				  xhttp.open("POST", url , true);
 				  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				  xhttp.send(action+"&"+adopt_Ani_Id);

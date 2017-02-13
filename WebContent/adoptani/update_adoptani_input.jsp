@@ -1,14 +1,14 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.adoptani.model.*"%>
 <%
-	AdoptaniVO adoptaniVO = (AdoptaniVO) request.getAttribute("adoptaniVO"); //AdoptaniServlet.java (Concroller), ¦s¤JreqªºadoptaniVOª«¥ó (¥]¬AÀ°¦£¨ú¥XªºadoptaniVO, ¤]¥]¬A¿é¤J¸ê®Æ¿ù»~®ÉªºadoptaniVOª«¥ó)
+	AdoptaniVO adoptaniVO = (AdoptaniVO) request.getAttribute("adoptaniVO"); //AdoptaniServlet.java (Concroller), å­˜å…¥reqçš„adoptaniVOç‰©ä»¶ (åŒ…æ‹¬å¹«å¿™å–å‡ºçš„adoptaniVO, ä¹ŸåŒ…æ‹¬è¼¸å…¥è³‡æ–™éŒ¯èª¤æ™‚çš„adoptaniVOç‰©ä»¶)
 %>
 
 <%/**
 	Q:update_adoptani_input.jsp  ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}
-		¨S¦³set¤]¥i¥H¥ÎEL¨ú¨ì¡C
-	A:Control¸Ì­±¦³set¡C
+		æ²’æœ‰setä¹Ÿå¯ä»¥ç”¨ELå–åˆ°ã€‚
+	A:Controlè£¡é¢æœ‰setã€‚
 
 
 **/ %>
@@ -16,7 +16,7 @@
 
 <html>
 <head>
-<title>°e¾i°Êª«¸ê®Æ­×§ï - update_adoptani_input.jsp</title></head>
+<title>é€é¤Šå‹•ç‰©è³‡æ–™ä¿®æ”¹ - update_adoptani_input.jsp</title></head>
 <link rel="stylesheet" type="text/css" href="js/calendar.css">
 <script language="JavaScript" src="js/calendarcode.js"></script>
 <div id="popupcalendar" class="text"></div>
@@ -26,15 +26,15 @@
 <table border='1' cellpadding='5' cellspacing='0' width='400'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>­û¤u¸ê®Æ­×§ï - update_adoptani_input.jsp</h3>
-		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></td>
+		<h3>å“¡å·¥è³‡æ–™ä¿®æ”¹ - update_adoptani_input.jsp</h3>
+		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></td>
 	</tr>
 </table>
 
-<h3>¸ê®Æ­×§ï:</h3>
-<%-- ¿ù»~ªí¦C --%>
+<h3>è³‡æ–™ä¿®æ”¹:</h3>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -49,116 +49,116 @@
 
 
 	<tr>
-		<td>°e¾i°Êª«¦W¦r</td>
+		<td>é€é¤Šå‹•ç‰©åå­—</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_name" size="20" value="<%=adoptaniVO.getAdopt_Ani_name()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«°Êª«ºØÃş</td>
+		<td>é€é¤Šå‹•ç‰©å‹•ç‰©ç¨®é¡</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_type" size="1" value="<%=adoptaniVO.getAdopt_Ani_type()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«©Ê§O</td>
+		<td>é€é¤Šå‹•ç‰©æ€§åˆ¥</td>
 		<td>
-			<input type="radio" name="Adopt_Ani_gender" size="20" value="1" ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}>¤½	
-			<input type="radio" name="Adopt_Ani_gender" size="20" value="0" ${(adoptaniVO.adopt_Ani_gender==0) ? 'checked':''}>¥À
+			<input type="radio" name="Adopt_Ani_gender" size="20" value="1" ${(adoptaniVO.adopt_Ani_gender==1) ? 'checked':''}>å…¬	
+			<input type="radio" name="Adopt_Ani_gender" size="20" value="0" ${(adoptaniVO.adopt_Ani_gender==0) ? 'checked':''}>æ¯
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«°·±dª¬ªp</td>
+		<td>é€é¤Šå‹•ç‰©å¥åº·ç‹€æ³</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_heal" size="20" value="<%=adoptaniVO.getAdopt_Ani_heal()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«¬Ì­]±µ¿æ</td>
+		<td>é€é¤Šå‹•ç‰©ç–«è‹—æ¥è¸µ</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_Vac" size="20" value="<%=adoptaniVO.getAdopt_Ani_Vac()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«¤ò¦â</td>
+		<td>é€é¤Šå‹•ç‰©æ¯›è‰²</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_color" size="20" value="<%=adoptaniVO.getAdopt_Ani_color()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«Åé«¬</td>
+		<td>é€é¤Šå‹•ç‰©é«”å‹</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_body" size="20" value="<%=adoptaniVO.getAdopt_Ani_body()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«¦~ÄÖ</td>
+		<td>é€é¤Šå‹•ç‰©å¹´é½¡</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_age" size="20" value="<%=adoptaniVO.getAdopt_Ani_age()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«¸`¨|</td>
+		<td>é€é¤Šå‹•ç‰©ç¯€è‚²</td>
 		<td>
-			<input type="radio" name="Adopt_Ani_Neu" size="20" value="1" ${(adoptaniVO.adopt_Ani_Neu==1) ? 'checked':''}>¤wµ²²Ï	
-			<input type="radio" name="Adopt_Ani_Neu" size="20" value="0" ${(adoptaniVO.adopt_Ani_Neu==0) ? 'checked':''}>¥¼µ²²Ï
+			<input type="radio" name="Adopt_Ani_Neu" size="20" value="1" ${(adoptaniVO.adopt_Ani_Neu==1) ? 'checked':''}>å·²çµç´®	
+			<input type="radio" name="Adopt_Ani_Neu" size="20" value="0" ${(adoptaniVO.adopt_Ani_Neu==0) ? 'checked':''}>æœªçµç´®
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«´¹¤ù½s¸¹</td>
+		<td>é€é¤Šå‹•ç‰©æ™¶ç‰‡ç·¨è™Ÿ</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_chip" size="15" value="<%=adoptaniVO.getAdopt_Ani_chip()%>">
 		</td>
 	</tr>
 
 	<tr>
-		<!-- ¨S¦³¿ï¾Ü®É¶¡´N¦Û°Ê¶ñ¤J²{¦b®É¶¡ -->
+		<!-- æ²’æœ‰é¸æ“‡æ™‚é–“å°±è‡ªå‹•å¡«å…¥ç¾åœ¨æ™‚é–“ -->
 		<%java.sql.Timestamp date_SQL = new java.sql.Timestamp(System.currentTimeMillis());%>
-		<td>°e¾i®É¶¡:</td>
+		<td>é€é¤Šæ™‚é–“:</td>
 		<td>
 			<input id="datetimepicker1" readonly name="Adopt_Ani_date" type="text" value="<%=(adoptaniVO==null)? date_SQL : adoptaniVO.getAdopt_Ani_date() %>" />
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i°Êª«ª«¥óª¬ºA</td>
+		<td>é€é¤Šå‹•ç‰©ç‰©ä»¶ç‹€æ…‹</td>
 		<td>
-			<input type="radio" name="Adopt_Ani_status" size="20" value="1" ${(adoptaniVO.adopt_Ani_status==1) ? 'checked':''}>Åã¡@¥Ü	
-			<input type="radio" name="Adopt_Ani_status" size="20" value="0" ${(adoptaniVO.adopt_Ani_status==0) ? 'checked':''}>¤£Åã¥Ü
+			<input type="radio" name="Adopt_Ani_status" size="20" value="1" ${(adoptaniVO.adopt_Ani_status==1) ? 'checked':''}>é¡¯ã€€ç¤º	
+			<input type="radio" name="Adopt_Ani_status" size="20" value="0" ${(adoptaniVO.adopt_Ani_status==0) ? 'checked':''}>ä¸é¡¯ç¤º
 		</td>
 	</tr>
 
 	<tr>
-		<td>°e¾i¦aÂI¸g«×</td>
+		<td>é€é¤Šåœ°é»ç¶“åº¦</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_FinLat" size="20" value="<%=adoptaniVO.getAdopt_Ani_FinLat()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>°e¾i¦aÂI½n«×</td>
+		<td>é€é¤Šåœ°é»ç·¯åº¦</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_FinLon" size="20" value="<%=adoptaniVO.getAdopt_Ani_FinLon()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>¿¤/¥«</td>
+		<td>ç¸£/å¸‚</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_city" size="20" value="<%=adoptaniVO.getAdopt_Ani_city()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>¶mÂí¥«°Ï</td>
+		<td>é„‰é®å¸‚å€</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_town" size="20" value="<%=adoptaniVO.getAdopt_Ani_town()%>">
 		</td>
 	</tr>
 	<tr>
-		<td>¹D¸ôµó¦W§ø¨½</td>
+		<td>é“è·¯è¡—åæ‘é‡Œ</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_road" size="20" value="<%=adoptaniVO.getAdopt_Ani_road()%>">
 		</td>
 	</tr>
 		<tr>
-		<td>Like¼Æ</td>
+		<td>Likeæ•¸</td>
 		<td>
 			<input type="TEXT" name="Adopt_Ani_like" size="20" value="<%=adoptaniVO.getAdopt_Ani_like()%>">
 		</td>
@@ -172,14 +172,14 @@
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="adopt_Ani_Id" value="<%=adoptaniVO.getAdopt_Ani_Id()%>">
 <input type="hidden" name="Mem_Id" value="<%=adoptaniVO.getMem_Id()%>">
-<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--±µ¦¬­ì°e¥X­×§ïªº¨Ó·½ºô­¶¸ô®|«á,¦A°eµ¹Controller·Ç³ÆÂà¥æ¤§¥Î-->
-<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">  <!--¥Î©ó:istAllEmp.jsp »P ½Æ¦X¬d¸ß listEmps_ByCompositeQuery.jsp-->
-<input type="submit" value="°e¥X­×§ï"></FORM>
+<input type="hidden" name="requestURL" value="<%=request.getParameter("requestURL")%>"><!--æ¥æ”¶åŸé€å‡ºä¿®æ”¹çš„ä¾†æºç¶²é è·¯å¾‘å¾Œ,å†é€çµ¦Controlleræº–å‚™è½‰äº¤ä¹‹ç”¨-->
+<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">  <!--ç”¨æ–¼:istAllEmp.jsp èˆ‡ è¤‡åˆæŸ¥è©¢ listEmps_ByCompositeQuery.jsp-->
+<input type="submit" value="é€å‡ºä¿®æ”¹"></FORM>
 
 
-<br>°e¥X­×§ïªº¨Ó·½ºô­¶¸ô®|:<br><b>
+<br>é€å‡ºä¿®æ”¹çš„ä¾†æºç¶²é è·¯å¾‘:<br><b>
    <font color=blue>request.getParameter("requestURL"):</font> <%= request.getParameter("requestURL")%><br>
-   <font color=blue>request.getParameter("whichPage"):</font> <%= request.getParameter("whichPage")%> (¦¹½d¨Ò¥Ø«e¥Î©ó:istAllEmp.jsp »P ½Æ¦X¬d¸ß listEmps_ByCompositeQuery.jsp)</b>
+   <font color=blue>request.getParameter("whichPage"):</font> <%= request.getParameter("whichPage")%> (æ­¤ç¯„ä¾‹ç›®å‰ç”¨æ–¼:istAllEmp.jsp èˆ‡ è¤‡åˆæŸ¥è©¢ listEmps_ByCompositeQuery.jsp)</b>
 </body>
 </body>
 </html>

@@ -33,7 +33,7 @@ public class AdoptaniMessageServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println(action);
+		System.out.println("action: "+action);
 		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -99,13 +99,13 @@ public class AdoptaniMessageServlet extends HttpServlet {
 			}
 		}
 		
-		if ("getOneAni_For_DisplayAll".equals(action)	|| "getOne_For_Display_AllMessage_FromView".equals(action)) { // 來自select_page.jsp的請求
+		if ("getOneAni_For_DisplayAll".equals(action)	|| "getOne_For_Display_AllMessage_FromlistOneAdoptaniView.jsp".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String adopt_Ani_Id = req.getParameter("adopt_Ani_Id");
@@ -119,8 +119,8 @@ public class AdoptaniMessageServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
+				System.out.println("adopt_Ani_Id: "+adopt_Ani_Id);
 				
-
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -145,13 +145,14 @@ public class AdoptaniMessageServlet extends HttpServlet {
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("adopt_Ani_Id", adopt_Ani_Id);
 				req.setAttribute("adoptaniMessagelist", adoptaniMessagelist); // 資料庫取出的adoptaniVO物件,存入req
 				if("getOneAni_For_DisplayAll".equals(action)){
 					String url = "/adoptani_message/listOneAdoptaniAllMessage.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneAdoptani.jsp
 					successView.forward(req, res);
-				}else if("getOne_For_Display_FromView".equals(action)){
-					String url = "/adoptani/listOneAdoptani.jsp";
+				}else if("getOne_For_Display_AllMessage_FromlistOneAdoptaniView.jsp".equals(action)){
+					String url = "/adoptani_message/listOneAdoptaniAllMessageForView.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneAdoptani.jsp
 					successView.forward(req, res);
 				}

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=BIG5" pageEncoding="BIG5"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -17,10 +17,10 @@
 
 <p>This is the Home page for AnimalMAP AdoptAni Message: Home</p>
 
-<h3>¸ê®Æ¬d¸ß:</h3>
-<%-- ¿ù»~ªí¦C --%>
+<h3>è³‡æ–™æŸ¥è©¢:</h3>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -34,9 +34,9 @@
   
   <li>
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" >
-        <b>¿é¤J°e¾i°Êª«¯d¨¥½s¸¹ (¦p42000001):</b>
+        <b>è¼¸å…¥é€é¤Šå‹•ç‰©ç•™è¨€ç·¨è™Ÿ (å¦‚42000001):</b>
         <input type="text" name="ado_Ani_Mes_No">
-        <input type="submit" value="°e¥X">
+        <input type="submit" value="é€å‡º">
         <input type="hidden" name="action" value="getOne_For_Display">
     </FORM>
   </li>
@@ -45,33 +45,33 @@
    
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" >
-       <b>¿ï¾Ü°e¾i°Êª«¯d¨¥½s¸¹:</b>
+       <b>é¸æ“‡é€é¤Šå‹•ç‰©ç•™è¨€ç·¨è™Ÿ:</b>
        <select size="1" name="ado_Ani_Mes_No">
          <c:forEach var="adoptaniMessageVO" items="${AdoptaniMessageSvc.allMessage}" > 
           <option value="${adoptaniMessageVO.ado_Ani_Mes_No}">${adoptaniMessageVO.ado_Ani_Mes_No}
          </c:forEach>   
        </select>
-       <input type="submit" value="°e¥X">
+       <input type="submit" value="é€å‡º">
        <input type="hidden" name="action" value="getOne_For_Display">
     </FORM>
   </li>
   
     <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" >
-       <b>¿ï¾Ü°e¾i°Êª«½s¸¹:</b>
+       <b>é¸æ“‡é€é¤Šå‹•ç‰©ç·¨è™Ÿ:</b>
        <select size="1" name="adopt_Ani_Id">
          <c:forEach var="adoptaniMessageVO" items="${AdoptaniMessageSvc.allMessage}" > 
           <option value="${adoptaniMessageVO.adopt_Ani_Id}">${adoptaniMessageVO.adopt_Ani_Id}
          </c:forEach>   
        </select>
-       <input type="submit" value="°e¥X">
+       <input type="submit" value="é€å‡º">
        <input type="hidden" name="action" value="getOneAni_For_DisplayAll">
     </FORM>
   </li>
   
 
 
-<h3>°e¾i°Êª«ºŞ²z</h3>
+<h3>é€é¤Šå‹•ç‰©ç®¡ç†</h3>
 
 <ul>
   <li><a href='addAdoptaniMessage.jsp'>Add</a> a new Adoptani.</li>

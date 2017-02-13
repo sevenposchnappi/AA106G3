@@ -1,37 +1,37 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.adoptani.model.*"%>
 <%@ page import="com.adoptani_photo.model.*"%>
 <%@ page import="com.chung.tools.Tools"%>
-<%-- ¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È --%>
+<%-- æ­¤é ç·´ç¿’æŽ¡ç”¨ EL çš„å¯«æ³•å–å€¼ --%>
 
 <%
 	AdoptaniService adoptaniSvc = new AdoptaniService();
     List<AdoptaniVO> list = adoptaniSvc.getAll();
-    pageContext.setAttribute("list",list);	//­n©ñ¨ìscope¸Ì­±¤~§ä±o¨ì¡C
+    pageContext.setAttribute("list",list);	//è¦æ”¾åˆ°scopeè£¡é¢æ‰æ‰¾å¾—åˆ°ã€‚
     
     Tools tools = new Tools();
 %>
 <%-- <jsp:useBean id="tools" scope="request" class="com.chung.tools.Tools" /> --%>
 <html>
 <head>
-<title>©Ò¦³°e¾i°Êª«¸ê®Æ - listAllAdoptani.jsp</title>
+<title>æ‰€æœ‰é€é¤Šå‹•ç‰©è³‡æ–™ - listAllAdoptani.jsp</title>
 </head>
 <body bgcolor='white'>
-<b><font color=red>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</font></b>
+<b><font color=red>æ­¤é ç·´ç¿’æŽ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</font></b>
 <table border='1' cellpadding='5' cellspacing='0' width='800'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>©Ò¦³°e¾i°Êª«¸ê®Æ - listAllAdoptani.jsp</h3>
-		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a>
+		<h3>æ‰€æœ‰é€é¤Šå‹•ç‰©è³‡æ–™ - listAllAdoptani.jsp</h3>
+		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›žé¦–é </a>
 		</td>
 	</tr>
 </table>
 
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ð­×¥¿¥H¤U¿ù»~:
+	<font color='red'>è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -42,27 +42,27 @@
 
 <table border='1' bordercolor='#CCCCFF' width='800'>
 	<tr>
-		<th>°e¾i°Êª«½s¸¹</th>
-		<th>µo¥¬ªÌ·|­û½s¸¹</th>
-		<th>°e¾i°Êª«¦W¦r</th>
-		<th>°e¾i°Êª«°Êª«ºØÃþ</th>
-		<th>°e¾i°Êª«©Ê§O</th>
-		<th>°e¾i°Êª«°·±dª¬ªp</th>
-		<th>°e¾i°Êª«¬Ì­]±µ¿æ</th>
-		<th>°e¾i°Êª«¤ò¦â</th>
-		<th>°e¾i°Êª«Åé«¬</th>
-		<th>°e¾i°Êª«¦~ÄÖ</th>
-		<th>°e¾i°Êª«¸`¨|</th>
-		<th>°e¾i°Êª«´¹¤ù½s¸¹</th>
-		<th>°e¾i®É¶¡</th>
-		<th>°e¾i°Êª«ª«¥óª¬ºA</th>
-		<th>°e¾i°Êª««Ø¥ß®É¶¡</th>
-		<th>°e¾i¦aÂI¸g«×</th>
-		<th>°e¾i¦aÂI½n«×</th>
-		<th>¿¤/¥«</th>
-		<th>¶mÂí¥«°Ï</th>
-		<th>¹D¸ôµó¦W§ø¨½</th>
-		<th>Like¼Æ</th>
+		<th>é€é¤Šå‹•ç‰©ç·¨è™Ÿ</th>
+		<th>ç™¼å¸ƒè€…æœƒå“¡ç·¨è™Ÿ</th>
+		<th>é€é¤Šå‹•ç‰©åå­—</th>
+		<th>é€é¤Šå‹•ç‰©å‹•ç‰©ç¨®é¡ž</th>
+		<th>é€é¤Šå‹•ç‰©æ€§åˆ¥</th>
+		<th>é€é¤Šå‹•ç‰©å¥åº·ç‹€æ³</th>
+		<th>é€é¤Šå‹•ç‰©ç–«è‹—æŽ¥è¸µ</th>
+		<th>é€é¤Šå‹•ç‰©æ¯›è‰²</th>
+		<th>é€é¤Šå‹•ç‰©é«”åž‹</th>
+		<th>é€é¤Šå‹•ç‰©å¹´é½¡</th>
+		<th>é€é¤Šå‹•ç‰©ç¯€è‚²</th>
+		<th>é€é¤Šå‹•ç‰©æ™¶ç‰‡ç·¨è™Ÿ</th>
+		<th>é€é¤Šæ™‚é–“</th>
+		<th>é€é¤Šå‹•ç‰©ç‰©ä»¶ç‹€æ…‹</th>
+		<th>é€é¤Šå‹•ç‰©å»ºç«‹æ™‚é–“</th>
+		<th>é€é¤Šåœ°é»žç¶“åº¦</th>
+		<th>é€é¤Šåœ°é»žç·¯åº¦</th>
+		<th>ç¸£/å¸‚</th>
+		<th>é„‰éŽ®å¸‚å€</th>
+		<th>é“è·¯è¡—åæ‘é‡Œ</th>
+		<th>Likeæ•¸</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="adoptaniVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -94,26 +94,26 @@
 			<td>${adoptaniVO.adopt_Ani_like}</td>         
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani/adoptani.do">
-			     <input type="submit" value="­×§ï">
+			     <input type="submit" value="ä¿®æ”¹">
 			     <input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}">
-			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--°e¥X¥»ºô­¶ªº¸ô®|µ¹Controller-->
-			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--°e¥X·í«e¬O²Ä´X­¶µ¹Controller-->
+			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
+			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--é€å‡ºç•¶å‰æ˜¯ç¬¬å¹¾é çµ¦Controller-->
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani/adoptani.do">
-			    <input type="submit" value="§R°£">
+			    <input type="submit" value="åˆªé™¤">
 			    <input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}">
-			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--°e¥X¥»ºô­¶ªº¸ô®|µ¹Controller-->
-			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--°e¥X·í«e¬O²Ä´X­¶µ¹Controller-->
+			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
+			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--é€å‡ºç•¶å‰æ˜¯ç¬¬å¹¾é çµ¦Controller-->
 			    <input type="hidden" name="action"value="delete"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do">
-			    <input type="submit" value="Åã¥Ü·Ó¤ù">
+			    <input type="submit" value="é¡¯ç¤ºç…§ç‰‡">
 			    <input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}">
-			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--°e¥X¥»ºô­¶ªº¸ô®|µ¹Controller-->
-			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--°e¥X·í«e¬O²Ä´X­¶µ¹Controller-->
+			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--é€å‡ºæœ¬ç¶²é çš„è·¯å¾‘çµ¦Controller-->
+			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--é€å‡ºç•¶å‰æ˜¯ç¬¬å¹¾é çµ¦Controller-->
 			    <input type="hidden" name="action"value="getOne_For_Display_From_listAllAdoptani.jsp"></FORM>
 			</td>
 			     
@@ -123,7 +123,7 @@
 <%@ include file="page2.file" %>
 
 
-<br>¥»ºô­¶ªº¸ô®|:<br><b>
+<br>æœ¬ç¶²é çš„è·¯å¾‘:<br><b>
    <font color=blue>request.getServletPath():</font> <%= request.getServletPath()%><br>
    <font color=blue>request.getRequestURI(): </font> <%= request.getRequestURI()%> </b>
 <br>
