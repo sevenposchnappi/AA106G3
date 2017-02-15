@@ -49,7 +49,7 @@ public class AdoptaniServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/select_page.jsp");
+							.getRequestDispatcher("/front-end/adoptani/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -63,7 +63,7 @@ public class AdoptaniServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/select_page.jsp");
+							.getRequestDispatcher("/front-end/adoptani/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -77,7 +77,7 @@ public class AdoptaniServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/select_page.jsp");
+							.getRequestDispatcher("/front-end/adoptani/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -85,11 +85,12 @@ public class AdoptaniServlet extends HttpServlet {
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("adoptaniVO", adoptaniVO); // 資料庫取出的adoptaniVO物件,存入req
 				if("getOne_For_Display".equals(action)){
-					String url = "/adoptani/listOneAdoptaniView.jsp";
+					System.out.println("AdoptaniServlet>>getOne_For_Display>>查詢完成,準備轉交");
+					String url = "/front-end/adoptani/listOneAdoptaniView.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneAdoptani.jsp
 					successView.forward(req, res);
 				}else if("getOne_For_Display_FromView".equals(action)){
-					String url = "/adoptani/listOneAdoptani.jsp";
+					String url = "/front-end/adoptani/listOneAdoptani.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneAdoptani.jsp
 					successView.forward(req, res);
 				}
@@ -97,7 +98,7 @@ public class AdoptaniServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/adoptani/select_page.jsp");
+						.getRequestDispatcher("/front-end/adoptani/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -192,7 +193,7 @@ public class AdoptaniServlet extends HttpServlet {
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("adoptaniVO", adoptaniVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/adoptani/addAdoptani.jsp");
+								.getRequestDispatcher("/front-end/adoptani/addAdoptani.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -203,7 +204,7 @@ public class AdoptaniServlet extends HttpServlet {
 					//物件建立時間(Adopt_Ani_Credate)的參數，暫時先用Adopt_Ani_date代替，其實用不到，因為sql是用sysdate建。
 					
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/adoptani/listAllAdoptani.jsp";
+					String url = "/front-end/adoptani/listAllAdoptani.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllAdoptani.jsp
 					successView.forward(req, res);				
 					
@@ -212,7 +213,7 @@ public class AdoptaniServlet extends HttpServlet {
 					
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/addAdoptani.jsp");
+							.getRequestDispatcher("/front-end/adoptani/addAdoptani.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -312,7 +313,7 @@ public class AdoptaniServlet extends HttpServlet {
 						
 						req.setAttribute("adoptaniVO", adoptaniVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/adoptani/update_adoptani_input.jsp");
+								.getRequestDispatcher("/front-end/adoptani/update_adoptani_input.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -332,7 +333,7 @@ public class AdoptaniServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/update_adoptani_input.jsp");
+							.getRequestDispatcher("/front-end/adoptani/update_adoptani_input.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -357,7 +358,7 @@ public class AdoptaniServlet extends HttpServlet {
 				
 					/***************************3.查詢完成,準備轉交(Send the Success view)************/
 					req.setAttribute("adoptaniVO", adoptaniVO);         // 資料庫取出的adoptaniVO物件,存入req
-					String url = "/adoptani/update_adoptani_input.jsp";
+					String url = "/front-end/adoptani/update_adoptani_input.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_adoptani_input.jsp
 					successView.forward(req, res);
 
@@ -365,7 +366,7 @@ public class AdoptaniServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/listAllAdoptani.jsp");
+							.getRequestDispatcher("/front-end/adoptani/listAllAdoptani.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -386,7 +387,7 @@ public class AdoptaniServlet extends HttpServlet {
 					adoptaniSvc.deleteAdoptani(str);
 					
 					/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-					String url = "/adoptani/listAllAdoptani.jsp";
+					String url = "/front-end/adoptani/listAllAdoptani.jsp";
 					System.out.println("刪除完成");
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(req, res);
@@ -395,7 +396,7 @@ public class AdoptaniServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("刪除資料失敗:"+e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/listAllAdoptani.jsp");
+							.getRequestDispatcher("/front-end/adoptani/listAllAdoptani.jsp");
 					failureView.forward(req, res);
 				}
 			}		 

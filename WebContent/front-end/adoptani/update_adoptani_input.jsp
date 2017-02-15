@@ -43,7 +43,7 @@
 	</font>
 </c:if>
 
-<FORM METHOD="post" ACTION="adoptani.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani/adoptani.do" name="form1">
 <table border="0">
 
 

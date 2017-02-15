@@ -45,15 +45,15 @@ public class DBGifReader_AdoptaniPhoto extends HttpServlet {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("ado_Ani_Pic"));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
-				while ((len = in.read(buf)) != -1) {	//¤ô±í
+				while ((len = in.read(buf)) != -1) {	//æ°´æ¡¶
 					out.write(buf, 0, len);
 				}
 				in.close();
 			} else {
 				InputStream in = getServletContext().getResourceAsStream("/images/tomcat.gif");
-				byte[] buf = new byte[in.available()]; 	//«Ø¥ß¤ô±í
-				in.read(buf);							//§â¸ê®Æ©ñ¶i¤ô±í			
-				out.write(buf);							//§â¤ô±í¸Ìªº¸ê®Æ­Ë¥X¨Ó
+				byte[] buf = new byte[in.available()]; 	//å»ºç«‹æ°´æ¡¶
+				in.read(buf);							//æŠŠè³‡æ–™æ”¾é€²æ°´æ¡¶			
+				out.write(buf);							//æŠŠæ°´æ¡¶è£¡çš„è³‡æ–™å€’å‡ºä¾†
 				in.close();
 			}
 			rs.close();

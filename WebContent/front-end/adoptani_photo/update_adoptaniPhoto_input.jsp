@@ -30,7 +30,7 @@
 	</font>
 </c:if>
 
-<FORM METHOD="post" ACTION="adoptani_photo.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_photo/adoptani_photo.do" name="form1">
 <table border="0">
 
 

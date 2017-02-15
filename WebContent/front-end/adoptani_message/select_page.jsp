@@ -33,7 +33,7 @@
   <li><a href='listAllAdoptaniMessage.jsp'>List</a> all Adopt Animal's Message. </li> <br><br>
   
   <li>
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" >
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do" >
         <b>輸入送養動物留言編號 (如42000001):</b>
         <input type="text" name="ado_Ani_Mes_No">
         <input type="submit" value="送出">
@@ -44,7 +44,7 @@
   
    
   <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do" >
        <b>選擇送養動物留言編號:</b>
        <select size="1" name="ado_Ani_Mes_No">
          <c:forEach var="adoptaniMessageVO" items="${AdoptaniMessageSvc.allMessage}" > 
@@ -57,7 +57,7 @@
   </li>
   
     <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do" >
        <b>選擇送養動物編號:</b>
        <select size="1" name="adopt_Ani_Id">
          <c:forEach var="adoptaniMessageVO" items="${AdoptaniMessageSvc.allMessage}" > 

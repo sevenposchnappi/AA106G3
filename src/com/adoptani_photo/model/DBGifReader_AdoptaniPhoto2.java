@@ -31,7 +31,7 @@ public class DBGifReader_AdoptaniPhoto2 extends HttpServlet {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("ado_Ani_Pic"));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
-				while ((len = in.read(buf)) != -1) {	//¤ô±í
+				while ((len = in.read(buf)) != -1) {	//æ°´æ¡¶
 					out.write(buf, 0, len);
 				}
 				in.close();

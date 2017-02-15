@@ -203,7 +203,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()){
-					//adoptaniPhotoVO¤]ºÙ¬°Domain objects
+					//adoptaniPhotoVOï¿½]ï¿½Ù¬ï¿½Domain objects
 					adoptaniPhotoVO =new AdoptaniPhotoVO();
 					
 					adoptaniPhotoVO.setAdo_Ani_Pic_No(rs.getString("Ado_Ani_Pic_No"));
@@ -266,7 +266,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				
 				
 				while (rs.next()){
-					//adoptaniPhotoVO¤]ºÙ¬°Domain objects
+					//adoptaniPhotoVOï¿½]ï¿½Ù¬ï¿½Domain objects
 					adoptaniPhotoVO =new AdoptaniPhotoVO();
 					
 					adoptaniPhotoVO.setAdo_Ani_Pic_No(rs.getString("Ado_Ani_Pic_No"));
@@ -334,7 +334,7 @@ public class AdoptaniPhotoJDBCDAO implements AdoptaniPhotoDAO_interface{
 				
 				
 				while (rs.next()){
-					//adoptaniPhotoVO¤]ºÙ¬°Domain objects
+					//adoptaniPhotoVOï¿½]ï¿½Ù¬ï¿½Domain objects
 					adoptaniPhotoVO =new AdoptaniPhotoVO();
 					
 					adoptaniPhotoVO.setAdo_Ani_Pic_No(rs.getString("Ado_Ani_Pic_No"));

@@ -68,7 +68,7 @@
 		</font>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="adoptani_photo.do" name="form1" enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_photo/adoptani_photo.do" name="form1" enctype="multipart/form-data">
 	<table border="0">
 	
 		<tr>

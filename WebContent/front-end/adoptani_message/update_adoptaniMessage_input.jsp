@@ -42,7 +42,7 @@
 	</font>
 </c:if>
 
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do" name="form1">
 <table border="0">
 
 

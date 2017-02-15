@@ -7,25 +7,32 @@
 
 <%-- 取得Service物件，調用DAO裡面的getAll()，取資料庫此Table的每筆資料。 --%>
 <%
-	
-    List<AdoptaniMessageVO> list = (List<AdoptaniMessageVO>) request.getAttribute("adoptaniMessagelist");
+// 	 List<AdoptaniMessageVO> list = (List<AdoptaniMessageVO>) request.getAttribute("adoptaniMessagelist");
+//    pageContext.setAttribute("list",list);	//要放到scope裡面才找得到。
+//    String adopt_Ani_Id = (String) request.getAttribute("adopt_Ani_Id");
+%> 
+
+<%	
+	String adopt_Ani_Id = (String) request.getParameter("adopt_Ani_Id");
+	System.out.println(adopt_Ani_Id);
+	AdoptaniMessageService adoptaniMessageSvc = new AdoptaniMessageService();
+	List<AdoptaniMessageVO> list = adoptaniMessageSvc.getOneAdoptaniAllMessage(adopt_Ani_Id);
     pageContext.setAttribute("list",list);	//要放到scope裡面才找得到。
-    String adopt_Ani_Id = (String) request.getAttribute("adopt_Ani_Id");
+    
 %>
 
-<html>
+<html id="html">
 <head>
 
 </head>
-<body bgcolor='white'>
+<body bgcolor="white" >
 
 
 
-
-<table border='1' bordercolor='#CCCCFF' width='400'>
+<table border="1" bordercolor="#CCCCFF" width="400">
 	<tr>
-		<th width='100'>發布者</th>
-		<th width='300'>送養動物留言內容</th>
+		<th width="100">發布者</th>
+		<th width="300">送養動物留言內容</th>
 		
 	</tr>
 
@@ -37,14 +44,14 @@
 			<td></td>
 			<td align="right">${adoptaniMessageVO.ado_Ani_Mes_time}</td>
 <!-- 			<td> -->
-<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do"> --%>
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do"> --%>
 <!-- 			     <input type="submit" value="修改"> -->
 <%-- 			     <input type="hidden" name="ado_Ani_Mes_No" value="${adoptaniMessageVO.ado_Ani_Mes_No}"> --%>
 <%-- 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
 <!-- 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
 <!-- 			</td> -->
 <!-- 			<td> -->
-<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do"> --%>
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do"> --%>
 <!-- 			    <input type="submit" value="刪除"> -->
 <%-- 			    <input type="hidden" name="ado_Ani_Mes_No" value="${adoptaniMessageVO.ado_Ani_Mes_No}"> --%>
 <%-- 			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
@@ -54,23 +61,26 @@
 		</tr>
 	</c:forEach>
 </table>
-	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do" name="form1">
-	<table border="0">
+<br>
+<br>
+<br>
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do" name="form1">
+	<table border="1" width="400" >
 	
 		<tr>
-			<td>送養動物編號:</td>
-			<td><input type="TEXT" name="adopt_Ani_Id" size="30" 	
-				value="<%=adopt_Ani_Id %>" /></td>
+			<td width="200" height="100">送養動物編號:</td>
+			<td width="200"><input type="hidden" name="adopt_Ani_Id" size="30" 	
+				value="<%=adopt_Ani_Id %>" /><%=adopt_Ani_Id %></td>
 		</tr>
 		<tr>
-			<td>發布者會員編號:</td>
-			<td><input type="TEXT" name="mem_Id" size="30" 	
-				value="<%=10000001%>" /></td>
+			<td width="100">發布者會員編號:</td>
+			<td><input type="hidden" name="mem_Id" size="30" 	
+				value="<%=10000001%>" /><%=10000001%></td>
 		</td>
 		</tr>  
 		
 		<tr>
-			<td>留言內容:</td>
+			<td width='100'>留言內容:</td>
 			<td>
 				<textarea cols="50" rows="5" name="ado_Ani_Mes" ></textarea>
 			
@@ -82,12 +92,13 @@
 
 	</table>
 	<br>
-	<input type="hidden" name="action" value="insert">
-	<input type="submit" value="送出新增">
+	<input type="hidden" name="action" value="insert_From_listOneAdoptaniAllMessageForView.jsp">
+	<input type="submit" value="送出新增" >
 	</FORM>
 
 
-
+			
 
 </body>
 </html>
+

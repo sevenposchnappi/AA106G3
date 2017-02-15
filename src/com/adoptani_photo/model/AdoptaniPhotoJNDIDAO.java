@@ -22,7 +22,7 @@ import com.adoptani.model.AdoptaniVO;
 
 public class AdoptaniPhotoJNDIDAO implements AdoptaniPhotoDAO_interface{
 
-	// §@≠”¿≥•Œµ{¶°§§,∞wπÔ§@≠”∏ÍÆ∆Æw ,¶@•Œ§@≠”DataSourceßY•i
+	// ‰∏ÄÂÄãÊáâÁî®Á®ãÂºè‰∏≠,ÈáùÂ∞ç‰∏ÄÂÄãË≥áÊñôÂ∫´ ,ÂÖ±Áî®‰∏ÄÂÄãDataSourceÂç≥ÂèØ
 	private static DataSource ds = null;
 	static {
 		try {
@@ -199,7 +199,7 @@ public class AdoptaniPhotoJNDIDAO implements AdoptaniPhotoDAO_interface{
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()){
-					//adoptaniPhotoVO§]∫Ÿ¨∞Domain objects
+					//adoptaniPhotoVO‰πüÁ®±ÁÇ∫Domain objects
 					adoptaniPhotoVO =new AdoptaniPhotoVO();
 					
 					adoptaniPhotoVO.setAdo_Ani_Pic_No(rs.getString("Ado_Ani_Pic_No"));
@@ -257,7 +257,7 @@ public class AdoptaniPhotoJNDIDAO implements AdoptaniPhotoDAO_interface{
 				
 				
 				while (rs.next()){
-					//adoptaniPhotoVO§]∫Ÿ¨∞Domain objects
+					//adoptaniPhotoVO‰πüÁ®±ÁÇ∫Domain objects
 					adoptaniPhotoVO =new AdoptaniPhotoVO();
 					
 					adoptaniPhotoVO.setAdo_Ani_Pic_No(rs.getString("Ado_Ani_Pic_No"));
@@ -320,7 +320,7 @@ public class AdoptaniPhotoJNDIDAO implements AdoptaniPhotoDAO_interface{
 				
 				
 				while (rs.next()){
-					//adoptaniPhotoVO§]∫Ÿ¨∞Domain objects
+					//adoptaniPhotoVO‰πüÁ®±ÁÇ∫Domain objects
 					adoptaniPhotoVO =new AdoptaniPhotoVO();
 					
 					adoptaniPhotoVO.setAdo_Ani_Pic_No(rs.getString("Ado_Ani_Pic_No"));

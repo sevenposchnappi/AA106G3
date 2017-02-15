@@ -11,7 +11,7 @@ public interface AdoptaniMessageDAO_interface {
     public AdoptaniMessageVO findByPrimaryKey(String ado_Ani_Mes_No);
     public List<AdoptaniMessageVO> getAll();
     public List<AdoptaniMessageVO> getOneAllMessage(String Adopt_Ani_Id);
-    //¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+    //è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
     //public List<EmpVO> getAll(Map<String, String[]> map); 
 
 }

@@ -2,7 +2,7 @@ package com.adoptani_message.model;
 
 import java.util.List;
 
-/**­t³d½Õ¬£DAO**/
+/**è² è²¬èª¿æ´¾DAO**/
 
 public class AdoptaniMessageService {
 	
@@ -28,10 +28,10 @@ public class AdoptaniMessageService {
 		return adoptaniMessageVO;
 	}
 	
-	/**­×§ï
-	 * @param Ado_Ani_Mes_No:¶Ç¤J°T®§½s¸¹¡A¿ëÃÑ­n§ó§ï­ş¤@µ§¯d¨¥¡C
-	 * @param Ado_Ani_Mes:±ı§ó§ï¯d¨¥¤º®e
-	 * @return adoptaniMessageVO ª«¥ó
+	/**ä¿®æ”¹
+	 * @param Ado_Ani_Mes_No:å‚³å…¥è¨Šæ¯ç·¨è™Ÿï¼Œè¾¨è­˜è¦æ›´æ”¹å“ªä¸€ç­†ç•™è¨€ã€‚
+	 * @param Ado_Ani_Mes:æ¬²æ›´æ”¹ç•™è¨€å…§å®¹
+	 * @return adoptaniMessageVO ç‰©ä»¶
 	 * **/
 	
 	public AdoptaniMessageVO updateAdoptaniMessage(String Ado_Ani_Mes_No, String Ado_Ani_Mes){

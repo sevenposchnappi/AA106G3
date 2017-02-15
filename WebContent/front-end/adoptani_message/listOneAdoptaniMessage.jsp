@@ -57,7 +57,7 @@
 			<td>${adoptaniMessageVO.ado_Ani_Mes_time}</td>
 			<td>${adoptaniMessageVO.ado_Ani_Mes}</td>
 			<td>
-				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do">
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do">
 					<input type="submit" value="修改"> 
 					<input type="hidden" name="ado_Ani_Mes_No" value="<%=adoptaniMessageVO.getAdo_Ani_Mes_No()%>"> 
 						<input type="hidden" name="adopt_Ani_Id" value="<%=adoptaniMessageVO.getAdopt_Ani_Id()%>"> 
@@ -68,7 +68,7 @@
 			</td>
 			<td>
 				<FORM METHOD="post"
-					ACTION="<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do">
+					ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do">
 					<input type="submit" value="刪除"> 
 					<input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}"> 
 					<input type="hidden" name="action" value="delete">

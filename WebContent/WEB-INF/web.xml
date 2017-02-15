@@ -16,7 +16,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdoptaniServlet</servlet-name>
-		<url-pattern>/adoptani/adoptani.do</url-pattern>
+		<url-pattern>/front-end/adoptani/adoptani.do</url-pattern>
 	</servlet-mapping>
     
      <servlet>
@@ -25,7 +25,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdoptaniPhotoServlet</servlet-name>
-		<url-pattern>/adoptani_photo/adoptani_photo.do</url-pattern>
+		<url-pattern>/front-end/adoptani_photo/adoptani_photo.do</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -34,7 +34,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DBGifReader_AdoptaniPhoto</servlet-name>
-		<url-pattern>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do</url-pattern>
+		<url-pattern>/front-end/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do</url-pattern>
 	</servlet-mapping>
 	
 		<servlet>
@@ -43,7 +43,16 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdoptaniMessageServlet</servlet-name>
-		<url-pattern>/adoptani_message/AdoptaniMessageServlet.do</url-pattern>
+		<url-pattern>/front-end/adoptani_message/AdoptaniMessageServlet.do</url-pattern>
 	</servlet-mapping>
+	
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>MyEchoServer</servlet-name> -->
+<!-- 		<servlet-class>com.adoptani_message.controller.MyEchoServer</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>MyEchoServer</servlet-name> -->
+<!-- 		<url-pattern>/front-end/adoptani_message/MyEchoServer</url-pattern> -->
+<!-- 	</servlet-mapping> -->
   
 </web-app>

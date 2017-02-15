@@ -61,7 +61,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani_photo/select_page.jsp");
+							.getRequestDispatcher("/front-end/adoptani_photo/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -76,7 +76,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani_photo/select_page.jsp");
+							.getRequestDispatcher("/front-end/adoptani_photo/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -90,7 +90,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani_photo/select_page.jsp");
+							.getRequestDispatcher("/front-end/adoptani_photo/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -98,19 +98,19 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("oneAdoptAniPhotoList", oneAdoptAniPhotoList); 
 				if("getOne_For_Display".equals(action)){
-					String url = "/adoptani_photo/listOneAdoptaniPhoto.jsp";
+					String url = "/front-end/adoptani_photo/listOneAdoptaniPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 				}
 				else if("getOne_For_Display_From_listOneAdoptani.jsp".equals(action)){
 					System.out.println("查詢資料完成");
-					String url = "/adoptani/listOneAdoptaniAllPhoto.jsp";
+					String url = "/front-end/adoptani/listOneAdoptaniAllPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 				}
 				else if("getOne_For_Display_From_listAllAdoptani.jsp".equals(action)){
 					System.out.println("查詢資料完成");
-					String url = "/adoptani/listOneAdoptaniAllPhoto.jsp";
+					String url = "/front-end/adoptani/listOneAdoptaniAllPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); 
 					successView.forward(req, res);
 				}
@@ -119,7 +119,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/adoptani_photo/select_page.jsp");
+						.getRequestDispatcher("/front-end/adoptani_photo/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -197,7 +197,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 						
 						req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // 含有輸入格式錯誤的adoptaniPhotoVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/adoptani_photo/addAdoptaniPhoto.jsp");
+								.getRequestDispatcher("/front-end/adoptani_photo/addAdoptaniPhoto.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -209,7 +209,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					adoptaniPhotoVO = adoptaniPhotoService.addAdoptaniPhoto(adopt_Ani_Id, mem_Id, picList.get(i), ado_Pic_name_insert, ado_Pic_nameEX, picTypeList.get(i));
 					}
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/adoptani_photo/listAllAdoptaniPhoto.jsp";
+					String url = "/front-end/adoptani_photo/listAllAdoptaniPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllAdoptani.jsp
 					successView.forward(req, res);				
 					
@@ -217,7 +217,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add(e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani_photo/addAdoptaniPhoto.jsp");
+							.getRequestDispatcher("/front-end/adoptani_photo/addAdoptaniPhoto.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -247,7 +247,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 						
 						req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // 含有輸入格式錯誤的empVO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/adoptani_photo/update_adoptaniPhoto_input.jsp");
+								.getRequestDispatcher("/front-end/adoptani_photo/update_adoptaniPhoto_input.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -256,14 +256,14 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					adoptaniPhotoSvc.upadaeAdoptaniPhoto(adoptaniPhotoVO);
 					/***************************3.修改完成,準備轉交(Send the Success view)*************/
 					req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO); // 資料庫update成功後,正確的的empVO物件,存入req
-					String url = "/adoptani_photo/listAllAdoptaniPhoto.jsp";
+					String url = "/front-end/adoptani_photo/listAllAdoptaniPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 					successView.forward(req, res);
 					/***************************其他可能的錯誤處理*************************************/
 				} catch (Exception e) {
 					errorMsgs.add("修改資料失敗:"+e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani_photo/update_adoptaniPhoto_input.jsp");
+							.getRequestDispatcher("/front-end/adoptani_photo/update_adoptaniPhoto_input.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -286,7 +286,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				
 					/***************************3.查詢完成,準備轉交(Send the Success view)************/
 					req.setAttribute("adoptaniPhotoVO", adoptaniPhotoVO);         // 資料庫取出的adoptaniVO物件,存入req
-					String url = "/adoptani_photo/update_adoptaniPhoto_input.jsp";
+					String url = "/front-end/adoptani_photo/update_adoptaniPhoto_input.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_adoptani_input.jsp
 					successView.forward(req, res);
 
@@ -294,7 +294,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani/listAllAdoptani.jsp");
+							.getRequestDispatcher("/front-end/adoptani/listAllAdoptani.jsp");
 					failureView.forward(req, res);
 				}
 			}
@@ -315,7 +315,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 					adoptaniPhoto.deleteAdoptaniPhoto(str);
 					
 					/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-					String url = "/adoptani_photo/listAllAdoptaniPhoto.jsp";
+					String url = "/front-end/adoptani_photo/listAllAdoptaniPhoto.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 					successView.forward(req, res);
 					
@@ -323,7 +323,7 @@ public class AdoptaniPhotoServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("刪除資料失敗:"+e.getMessage());
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/adoptani_photo/listAllAdoptaniPhoto.jsp");
+							.getRequestDispatcher("/front-end/adoptani_photo/listAllAdoptaniPhoto.jsp");
 					failureView.forward(req, res);
 				}
 			}			 

@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 
 public class AdoptaniMessageJNDIDAO implements AdoptaniMessageDAO_interface{
 	
-	// ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+	// ä¸€å€‹æ‡‰ç”¨ç¨‹å¼ä¸­,é‡å°ä¸€å€‹è³‡æ–™åº« ,å…±ç”¨ä¸€å€‹DataSourceå³å¯
 	private static DataSource ds = null;
 	static {
 		try {
@@ -191,7 +191,7 @@ public class AdoptaniMessageJNDIDAO implements AdoptaniMessageDAO_interface{
 				rs = pstmt.executeQuery();
 				
 				while (rs.next()){
-					//adoptaniVO¤]ºÙ¬°Domain objects
+					//adoptaniVOä¹Ÿç¨±ç‚ºDomain objects
 					adoptaniMessageVO = new AdoptaniMessageVO();
 					adoptaniMessageVO.setAdo_Ani_Mes_No(rs.getString("Ado_Ani_Mes_No"));
 					adoptaniMessageVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));
@@ -250,7 +250,7 @@ public class AdoptaniMessageJNDIDAO implements AdoptaniMessageDAO_interface{
 				
 				
 				while (rs.next()){
-					//adoptaniVO¤]ºÙ¬°Domain objects
+					//adoptaniVOä¹Ÿç¨±ç‚ºDomain objects
 					adoptaniMessageVO = new AdoptaniMessageVO();
 					adoptaniMessageVO.setAdo_Ani_Mes_No(rs.getString("Ado_Ani_Mes_No"));
 					adoptaniMessageVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));
@@ -309,7 +309,7 @@ public class AdoptaniMessageJNDIDAO implements AdoptaniMessageDAO_interface{
 				
 				
 				while (rs.next()){
-					//adoptaniVO¤]ºÙ¬°Domain objects
+					//adoptaniVOä¹Ÿç¨±ç‚ºDomain objects
 					adoptaniMessageVO = new AdoptaniMessageVO();
 					adoptaniMessageVO.setAdo_Ani_Mes_No(rs.getString("Ado_Ani_Mes_No"));
 					adoptaniMessageVO.setAdopt_Ani_Id(rs.getString("Adopt_Ani_Id"));

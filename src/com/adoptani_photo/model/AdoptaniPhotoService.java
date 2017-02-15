@@ -34,7 +34,7 @@ public class AdoptaniPhotoService {
 	
 	public AdoptaniPhotoVO upadaeAdoptaniPhoto(AdoptaniPhotoVO adoptaniPhotoVO){
 
-/**	­ìª©
+/**	åŸç‰ˆ
  * 	public AdoptaniPhotoVO upadaeAdoptaniPhoto(byte[] ado_Ani_Pic, String ado_Pic_name, String ado_Pic_nameEX, String ado_Pic_type){
 
 	AdoptaniPhotoVO adoptaniPhotoVO = new AdoptaniPhotoVO();
@@ -57,7 +57,7 @@ public class AdoptaniPhotoService {
 		
 	}
 	
-	//¨ú±o¤@°¦°e¾i°Êª«ªº·Ó¤ù(¦h±i)
+	//å–å¾—ä¸€éš»é€é¤Šå‹•ç‰©çš„ç…§ç‰‡(å¤šå¼µ)
 	public List<AdoptaniPhotoVO> getOneAdoptaniPhoto(String ado_Ani_Pic_No){
 		return dao.getOneAdoptAni(ado_Ani_Pic_No);
 	}
@@ -66,7 +66,7 @@ public class AdoptaniPhotoService {
 		return dao.getAll();
 	}
 	
-	//¨ú±o³æ¤@·Ó¤ù(³æ±i)
+	//å–å¾—å–®ä¸€ç…§ç‰‡(å–®å¼µ)
 	public AdoptaniPhotoVO findByPrimaryKey(String ado_Ani_Pic_No){
 		return dao.findByPrimaryKey(ado_Ani_Pic_No);
 	}	

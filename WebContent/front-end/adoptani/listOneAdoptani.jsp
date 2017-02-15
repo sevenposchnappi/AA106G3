@@ -106,7 +106,7 @@
                 <tr>
 
                     <td>
-						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/adoptani/adoptani.do">
+						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani/adoptani.do">
 						<input type="submit" value="修改">
 						<input type="hidden" name="adopt_Ani_Id" value="${adoptaniVO.adopt_Ani_Id}">
 						<input type="hidden" name="action"	value="getOne_For_Update"></FORM>

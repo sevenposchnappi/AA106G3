@@ -12,7 +12,7 @@ public interface AdoptaniPhotoDAO_interface {
     public List<AdoptaniPhotoVO> getAll();
     public List<AdoptaniPhotoVO> getOneAdoptAni(String adopt_Ani_Id);
     
-    //¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+    //è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
     //public List<EmpVO> getAll(Map<String, String[]> map); 
 
 }

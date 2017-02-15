@@ -29,7 +29,7 @@
             
             margin-top:10%;
             border: solid;
-            width: 800px;
+            width: 880px;
             height: 600px;
             
             position: absolute;
@@ -57,18 +57,20 @@
         .bio{
             /*border: solid red;*/
             height: 600px;
+            width:;
             background-color: ;
         }
 
         .headPhotoDiv{
-            width: 250px;
+        	text-align: center;
+            width: 100%;
             height: 250px;
             margin: 80px auto;
 
         }
 
         #headPhoto{
-            width: 250px;
+    		margin: 0 auto; 
             max-width: 250px;
             height: 250px;
             max-height: 250px;
@@ -95,8 +97,11 @@
 
         .like{
             height: 50px;
-            
+        
         }
+        
+   
+        
         .functionButton{
             margin: 0px auto;
             width:280px ;
@@ -124,19 +129,19 @@
     <div class="container" padding="0px">
         <div class="row">
             <div class="col-xs-12 col-sm-1"></div>
-            <div class="col-xs-12 col-sm-8">
+            <div class="col-xs-12 col-sm-10">
                 <div class="container profile-card" >
             <div class="row">
                 <!-- <div class="overlay"></div> -->
                 <div class="col-xs-12 col-sm-5 header" >
                     <div class="headPhotoDiv">
-                        <img src="<%=request.getContextPath()%>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>&ado_Pic_type=0" id="headPhoto">
+                        <img src="<%=request.getContextPath()%>/front-end/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>&ado_Pic_type=0" id="headPhoto">
                     <h1 align="center">
                         <%= adoptaniVO.getAdopt_Ani_name()%>
                     </h1>
                     </div>
                     <div class="row functionButton" align="center">
-                        <div class="col-xs-12 col-sm-3 "><img src="icon/heartblue.png" ALT="喜歡" title="喜歡"></div>
+                        <div class="col-xs-12 col-sm-3 "><img src="icon/heartblue.png" ALT="喜歡" title="喜歡" onclick="setDIV()"></div>
                         <div class="col-xs-12 col-sm-3"><img src="icon/followers.png"  ALT="收藏" title="收藏"></div>
                         <div class="col-xs-12 col-sm-3"><img src="icon/donation2.png" ALT="贊助" title="贊助"></div>
                         <div class="col-xs-12 col-sm-3"><img src="icon/whistleBlue.png" ALT="檢舉" title="檢舉"></div>
@@ -152,13 +157,13 @@
 
 
                 </div>
-<!--                 <iframe>   待測試 -->
-<%--                 <iframe src="<%=request.getContextPath()%>/adoptani_message/listOneAdoptaniAllMessageForView.jsp"></iframe> --%>
+
+                
                 <div class="col-xs-12 col-sm-7 bio" id="listInformation" style=" overflow:auto; padding-top: 3px"></div>
             </div>
         </div>
             </div>
-            <div class="col-xs-12 col-sm-3"></div>
+            <div class="col-xs-12 col-sm-1"></div>
         </div>
     </div>
         
@@ -192,7 +197,7 @@
 			  };
 			  var adopt_Ani_Id = "adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>";
 			  var action = "action=getOne_For_Display_FromView";
-			  var url = "<%=request.getContextPath()%>/adoptani/adoptani.do";
+			  var url = "<%=request.getContextPath()%>/front-end/adoptani/adoptani.do";
 			  xhttp.open("POST", url , true);
 			  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			  xhttp.send(action+"&"+adopt_Ani_Id);
@@ -216,7 +221,7 @@
 				  };
 				  var adopt_Ani_Id = "adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>";
 				  var action = "action=getOne_For_Display_From_listOneAdoptani.jsp";
-				  var url = "<%=request.getContextPath()%>/adoptani_photo/adoptani_photo.do";
+				  var url = "<%=request.getContextPath()%>/front-end/adoptani_photo/adoptani_photo.do";
 				  xhttp.open("POST", url , true);
 				  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				  xhttp.send(action+"&"+adopt_Ani_Id);
@@ -224,32 +229,25 @@
 				}
 			
 			function loadMessage(){
-			    
-				  var xhttp = new XMLHttpRequest();
-				  xhttp.onreadystatechange = function() {
-				    if (this.readyState == 4 && this.status == 200) {
-				        
-				        //List<AdoptaniPhotoVO> list = request.getAttribute("oneAdoptAniPhotoList", oneAdoptAniPhotoList);
-				     document.getElementById("listInformation").innerHTML =xhttp.responseText ;
-				     console.log(xhttp.responseText);
-				     //do
-				    	 
-				    	 cument.getElementById("listInformation").innerHTML ="<iframe src='"+ xhttp.responseText +"'></iframe>";
-				    }else{
-				       // alert("xhttp.status:"+ xhttp.status );
-				     }
-				  //  alert("xhttp.readyState:"+ xhttp.readyState );
-				  };
-				  var adopt_Ani_Id = "adopt_Ani_Id=<%= adoptaniVO.getAdopt_Ani_Id()%>";
-				  var action = "action=getOne_For_Display_AllMessage_FromlistOneAdoptaniView.jsp";
-				  var url = "<%=request.getContextPath()%>/adoptani_message/AdoptaniMessageServlet.do";
-				  xhttp.open("POST", url , true);
-				  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				  xhttp.send(action+"&"+adopt_Ani_Id);
-				//  xhttp.send(adopt_Ani_Id);
-				}
+				document.getElementById("listInformation").innerHTML = "<iframe  width='100%' height='580' frameborder='0' id='iframeForMessage' src='<%=request.getContextPath()%>/front-end/adoptani_message/listOneAdoptaniAllMessageForView.jsp?adopt_Ani_Id=<%=adoptaniVO.getAdopt_Ani_Id()%>' ></iframe>";
+				setDIV()	
+			}
 		</script>
-    
+		
+		
+		
+<!-- 		卷軸置底??????		 -->
+    	<script type="text/javascript" language="javascript">
+			   	//DIV的滾動條始終顯示聊天窗口最底部
+			   	function setDIV() {
+		   			    var $contents = $('#iframeForMessage').contents();
+		   			    $contents.scrollTop($contents.height());
+			            //var div = document.getElementById("iframeForMessage");
+			            //div.scrollTop = div.scrollHeight; 
+			            //div.scrollTop = div.scrollHeight;
+						//切忌setTimeout一定要放在這裡，勿放onload裡面，否則div的滾動條只能指在倒數第2行 setTimeout('setDIV()', 200);
+			      }
+		</script>
     </body>
 </html>
 

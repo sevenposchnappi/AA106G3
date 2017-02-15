@@ -39,7 +39,7 @@
 	    <div class="carousel-inner ">
 		    <c:forEach var="adoptaniPhotoVO" items="${list}" >
 		        <div class="item " >
-		            <img src="<%=request.getContextPath()%>/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?ado_Ani_Pic_No=${adoptaniPhotoVO.ado_Ani_Pic_No}" alt="" max-height="">
+		            <img src="<%=request.getContextPath()%>/front-end/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?ado_Ani_Pic_No=${adoptaniPhotoVO.ado_Ani_Pic_No}" alt="" max-height="">
 		            <div class="container">
 		                <div class="carousel-caption">
 		                    <h1>CSS可樂好喝超爽快</h1>
