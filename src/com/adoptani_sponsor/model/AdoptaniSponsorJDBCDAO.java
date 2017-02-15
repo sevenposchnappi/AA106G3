@@ -411,12 +411,12 @@ public static void main(String[] args) {
 	dao.update(adoptaniSponsorVO3);
 	System.out.println("成功修改");
 	// 刪除
-	dao.delete("43000004");
+	dao.delete("43000001");
 	System.out.println("成功刪除");
 	
 	System.out.println("---------------------findByPrimaryKey---------------------------");
 	// 查詢
-	AdoptaniSponsorVO adoptaniSponsorVO4 = dao.findByPrimaryKey("43000001");
+	AdoptaniSponsorVO adoptaniSponsorVO4 = dao.findByPrimaryKey("43000021");
 	System.out.print(adoptaniSponsorVO4.getAdo_Ani_Spo_No() + ",");
 	System.out.print(adoptaniSponsorVO4.getMem_Id() + ",");
 	System.out.print(adoptaniSponsorVO4.getAdopt_Ani_Id() + ",");

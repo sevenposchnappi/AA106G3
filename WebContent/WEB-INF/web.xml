@@ -37,22 +37,24 @@
 		<url-pattern>/front-end/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
-		<servlet-name>AdoptaniMessageServlet</servlet-name>
-		<servlet-class>com.adoptani_message.controller.AdoptaniMessageServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AdoptaniMessageServlet</servlet-name>
-		<url-pattern>/front-end/adoptani_message/AdoptaniMessageServlet.do</url-pattern>
-	</servlet-mapping>
-	
 <!-- 	<servlet> -->
-<!-- 		<servlet-name>MyEchoServer</servlet-name> -->
-<!-- 		<servlet-class>com.adoptani_message.controller.MyEchoServer</servlet-class> -->
+<!-- 		<servlet-name>AdoptaniMessageServlet</servlet-name> -->
+<!-- 		<servlet-class>com.adoptani_message.controller.AdoptaniMessageServlet</servlet-class> -->
 <!-- 	</servlet> -->
 <!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>MyEchoServer</servlet-name> -->
-<!-- 		<url-pattern>/front-end/adoptani_message/MyEchoServer</url-pattern> -->
+<!-- 		<servlet-name>AdoptaniMessageServlet</servlet-name> -->
+<!-- 		<url-pattern>/front-end/adoptani_message/AdoptaniMessageServlet.do</url-pattern> -->
 <!-- 	</servlet-mapping> -->
+	
+	<servlet>
+		<servlet-name>AdoptaniSponsorServlet</servlet-name>
+		<servlet-class>com.adoptani_sponsor.controller.AdoptaniSponsorServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdoptaniSponsorServlet</servlet-name>
+		<url-pattern>/front-end/adoptani_sponsor/AdoptaniSponsorServlet.do</url-pattern>
+	</servlet-mapping>
+	
+
   
 </web-app>

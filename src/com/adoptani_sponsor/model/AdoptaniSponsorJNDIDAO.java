@@ -194,10 +194,10 @@ public class AdoptaniSponsorJNDIDAO implements AdoptaniSponsorDAO_interface{
 			pstmt.setString(1, ado_Ani_Spo_No);
 			
 			rs = pstmt.executeQuery();
-			
+System.out.println(rs);
 			while (rs.next()){
 				//adoptaniVO也稱為Domain objects
-				
+System.out.println(rs.getString("ado_Ani_Spo_No"));
 				adoptaniSponsorVO = new AdoptaniSponsorVO();
 				adoptaniSponsorVO.setAdo_Ani_Spo_No(rs.getString("ado_Ani_Spo_No"));
 				adoptaniSponsorVO.setAdopt_Ani_Id(rs.getString("adopt_Ani_Id"));

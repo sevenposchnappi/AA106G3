@@ -35,32 +35,32 @@ public class AdoptaniSponsorService {
 	 * @return adoptaniMessageVO 物件
 	 * **/
 	
-	public AdoptaniSponsorVO updateAdoptaniMessage(String adopt_Ani_Id, String Mem_Id, Integer ado_Ani_Spo_money, String ado_Ani_Spo_thing){
+	public AdoptaniSponsorVO updateAdoptaniSponsor(String ado_Ani_Spo_No, String adopt_Ani_Id, String Mem_Id, Integer ado_Ani_Spo_money, String ado_Ani_Spo_thing){
 		
 		AdoptaniSponsorVO adoptaniSponsorVO = new AdoptaniSponsorVO();
 		adoptaniSponsorVO.setAdopt_Ani_Id(adopt_Ani_Id);
 		adoptaniSponsorVO.setMem_Id(Mem_Id);
 		adoptaniSponsorVO.setAdo_Ani_Spo_thing(ado_Ani_Spo_thing) ;
 		adoptaniSponsorVO.setAdo_Ani_Spo_money(ado_Ani_Spo_money) ;
-		
+		adoptaniSponsorVO.setAdo_Ani_Spo_No(ado_Ani_Spo_No) ;
 		dao.update(adoptaniSponsorVO);
 		
 		return adoptaniSponsorVO;
 	}
 	
-	public void deleteAdoptaniMessage(String ado_Ani_Spo_No){
+	public void deleteAdoptaniSponsor(String ado_Ani_Spo_No){
 		dao.delete(ado_Ani_Spo_No);
 		
 	}
-	public AdoptaniSponsorVO getOneAdoptaniMessage(String ado_Ani_Spo_No){
+	public AdoptaniSponsorVO getOneAdoptaniSponsor(String ado_Ani_Spo_No){
 		return dao.findByPrimaryKey(ado_Ani_Spo_No);
 	}
 	
-	public List<AdoptaniSponsorVO> getOneAdoptaniAllMessage(String Adopt_Ani_Id){
+	public List<AdoptaniSponsorVO> getOneAdoptaniAllSponsor(String Adopt_Ani_Id){
 		return dao.getOneAllSponsor(Adopt_Ani_Id);
 	}
 	
-	public List<AdoptaniSponsorVO> getAllMessage() {
+	public List<AdoptaniSponsorVO> getAllSponsor() {
 		return dao.getAll();
 	}
 	
