@@ -141,9 +141,9 @@
                     </h1>
                     </div>
                     <div class="row functionButton" align="center">
-                        <div class="col-xs-12 col-sm-3 "><img src="icon/heartblue.png" ALT="喜歡" title="喜歡" onclick="setDIV()"></div>
+                        <div class="col-xs-12 col-sm-3 "><img src="icon/heartblue.png" ALT="喜歡" title="喜歡" id="like"></div>
                         <div class="col-xs-12 col-sm-3"><img src="icon/followers.png"  ALT="收藏" title="收藏"></div>
-                        <div class="col-xs-12 col-sm-3"><img src="icon/donation2.png" ALT="贊助" title="贊助"></div>
+                        <div class="col-xs-12 col-sm-3"><img src="icon/donation2.png" ALT="贊助" title="贊助" onclick="loadSponsor()"></div>
                         <div class="col-xs-12 col-sm-3"><img src="icon/whistleBlue.png" ALT="檢舉" title="檢舉"></div>
                       
                     </div>
@@ -229,24 +229,33 @@
 				}
 			
 			function loadMessage(){
-				document.getElementById("listInformation").innerHTML = "<iframe  width='100%' height='580' frameborder='0' id='iframeForMessage' src='<%=request.getContextPath()%>/front-end/adoptani_message/listOneAdoptaniAllMessageForView.jsp?adopt_Ani_Id=<%=adoptaniVO.getAdopt_Ani_Id()%>' ></iframe>";
-				setDIV()	
+				document.getElementById("listInformation").innerHTML = "<iframe   width='100%' height='580' frameborder='0' id='iframeForMessage' src='<%=request.getContextPath()%>/front-end/adoptani_message/listOneAdoptaniAllMessageForView.jsp?adopt_Ani_Id=<%=adoptaniVO.getAdopt_Ani_Id()%>' ></iframe>";
+				
 			}
-		</script>
+			
+			function loadSponsor(){
+				document.getElementById("listInformation").innerHTML = "<iframe   width='100%' height='580' frameborder='0' id='iframeForSpnsor' src='<%=request.getContextPath()%>/front-end/adoptani_sponsor/listOneAdoptaniAllSponsorForView.jsp?adopt_Ani_Id=<%=adoptaniVO.getAdopt_Ani_Id()%>' ></iframe>";
+				
+			}
 		
+//		卷軸置底		
+
+// 			$("#like").on('click',function(){
+// 				alert("AA");
+// 				var iframeForMessage = document.getElementById("iframeForMessage");
+// 				iframeForMessage.scrollTop = iframeForMessage.scrollHeight;
+//  				$("html").scrollTop(100);
+// 				alert("BB");
+// 			});
+			
+// 			function scrollDown(){
+// 				alert("AA");
+// 				var iframeForMessage = document.getElementById("iframeForMessage");
+// 				iframeForMessage.innerHTML="0"
+// 				iframeForMessage.scrollTop = iframeForMessage.scrollHeight;
+// 				alert("BB");
+// 			}
 		
-		
-<!-- 		卷軸置底??????		 -->
-    	<script type="text/javascript" language="javascript">
-			   	//DIV的滾動條始終顯示聊天窗口最底部
-			   	function setDIV() {
-		   			    var $contents = $('#iframeForMessage').contents();
-		   			    $contents.scrollTop($contents.height());
-			            //var div = document.getElementById("iframeForMessage");
-			            //div.scrollTop = div.scrollHeight; 
-			            //div.scrollTop = div.scrollHeight;
-						//切忌setTimeout一定要放在這裡，勿放onload裡面，否則div的滾動條只能指在倒數第2行 setTimeout('setDIV()', 200);
-			      }
 		</script>
     </body>
 </html>

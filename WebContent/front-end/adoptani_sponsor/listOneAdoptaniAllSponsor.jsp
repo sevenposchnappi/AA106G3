@@ -8,8 +8,13 @@
 <%-- 取得Service物件，調用DAO裡面的getAll()，取資料庫此Table的每筆資料。 --%>
 <%
 	AdoptaniSponsorService adoptaniSponsorSvc = new AdoptaniSponsorService();
-    List<AdoptaniSponsorVO> list = adoptaniSponsorSvc.getAllSponsor();
-    pageContext.setAttribute("list",list);	//要放到scope裡面才找得到。
+	List<AdoptaniSponsorVO> list = adoptaniSponsorSvc.getOneAdoptaniAllSponsor(request.getParameter("adopt_Ani_Id"));
+	pageContext.setAttribute("list",list);	
+	
+	System.out.println(request.getParameter("adopt_Ani_Id"));
+	Integer totalSponsorMoney = (Integer)adoptaniSponsorSvc.getOneAllMoney(request.getParameter("adopt_Ani_Id"));
+    request.setAttribute("totalSponsorMoney",totalSponsorMoney);
+    request.setAttribute("adopt_Ani_Id",request.getParameter("adopt_Ani_Id"));
 %>
 
 <html>
@@ -21,7 +26,7 @@
 <table border='1' cellpadding='5' cellspacing='0' width='800'>
 	<tr bgcolor='#CCCCFF' align='center' valign='middle' height='20'>
 		<td>
-		<h3>所有送養動物資料 - listAllAdoptaniSponsor.jsp</h3>
+		<h3>所有送養動物資料 - listOneAdoptaniALLSponsor.jsp</h3>
 		<a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
 		</td>
 	</tr>
@@ -39,6 +44,8 @@
 </c:if>
 
 <table border='1' bordercolor='#CCCCFF' width='800'>
+
+<h1>獲得贊助金額:<%= request.getAttribute("totalSponsorMoney")%></h1>
 	<tr>
 		<th>送養動物留言編號</th>
 		<th>送養動物編號</th>
@@ -68,8 +75,8 @@
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_sponsor/AdoptaniSponsorServlet.do">
 			    <input type="submit" value="刪除">
 			    <input type="hidden" name="ado_Ani_Spo_No" value="${AdoptaniSponsorVO.ado_Ani_Spo_No}">
-			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
-			     <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
+			    <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+			    <input type="hidden" name="whichPage"	value="<%=whichPage%>">               <!--送出當前是第幾頁給Controller-->
 			    <input type="hidden" name="action"value="delete"></FORM>
 			</td>
 			     

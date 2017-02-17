@@ -196,7 +196,9 @@ public class AdoptaniMessageServlet extends HttpServlet {
 					}
 					
 					String ado_Ani_Mes = req.getParameter("ado_Ani_Mes");
-					
+					if (ado_Ani_Mes == null || (ado_Ani_Mes.trim()).length() == 0) {
+						errorMsgs.add("請輸入留言。");
+					}
 					
 					
 					
@@ -211,11 +213,19 @@ public class AdoptaniMessageServlet extends HttpServlet {
 					
 					// Send the use back to the form, if there were errors
 					if (!errorMsgs.isEmpty()) {
-						req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // 含有輸入格式錯誤的empVO物件,也存入req
-						RequestDispatcher failureView = req
-								.getRequestDispatcher("/front-end/adoptani_message/addAdoptaniMessage.jsp");
-						failureView.forward(req, res);
-						return;
+						if("insert".equals(action)){
+							req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // 含有輸入格式錯誤的empVO物件,也存入req
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/front-end/adoptani_message/addAdoptaniMessage.jsp");
+							failureView.forward(req, res);
+							return;
+						}else if("insert_From_listOneAdoptaniAllMessageForView.jsp".equals(action)){
+							req.setAttribute("adoptaniMessageVO", adoptaniMessageVO); // 含有輸入格式錯誤的empVO物件,也存入req
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/front-end/adoptani_message/listOneAdoptaniAllMessageForView.jsp");
+							failureView.forward(req, res);
+							return;	
+						}
 					}
 					
 					/***************************2.開始新增資料***************************************/

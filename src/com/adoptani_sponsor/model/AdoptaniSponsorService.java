@@ -64,4 +64,8 @@ public class AdoptaniSponsorService {
 		return dao.getAll();
 	}
 	
+	public Integer getOneAllMoney(String Adopt_Ani_Id) {
+		return dao.getOneAllSponsorMoney(Adopt_Ani_Id);
+	}
+	
 }

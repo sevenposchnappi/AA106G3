@@ -135,6 +135,8 @@ public class AdoptaniSponsorServlet extends HttpServlet {
 				/***************************2.開始查詢資料*****************************************/
 				AdoptaniSponsorService adoptaniSponsorgeSvc = new AdoptaniSponsorService();
 				List<AdoptaniSponsorVO> adoptaniSponsorlist = adoptaniSponsorgeSvc.getOneAdoptaniAllSponsor(adopt_Ani_Id);
+				Integer totalSponsorMoney =  adoptaniSponsorgeSvc.getOneAllMoney(adopt_Ani_Id);
+				
 				if (adoptaniSponsorlist == null) {
 					errorMsgs.add("查無資料");
 				}
@@ -149,6 +151,7 @@ public class AdoptaniSponsorServlet extends HttpServlet {
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("adopt_Ani_Id", adopt_Ani_Id);
+				req.setAttribute("totalSponsorMoney", totalSponsorMoney);
 				req.setAttribute("adoptaniSponsorlist", adoptaniSponsorlist); // 資料庫取出的adoptaniVO物件,存入req
 				if("getOneAni_For_DisplayAll".equals(action)){
 					String url = "/front-end/adoptani_sponsor/listOneAdoptaniAllSponsor.jsp";
@@ -354,7 +357,7 @@ public class AdoptaniSponsorServlet extends HttpServlet {
 					System.out.println("修改完成,準備轉交"+requestURL);
 					req.setAttribute("adoptaniSponsorVO", adoptaniSponsorVO); // 資料庫update成功後,正確的的adoptaniSponsorVO物件,存入request scope中。
 					String url = requestURL;
-					RequestDispatcher successView = req.getRequestDispatcher("/front-end/adoptani_sponsor/listOneAdoptaniAllSponsor.jsp"); // 修改成功後,轉交
+					RequestDispatcher successView = req.getRequestDispatcher("/front-end/adoptani_sponsor/listAllAdoptaniSponsor.jsp"); // 修改成功後,轉交
 					successView.forward(req, res);
 
 					/***************************其他可能的錯誤處理*************************************/

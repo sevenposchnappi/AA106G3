@@ -30,6 +30,9 @@ public class AdoptaniSponsorJDBCDAO implements AdoptaniSponsorDAO_interface{
 	private static final String GET_ONE_ALL_STMT = 
 			"SELECT ado_Ani_Spo_No, adopt_Ani_Id, mem_Id, ado_Ani_Spo_money, ado_Ani_Spo_thing, ado_Ani_Spo_time FROM adopt_Ani_sponsor where adopt_Ani_Id = ?";	
 	
+	private static final String GET_ONE_ALL_Money_STMT = 
+			"SELECT ado_Ani_Spo_money FROM adopt_Ani_sponsor where adopt_Ani_Id = ?";
+	
 	private static final String DELETE = 
 			"DELETE FROM adopt_Ani_sponsor where ado_Ani_Spo_No = ?";
 	
@@ -451,6 +454,61 @@ public static void main(String[] args) {
 			
 		}
 	}
+
+
+@Override
+public Integer getOneAllSponsorMoney(String Adopt_Ani_Id) {
+			List<AdoptaniSponsorVO> list = new ArrayList<AdoptaniSponsorVO>();
+			AdoptaniSponsorVO adoptaniSponsorVO = null;
+			
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int SponsorTotal = 0;
+			
+			try {
+				Class.forName(driver);
+				con = DriverManager.getConnection(url, userid, passwd);
+				pstmt = con.prepareStatement(GET_ONE_ALL_Money_STMT);
+				pstmt.setString(1, Adopt_Ani_Id);
+				
+				rs = pstmt.executeQuery();
+				
+				
+				while (rs.next()){
+					SponsorTotal += rs.getInt("ado_Ani_Spo_money");
+					
+				}
+				// Handle any driver errors
+			} catch (SQLException | ClassNotFoundException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return SponsorTotal;
+			}	
 }
 
 

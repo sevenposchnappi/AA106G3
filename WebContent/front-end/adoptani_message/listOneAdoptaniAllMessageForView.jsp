@@ -26,8 +26,14 @@
 
 </head>
 <body bgcolor="white" >
-
-
+	
+	
+<script>
+window.onload = function ()
+{	
+	scroll(0, 9999999);
+}
+</script>
 
 <table border="1" bordercolor="#CCCCFF" width="400">
 	<tr>
@@ -64,25 +70,37 @@
 <br>
 <br>
 <br>
+	<div>
+		<c:if test="${not empty errorMsgs}">
+			<font color='red'>請修正以下錯誤:
+			<ul>
+				<c:forEach var="message" items="${errorMsgs}">
+					<li>${message}</li>
+				</c:forEach>
+			</ul>
+			</font>
+		</c:if>
+	</div>
+	
 	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_message/AdoptaniMessageServlet.do" name="form1">
 	<table border="1" width="400" >
 	
-		<tr>
-			<td width="200" height="100">送養動物編號:</td>
-			<td width="200"><input type="hidden" name="adopt_Ani_Id" size="30" 	
+		<tr >
+			<td >送養動物編號:</td>
+			<td ><input type="hidden" name="adopt_Ani_Id" size="30" 	
 				value="<%=adopt_Ani_Id %>" /><%=adopt_Ani_Id %></td>
 		</tr>
 		<tr>
-			<td width="100">發布者會員編號:</td>
+			<td>發布者會員編號:</td>
 			<td><input type="hidden" name="mem_Id" size="30" 	
 				value="<%=10000001%>" /><%=10000001%></td>
 		</td>
 		</tr>  
 		
 		<tr>
-			<td width='100'>留言內容:</td>
+			<td>留言內容:</td>
 			<td>
-				<textarea cols="50" rows="5" name="ado_Ani_Mes" ></textarea>
+				<textarea cols="30" rows="5" name="ado_Ani_Mes" ></textarea>
 			
 <!-- 			<input type="TEXT" name="Mem_Id" size="20" placeholder="8碼" -->
 <%-- 				value="<%= (adoptaniVO==null)? "" : adoptaniVO.getMem_Id()%>" /></td> --%>
@@ -93,8 +111,9 @@
 	</table>
 	<br>
 	<input type="hidden" name="action" value="insert_From_listOneAdoptaniAllMessageForView.jsp">
-	<input type="submit" value="送出新增" >
+	<input type="submit" value="留言">
 	</FORM>
+	
 
 
 			

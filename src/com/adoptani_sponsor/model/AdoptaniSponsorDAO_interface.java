@@ -11,6 +11,7 @@ public interface AdoptaniSponsorDAO_interface {
     public AdoptaniSponsorVO findByPrimaryKey(String ado_Ani_Spo_No);
     public List<AdoptaniSponsorVO> getAll();
     public List<AdoptaniSponsorVO> getOneAllSponsor(String Adopt_Ani_Id);
+    public Integer getOneAllSponsorMoney(String Adopt_Ani_Id);
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
     //public List<EmpVO> getAll(Map<String, String[]> map); 
 

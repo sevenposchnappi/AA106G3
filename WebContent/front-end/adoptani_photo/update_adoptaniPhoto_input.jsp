@@ -35,7 +35,7 @@
 
 
 	<tr>
-		<td>送養動物相片類型</td>
+		<td>送養動物相片類型(大頭貼or一般照片)</td>
 		<td>
 			<input type="TEXT" name="ado_Pic_type" size="20" value="<%=adoptaniPhotoVO.getAdo_Pic_type()%>">
 		</td>

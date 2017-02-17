@@ -45,11 +45,14 @@
    
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/adoptani_sponsor/AdoptaniSponsorServlet.do" >
-       <b>選擇送養動物留言編號:</b>
-       <select size="1" name="ado_Ani_Mes_No">
-         <c:forEach var="adoptaniMessageVO" items="${AdoptaniMessageSvc.allMessage}" > 
-          <option value="${adoptaniMessageVO.ado_Ani_Mes_No}">${adoptaniMessageVO.ado_Ani_Mes_No}
-         </c:forEach>   
+       <b>選擇送養動物贊助編號: 	</b>
+       <select size="1" name="ado_Ani_Spo_No">
+       
+          	 <c:forEach var="adoptaniSponsorVO" items="${AdoptaniSponsorSvc.allSponsor}" > 
+          		<option value="${adoptaniSponsorVO.ado_Ani_Spo_No}">${adoptaniSponsorVO.ado_Ani_Spo_No}-${AdoptaniSvc.getOneAdoptani(adoptaniSponsorVO.adopt_Ani_Id).adopt_Ani_name}
+        	 </c:forEach>
+       
+           
        </select>
        <input type="submit" value="送出">
        <input type="hidden" name="action" value="getOne_For_Display">
@@ -63,7 +66,7 @@
        <b>選擇送養動物編號:</b>
        <select size="1" name="adopt_Ani_Id">
          <c:forEach var="adoptaniVO" items="${AdoptaniSvc.all}" > 
-          <option value="${adoptaniVO.adopt_Ani_Id}">${adoptaniVO.adopt_Ani_Id}${adoptaniVO.adopt_Ani_name}
+          <option value="${adoptaniVO.adopt_Ani_Id}">(${adoptaniVO.adopt_Ani_Id}):${adoptaniVO.adopt_Ani_name}
          </c:forEach>   
        </select>
        <input type="submit" value="送出">
@@ -76,7 +79,7 @@
 <h3>送養動物管理</h3>
 
 <ul>
-  <li><a href='addAdoptaniSponsor.jsp'>Add</a> a new Adoptani.</li>
+  <li><a href='addAdoptaniSponsor.jsp'>Add</a> a new Adoptani Sponsor.</li>
 </ul>
 
 </body>

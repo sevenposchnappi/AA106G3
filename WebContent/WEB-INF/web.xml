@@ -37,14 +37,14 @@
 		<url-pattern>/front-end/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do</url-pattern>
 	</servlet-mapping>
 	
-<!-- 	<servlet> -->
-<!-- 		<servlet-name>AdoptaniMessageServlet</servlet-name> -->
-<!-- 		<servlet-class>com.adoptani_message.controller.AdoptaniMessageServlet</servlet-class> -->
-<!-- 	</servlet> -->
-<!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>AdoptaniMessageServlet</servlet-name> -->
-<!-- 		<url-pattern>/front-end/adoptani_message/AdoptaniMessageServlet.do</url-pattern> -->
-<!-- 	</servlet-mapping> -->
+	<servlet>
+		<servlet-name>AdoptaniMessageServlet</servlet-name>
+		<servlet-class>com.adoptani_message.controller.AdoptaniMessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdoptaniMessageServlet</servlet-name>
+		<url-pattern>/front-end/adoptani_message/AdoptaniMessageServlet.do</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>AdoptaniSponsorServlet</servlet-name>

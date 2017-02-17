@@ -4,6 +4,7 @@
 <%
 	AdoptaniSponsorVO adoptaniSponsorVO = (AdoptaniSponsorVO) request.getAttribute("adoptaniSponsorVO"); //AdoptaniServlet.java (Concroller), 存入req的adoptaniVO物件 (包括幫忙取出的adoptaniVO, 也包括輸入資料錯誤時的adoptaniVO物件)
 	request.setAttribute("adoptaniSponsorVO", adoptaniSponsorVO);
+    
 	
 
 %>
