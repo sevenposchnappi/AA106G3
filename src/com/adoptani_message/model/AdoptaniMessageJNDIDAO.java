@@ -49,7 +49,7 @@ public class AdoptaniMessageJNDIDAO implements AdoptaniMessageDAO_interface{
 				"UPDATE adopt_Ani_message set  ado_Ani_Mes=? where ado_Ani_Mes_No = ?";
 
 		private static final String GET_ONE_ALL_STMT = 
-				"SELECT ado_Ani_Mes_No,adopt_Ani_Id,mem_Id,ado_Ani_Mes_time,ado_Ani_Mes FROM adopt_Ani_message where adopt_Ani_Id = ?";	
+				"SELECT ado_Ani_Mes_No,adopt_Ani_Id,mem_Id,ado_Ani_Mes_time,ado_Ani_Mes FROM adopt_Ani_message where adopt_Ani_Id = ? ORDER BY ado_Ani_Mes_time";	
 		
 		
 		@Override

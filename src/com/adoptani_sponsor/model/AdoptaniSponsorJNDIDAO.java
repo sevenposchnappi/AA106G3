@@ -42,7 +42,7 @@ public class AdoptaniSponsorJNDIDAO implements AdoptaniSponsorDAO_interface{
 			"SELECT ado_Ani_Spo_No, adopt_Ani_Id, mem_Id, ado_Ani_Spo_money, ado_Ani_Spo_thing, ado_Ani_Spo_time FROM adopt_Ani_sponsor where ado_Ani_Spo_No = ?";
 	
 	private static final String GET_ONE_ALL_STMT = 
-			"SELECT ado_Ani_Spo_No, adopt_Ani_Id, mem_Id, ado_Ani_Spo_money, ado_Ani_Spo_thing, ado_Ani_Spo_time FROM adopt_Ani_sponsor where adopt_Ani_Id = ?";	
+			"SELECT ado_Ani_Spo_No, adopt_Ani_Id, mem_Id, ado_Ani_Spo_money, ado_Ani_Spo_thing, ado_Ani_Spo_time FROM adopt_Ani_sponsor where adopt_Ani_Id = ? ORDER BY ado_Ani_Spo_time";	
 	
 	private static final String GET_ONE_ALL_Money_STMT = 
 			"SELECT ado_Ani_Spo_money FROM adopt_Ani_sponsor where adopt_Ani_Id = ?";

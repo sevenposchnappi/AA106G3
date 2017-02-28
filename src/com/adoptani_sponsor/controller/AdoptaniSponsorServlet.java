@@ -257,7 +257,7 @@ public class AdoptaniSponsorServlet extends HttpServlet {
 						String url = "/front-end/adoptani_sponsor/listAllAdoptaniSponsor.jsp";
 						RequestDispatcher successView = req.getRequestDispatcher(url); 
 						successView.forward(req, res);
-					}else if("insert_From_listOneAdoptaniAllMessageForView.jsp".equals(action)){
+					}else if("insert_From_listOneAdoptaniAllSponsorForView.jsp".equals(action)){
 						String url = "/front-end/adoptani_sponsor/listOneAdoptaniAllSponsorForView.jsp";
 						RequestDispatcher successView = req.getRequestDispatcher(url); 
 						successView.forward(req, res);	

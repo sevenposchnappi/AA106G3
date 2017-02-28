@@ -29,6 +29,7 @@
 	
 	
 <script>
+/**載入時卷軸置底**/
 window.onload = function ()
 {	
 	scroll(0, 9999999);

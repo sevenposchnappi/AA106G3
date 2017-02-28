@@ -18,6 +18,14 @@
 <body bgcolor='white'>
 
 
+<script>
+/**載入時卷軸置底**/
+window.onload = function ()
+{	
+	scroll(0, 9999999);
+}
+</script>
+
 
 
 <table border='1' bordercolor='#CCCCFF' >
@@ -36,9 +44,9 @@
 	    </ol>
 	 	<%String firstTime = "active"; %>
 	    <!-- 幻燈片主圖區 -->
-	    <div class="carousel-inner ">
+	    <div class="carousel-inner " style="height: 580px;">
 		    <c:forEach var="adoptaniPhotoVO" items="${list}" >
-		        <div class="item " >
+		        <div class="item <%= firstTime%>">
 		            <img src="<%=request.getContextPath()%>/front-end/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do?ado_Ani_Pic_No=${adoptaniPhotoVO.ado_Ani_Pic_No}" alt="" max-height="">
 		            <div class="container">
 		                <div class="carousel-caption">
@@ -51,16 +59,16 @@
 		        <%firstTime = ""; %>
 		     </c:forEach>
 
-	        <div class="item active" >
-	            <img src="https://api.fnkr.net/testimg/2800x700/aaaaaa" alt="">
-	            <div class="container">
-	                <div class="carousel-caption">
-	                    <h1>我是標題喔～自己改文案吧</h1>
-	                    <p>我是內文喔，你可以把字打在這裡呦</p>
-	                    <p><a class="btn btn-lg btn-primary" href="#" role="button">詳細內容</a></p>
-	                </div>
-	        </div>
-	        </div>
+<!-- 	        <div class="item active" > -->
+<!-- 	            <img src="https://api.fnkr.net/testimg/2800x700/aaaaaa" alt=""> -->
+<!-- 	            <div class="container"> -->
+<!-- 	                <div class="carousel-caption"> -->
+<!-- 	                    <h1>我是標題喔～自己改文案吧</h1> -->
+<!-- 	                    <p>我是內文喔，你可以把字打在這裡呦</p> -->
+<!-- 	                    <p><a class="btn btn-lg btn-primary" href="#" role="button">詳細內容</a></p> -->
+<!-- 	                </div> -->
+<!-- 	        </div> -->
+<!-- 	        </div> -->
 	    </div>
 	    <!-- 上下頁控制區 -->
 	    <a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>

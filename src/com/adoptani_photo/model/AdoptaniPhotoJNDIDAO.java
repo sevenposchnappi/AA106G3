@@ -44,6 +44,7 @@ public class AdoptaniPhotoJNDIDAO implements AdoptaniPhotoDAO_interface{
 	//	private static final String GET_Emps_ByDeptno_STMT = "SELECT empno,ename,job,to_char(hiredate,'yyyy-mm-dd') hiredate,sal,comm,deptno FROM adopt_Ani where adopt_Ani_Id = ? order by empno";
 	private static final String GET_AdoptaniPhotos_ByAdoptaniID_STMT =
 			"SELECT ado_Ani_Pic_No,adopt_Ani_Id,mem_Id,ado_Ani_Pic,ado_Pic_name,ado_Pic_nameEX,ado_Pic_time,ado_Pic_type FROM adopt_Ani_photos where adopt_Ani_Id = ? order by ado_Pic_time";
+	
 	private static final String DELETE = 
 			"DELETE FROM adopt_Ani_photos where ado_Ani_Pic_No = ?";
 	
