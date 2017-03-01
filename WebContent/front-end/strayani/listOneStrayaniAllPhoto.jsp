@@ -47,7 +47,7 @@ window.onload = function ()
 	    <div class="carousel-inner " style="height: 580px;">
 		    <c:forEach var="strayaniPhotoVO" items="${list}" >
 		        <div class="item <%= firstTime%>">
-		            <img src="<%=request.getContextPath()%>/front-end/DBGifReader_StrayaniPhoto/DBGifReader_StrayaniPhoto.do?ado_Ani_Pic_No=${strayaniPhotoVO.ado_Ani_Pic_No}" alt="" max-height="">
+		            <img src="<%=request.getContextPath()%>/front-end/DBGifReader_StrayaniPhoto/DBGifReader_StrayaniPhoto.do?str_Ani_Pic_No=${strayaniPhotoVO.str_Ani_Pic_No}" alt="" max-height="">
 		            <div class="container">
 		                <div class="carousel-caption">
 		                    <h1>CSS可樂好喝超爽快</h1>
@@ -79,7 +79,7 @@ window.onload = function ()
 				
 <!-- 				<tr align='center' valign='middle'> -->
 
-<%-- 				<td height=200px width=200px style="table-layout:fixed"><div><img style="table-layout:fixed; max-height:200px; max-width:200px" src="<%=request.getContextPath()%>/DBGifReader_StrayaniPhoto/DBGifReader_StrayaniPhoto.do?ado_Ani_Pic_No=${strayaniPhotoVO.ado_Ani_Pic_No}"></div></td> --%>
+<%-- 				<td height=200px width=200px style="table-layout:fixed"><div><img style="table-layout:fixed; max-height:200px; max-width:200px" src="<%=request.getContextPath()%>/DBGifReader_StrayaniPhoto/DBGifReader_StrayaniPhoto.do?str_Ani_Pic_No=${strayaniPhotoVO.str_Ani_Pic_No}"></div></td> --%>
 
 
    

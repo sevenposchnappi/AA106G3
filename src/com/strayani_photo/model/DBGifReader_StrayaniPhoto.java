@@ -15,30 +15,33 @@ public class DBGifReader_StrayaniPhoto extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("image/jpeg");
 		ServletOutputStream out = res.getOutputStream();
 		String str_Ani_Pic_No = req.getParameter("str_Ani_Pic_No");
-		String str_Pic_type = req.getParameter("stray_Pic_type");
-		System.out.println("1");
+		String stray_Pic_type = req.getParameter("stray_Pic_type");
+		String stray_Ani_Id = req.getParameter("stray_Ani_Id");
+System.out.println("into DBGifReader_StrayaniPhoto.java");
+System.out.println("str_Ani_Pic_No="+str_Ani_Pic_No);
+System.out.println("stray_Pic_type="+stray_Pic_type);
+System.out.println("stray_Ani_Id="+stray_Ani_Id);
 		
 		try {
-			System.out.println("2");
 			Statement stmt = con.createStatement();
 			ResultSet rs;
-				if(str_Pic_type==null){
-					System.out.println("3");
+				if(stray_Pic_type==null){
+System.out.println("YY");
 					String str_Ani_Pic_No2 =new String(str_Ani_Pic_No.getBytes("ISO-8859-1"),"UTF-8");
 					rs= stmt.executeQuery(
-						"SELECT stray_Ani_Pic FROM STRAY_ANI_PHOTOS WHERE str_Ani_Pic_No='"+str_Ani_Pic_No2+"'");
+						"SELECT str_Ani_Pic FROM ADOPT_ANI_PHOTOS WHERE str_Ani_Pic_No='"+str_Ani_Pic_No2+"'");
 				}else{
-					String stray_Ani_Id = req.getParameter("stray_Ani_Id");
+System.out.println("XX");
+					
+
 					String stray_Ani_Id2 =new String(stray_Ani_Id.getBytes("ISO-8859-1"),"UTF-8");
-					String str_Pic_type2 =new String(str_Pic_type.getBytes("ISO-8859-1"),"UTF-8");
-					System.out.println("4");
+					String stray_Pic_type2 =new String(stray_Pic_type.getBytes("ISO-8859-1"),"UTF-8");
 					rs= stmt.executeQuery(
-							"SELECT stray_Ani_Pic FROM STRAY_ANI_PHOTOS WHERE stray_Ani_Id='"+stray_Ani_Id2+"'"+"AND stray_Pic_type='"+str_Pic_type2+"'");
+							"SELECT stray_Ani_Pic FROM STRAY_ANI_PHOTOS WHERE stray_Ani_Id='"+stray_Ani_Id2+"'"+"AND stray_Pic_type='"+stray_Pic_type2+"'");
 				}
 			
 			if (rs.next()) {
@@ -50,7 +53,7 @@ public class DBGifReader_StrayaniPhoto extends HttpServlet {
 				}
 				in.close();
 			} else {
-				InputStream in = getServletContext().getResourceAsStream("/images/tomcat.gif");
+				InputStream in = getServletContext().getResourceAsStream("/front-end/strayani/images/tomcat.gif");
 				byte[] buf = new byte[in.available()]; 	//建立水桶
 				in.read(buf);							//把資料放進水桶			
 				out.write(buf);							//把水桶裡的資料倒出來
@@ -60,7 +63,11 @@ public class DBGifReader_StrayaniPhoto extends HttpServlet {
 			stmt.close();
 		} catch (Exception e) {
 			System.out.println(e);
-			System.out.println("?");
+			InputStream in = getServletContext().getResourceAsStream("/front-end/strayani/images/tomcat.gif");
+			byte[] buf = new byte[in.available()]; 	//建立水桶
+			in.read(buf);							//把資料放進水桶			
+			out.write(buf);							//把水桶裡的資料倒出來
+			in.close();
 		}
 	}
 

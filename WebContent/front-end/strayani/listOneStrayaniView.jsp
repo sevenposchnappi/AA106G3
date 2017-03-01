@@ -135,7 +135,7 @@
                 <!-- <div class="overlay"></div> -->
                 <div class="col-xs-12 col-sm-5 header" >
                     <div class="headPhotoDiv">
-                        <img src="<%=request.getContextPath()%>/front-end/DBGifReader_StrayaniPhoto/DBGifReader_StrayaniPhoto.do?stray_Ani_Id=<%= strayaniVO.getStray_Ani_Id()%>&ado_Pic_type=0" id="headPhoto">
+                        <img src="<%=request.getContextPath()%>/front-end/DBGifReader_StrayaniPhoto/DBGifReader_StrayaniPhoto.do?stray_Ani_Id=<%= strayaniVO.getStray_Ani_Id()%>&stray_Pic_type=0" id="headPhoto">
                     <h1 align="center">
                         <%= strayaniVO.getStray_Ani_name()%>
                     </h1>

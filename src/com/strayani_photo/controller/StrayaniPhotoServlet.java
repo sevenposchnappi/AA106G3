@@ -42,6 +42,11 @@ public class StrayaniPhotoServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		System.out.println(action);
+		
+		
+		
+		
+		
 		if ("getOne_For_Display".equals(action)  || "getOne_For_Display_From_listOneStrayani.jsp".equals(action) || "getOne_For_Display_From_listAllStrayani.jsp".equals(action)) { // 來自select_page.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -49,7 +54,7 @@ public class StrayaniPhotoServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			StrayaniVO strayaniVO = (StrayaniVO) req.getAttribute("strayaniVO"); //StrayaniVOServlet.java(Concroller), 存入req的strayaniVO物件
-			System.out.println("action:"+action);
+			System.out.println("strayani_photo.do  action:"+action);
 			
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
@@ -80,7 +85,7 @@ public class StrayaniPhotoServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
-				
+				System.out.println("stray_Ani_Id:"+stray_Ani_Id);
 				/***************************2.開始查詢資料*****************************************/
 				StrayaniPhotoService strayaniPhotoSvc = new StrayaniPhotoService();
 				List<StrayaniPhotoVO> oneStrayAniPhotoList = strayaniPhotoSvc.getOneStrayaniPhoto(str);

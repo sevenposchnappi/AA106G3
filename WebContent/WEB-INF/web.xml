@@ -88,14 +88,14 @@
 		<url-pattern>/front-end/DBGifReader_StrayaniPhoto/DBGifReader_StrayaniPhoto.do</url-pattern>
 	</servlet-mapping>
 	
-<!-- 	<servlet> -->
-<!-- 		<servlet-name>StrayaniMessageServlet</servlet-name> -->
-<!-- 		<servlet-class>com.strayani_message.controller.StrayaniMessageServlet</servlet-class> -->
-<!-- 	</servlet> -->
-<!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>StrayaniMessageServlet</servlet-name> -->
-<!-- 		<url-pattern>/front-end/strayani_message/StrayaniMessageServlet.do</url-pattern> -->
-<!-- 	</servlet-mapping> -->
+	<servlet>
+		<servlet-name>StrayaniMessageServlet</servlet-name>
+		<servlet-class>com.strayani_message.controller.StrayaniMessageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StrayaniMessageServlet</servlet-name>
+		<url-pattern>/front-end/strayani_message/StrayaniMessageServlet.do</url-pattern>
+	</servlet-mapping>
 	
 <!-- 	<servlet> -->
 <!-- 		<servlet-name>StrayaniSponsorServlet</servlet-name> -->
