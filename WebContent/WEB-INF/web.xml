@@ -10,50 +10,101 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  
+  	<!-- 送養動物 --> 
+  	
   	<servlet>
-		<servlet-name>AdoptaniServlet</servlet-name>
-		<servlet-class>com.adoptani.controller.AdoptaniServlet</servlet-class>
+        <servlet-name>AdoptaniServlet</servlet-name>
+        <servlet-class>com.adoptani.controller.AdoptaniServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdoptaniServlet</servlet-name>
+        <url-pattern>/front-end/adoptani/adoptani.do</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>AdoptaniPhotoServlet</servlet-name>
+        <servlet-class>com.adoptani_photo.controller.AdoptaniPhotoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdoptaniPhotoServlet</servlet-name>
+        <url-pattern>/front-end/adoptani_photo/adoptani_photo.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>DBGifReader_AdoptaniPhoto</servlet-name>
+        <servlet-class>com.adoptani_photo.model.DBGifReader_AdoptaniPhoto</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DBGifReader_AdoptaniPhoto</servlet-name>
+        <url-pattern>/front-end/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AdoptaniMessageServlet</servlet-name>
+        <servlet-class>com.adoptani_message.controller.AdoptaniMessageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdoptaniMessageServlet</servlet-name>
+        <url-pattern>/front-end/adoptani_message/AdoptaniMessageServlet.do</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AdoptaniSponsorServlet</servlet-name>
+        <servlet-class>com.adoptani_sponsor.controller.AdoptaniSponsorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdoptaniSponsorServlet</servlet-name>
+        <url-pattern>/front-end/adoptani_sponsor/AdoptaniSponsorServlet.do</url-pattern>
+    </servlet-mapping>
+  
+  
+	<!-- 社區流浪動物 -->  
+  
+  	<servlet>
+		<servlet-name>StrayaniServlet</servlet-name>
+		<servlet-class>com.strayani.controller.StrayaniServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>AdoptaniServlet</servlet-name>
-		<url-pattern>/front-end/adoptani/adoptani.do</url-pattern>
+		<servlet-name>StrayaniServlet</servlet-name>
+		<url-pattern>/front-end/strayani/strayani.do</url-pattern>
 	</servlet-mapping>
     
      <servlet>
-		<servlet-name>AdoptaniPhotoServlet</servlet-name>
-		<servlet-class>com.adoptani_photo.controller.AdoptaniPhotoServlet</servlet-class>
+		<servlet-name>StrayaniPhotoServlet</servlet-name>
+		<servlet-class>com.strayani_photo.controller.StrayaniPhotoServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>AdoptaniPhotoServlet</servlet-name>
-		<url-pattern>/front-end/adoptani_photo/adoptani_photo.do</url-pattern>
+		<servlet-name>StrayaniPhotoServlet</servlet-name>
+		<url-pattern>/front-end/strayani_photo/strayani_photo.do</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>DBGifReader_AdoptaniPhoto</servlet-name>
-		<servlet-class>com.adoptani_photo.model.DBGifReader_AdoptaniPhoto</servlet-class>
+		<servlet-name>DBGifReader_StrayaniPhoto</servlet-name>
+		<servlet-class>com.strayani_photo.model.DBGifReader_StrayaniPhoto</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>DBGifReader_AdoptaniPhoto</servlet-name>
-		<url-pattern>/front-end/DBGifReader_AdoptaniPhoto/DBGifReader_AdoptaniPhoto.do</url-pattern>
+		<servlet-name>DBGifReader_StrayaniPhoto</servlet-name>
+		<url-pattern>/front-end/DBGifReader_StrayaniPhoto/DBGifReader_StrayaniPhoto.do</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>AdoptaniMessageServlet</servlet-name>
-		<servlet-class>com.adoptani_message.controller.AdoptaniMessageServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AdoptaniMessageServlet</servlet-name>
-		<url-pattern>/front-end/adoptani_message/AdoptaniMessageServlet.do</url-pattern>
-	</servlet-mapping>
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>StrayaniMessageServlet</servlet-name> -->
+<!-- 		<servlet-class>com.strayani_message.controller.StrayaniMessageServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>StrayaniMessageServlet</servlet-name> -->
+<!-- 		<url-pattern>/front-end/strayani_message/StrayaniMessageServlet.do</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	
-	<servlet>
-		<servlet-name>AdoptaniSponsorServlet</servlet-name>
-		<servlet-class>com.adoptani_sponsor.controller.AdoptaniSponsorServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AdoptaniSponsorServlet</servlet-name>
-		<url-pattern>/front-end/adoptani_sponsor/AdoptaniSponsorServlet.do</url-pattern>
-	</servlet-mapping>
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>StrayaniSponsorServlet</servlet-name> -->
+<!-- 		<servlet-class>com.strayani_sponsor.controller.StrayaniSponsorServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>StrayaniSponsorServlet</servlet-name> -->
+<!-- 		<url-pattern>/front-end/strayani_sponsor/StrayaniSponsorServlet.do</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	
 
   
